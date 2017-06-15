@@ -6,7 +6,6 @@ import Example from '../../src'
 class Demo extends Component {
   render() {
     return <div>
-      <h1>flight-tutorials-client Demo</h1>
       <Example/>
     </div>
   }

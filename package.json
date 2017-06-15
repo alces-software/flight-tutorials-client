@@ -19,7 +19,11 @@
     "test:watch": "jest --watch",
     "test:jest": "jest"
   },
-  "dependencies": {},
+  "dependencies": {
+    "socket.io-client": "^2.0.3",
+    "socket.io-stream": "^0.9.1",
+    "terminal.js": "^1.0.9"
+  },
   "peerDependencies": {
     "react": "15.x"
   },

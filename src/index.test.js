@@ -2,7 +2,7 @@ import expect from 'expect'
 import React from 'react'
 import {render, unmountComponentAtNode} from 'react-dom'
 
-import Component from 'src/'
+import Component from './'
 
 describe('Component', () => {
   let node
@@ -14,6 +14,10 @@ describe('Component', () => {
   afterEach(() => {
     unmountComponentAtNode(node)
   })
+
+  it('renders without crashing', () => {
+    render(<Component/>, node);
+  });
 
   it('displays a welcome message', () => {
     render(<Component/>, node, () => {

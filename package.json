@@ -14,18 +14,24 @@
     "build": "nwb build-react-component",
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "nwb serve-react-demo",
-    "test": "nwb test-react",
-    "test:coverage": "nwb test-react --coverage",
-    "test:watch": "nwb test-react --server"
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test:jest": "jest"
   },
   "dependencies": {},
   "peerDependencies": {
     "react": "15.x"
   },
   "devDependencies": {
+    "babel-jest": "^20.0.3",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "jest": "^20.0.4",
     "nwb": "0.16.x",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "react-test-renderer": "^15.6.1"
   },
   "author": "",
   "homepage": "",
@@ -33,5 +39,23 @@
   "repository": "",
   "keywords": [
     "react-component"
-  ]
+  ],
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>[/\\\\](dist|docs|node_modules|scripts)[/\\\\]"
+    ],
+    "testURL": "http://localhost",
+    "transform": {
+      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest"
+    }
+  },
+  "babel": {
+    "presets": [
+      "react",
+      "es2015"
+    ]
+  }
 }

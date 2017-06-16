@@ -1,18 +1,24 @@
+// @flow
 import React, {Component} from 'react';
 import mkDebug from 'debug';
 
 import escapeRegExp from './utils/escapeRegExp';
 import TutorialStep from './TutorialStep';
+import type { StepType, TutorialType}  from './types';
 
 const debug = mkDebug('FlightTutorials:Tutorial');
 
 export default class Tutorial extends Component {
-  state = {
-    currentStep: undefined,
-    completedSteps: [],
-  }
+  props: {
+    tutorial: TutorialType,
+  };
 
-  constructor(...args) {
+  state: {
+    currentStep: string,
+    completedSteps: Array<string>,
+  };
+
+  constructor(...args: any) {
     super(...args);
     const tutorial = this.props.tutorial;
     this.state = {
@@ -21,7 +27,7 @@ export default class Tutorial extends Component {
     };
   }
 
-  handleInputLine = (line) => {
+  handleInputLine = (line: string) => {
     const matches = this.currentStep().matches;
 
     for (let i=0; i < matches.length; i++) {
@@ -36,7 +42,7 @@ export default class Tutorial extends Component {
 
       if (line.match(re)) {
         debug('Line matched');
-        if (match.nextStep) {
+        if (match.nextStep != null) {
           debug('Transitioning to step %s', match.nextStep);
           this.setState((prevState) => {
             return {
@@ -50,7 +56,7 @@ export default class Tutorial extends Component {
     };
   }
 
-  currentStep() {
+  currentStep() : StepType {
     return this.props.tutorial.steps[this.state.currentStep];
   }
 

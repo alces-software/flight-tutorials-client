@@ -5,11 +5,17 @@
  *
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
+// @flow
 import React from 'react';
+
+import type { TutorialType } from './types';
 
 const TutorialSelection = ({
   onSelectTutorial,
   tutorials,
+}: {
+  onSelectTutorial: (number) => void,
+  tutorials: Array<TutorialType>
 }) => {
   const options = tutorials.map((t, idx) => <TutorialOption
     key={idx}
@@ -28,6 +34,9 @@ const TutorialSelection = ({
 const TutorialOption = ({
   onSelectTutorial,
   tutorial,
+}:{
+  onSelectTutorial: () => void,
+  tutorial: TutorialType
 }) => {
   return (
     <div>

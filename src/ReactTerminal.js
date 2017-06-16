@@ -1,3 +1,4 @@
+// @flow
 import React, {Component} from 'react';
 import Terminal from 'terminal.js';
 import ss from 'socket.io-stream';
@@ -21,6 +22,13 @@ const wrapperStyle = {
 const socket = io('http://localhost:3001/pty', {path: "/tutorial/socket.io"});
 
 export default class ReactTerminal extends Component {
+  _terminalEl: HTMLPreElement;
+  _term: Terminal;
+
+  props: {
+    onInputLine: (string) => void,
+  }
+
   componentDidMount() {
     this.connectTerminal();
   }
@@ -32,12 +40,12 @@ export default class ReactTerminal extends Component {
 
   connectTerminal() {
     debug('Connecting terminal');
-    this._terminalEl.tabindex = 0;
+    this._terminalEl.tabIndex = 0;
     this._term = new Terminal(this._terminalEl.dataset);
-    this._stream = ss.createStream({decodeStrings: false, encoding: 'utf-8'});
-    ss(socket).emit('new', this._stream, this._terminalEl.dataset);
+    const stream = ss.createStream({decodeStrings: false, encoding: 'utf-8'});
+    ss(socket).emit('new', stream, this._terminalEl.dataset);
 
-    this._stream.on("data", (chunk, ev) => {
+    stream.on("data", (chunk, ev) => {
       debug('Received chunk %o as string: %s', chunk, chunk.toString());
       if (chunk[0] === 13 && chunk[1] === 10) {
         debug('Chunk starts with "\\r\\n"');
@@ -46,7 +54,7 @@ export default class ReactTerminal extends Component {
       }
     })
 
-    this._stream.pipe(this._term).dom(this._terminalEl).pipe(this._stream);
+    stream.pipe(this._term).dom(this._terminalEl).pipe(stream);
   }
 
   handleInputLine() {

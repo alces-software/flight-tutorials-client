@@ -1,10 +1,14 @@
-const tutorials = [{
+// @flow
+
+import type { TutorialType}  from './types';
+
+const tutorials: Array<TutorialType> = [{
   title: 'A Lovely Flight Compute Tutorial',
   description: 'Say hello and do something useful',
   firstStep: 'hello',
   steps: {
     hello: {
-      // title: 'Say hello',
+      title: 'Say hello',
       description: `
         <div>
           <p>You should type this:</p>
@@ -16,10 +20,10 @@ const tutorials = [{
         inputLine: '$ echo "Hello, world."',
         regexp: false,
         nextStep: 'sinfo',
-      }, {
-        inputLine: '$ echo "Hello, world"',
-        regexp: false,
-        showHint: 'Make sure to include the . after world.',
+      // }, {
+      //   inputLine: '$ echo "Hello, world"',
+      //   regexp: false,
+      //   showHint: 'Make sure to include the . after world.',
       }],
     },
 
@@ -47,6 +51,7 @@ const tutorials = [{
           <img src="https://c1.staticflickr.com/6/5105/5617082954_904c4d7b71_b.jpg" style="width: 200px"/>
         </div>
       `,
+      matches: [],
     }
   },
 }, {
@@ -224,6 +229,7 @@ const tutorials = [{
       matches: [{
         inputLine: '$ sbatch challenge-mpi.sh',
         regexp: false,
+        nextStep: undefined,
       }],
     },
   },

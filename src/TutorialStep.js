@@ -1,6 +1,13 @@
+// @flow
 import React, {Component} from 'react';
 
 export default class TutorialStep extends Component {
+  props: {
+    current: boolean,
+    completed: boolean,
+    step: { title: string, description: string },
+  };
+
   render() {
     const { current, completed, step } = this.props;
     if (!current && !completed) {

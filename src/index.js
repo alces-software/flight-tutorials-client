@@ -1,3 +1,4 @@
+// @flow
 import React, {Component} from 'react';
 import mkDebug from 'debug';
 
@@ -9,15 +10,17 @@ import tutorials from './tutorials';
 const debug = mkDebug('FlightTutorials:index');
 
 export default class extends Component {
+  _tutorial: Tutorial;
+
   state = {
     selectedTutorial: undefined,
   };
 
-  handleTutorialSelection = (idx) => {
+  handleTutorialSelection = (idx: ?number) => {
     this.setState({ selectedTutorial: idx });
   }
 
-  handleInputLine = (line) => {
+  handleInputLine = (line: string) => {
     debug('Passing line %s to tutorial %O', line, this._tutorial);
     if (this._tutorial) {
       this._tutorial.handleInputLine(line);

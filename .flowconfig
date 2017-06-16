@@ -1,0 +1,11 @@
+[ignore]
+/* <PROJECT_ROOT>/node_modules/.* */
+<PROJECT_ROOT>/node_modules/babel-plugin-transform-react-remove-prop-types/src/index.js
+<PROJECT_ROOT>/node_modules/nwb/templates/react-component/_package.json
+<PROJECT_ROOT>/node_modules/nwb/templates/web-module/_package.json
+
+[include]
+
+[libs]
+
+[options]

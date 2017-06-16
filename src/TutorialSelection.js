@@ -1,3 +1,4 @@
+// @flow
 /*=============================================================================
  * Copyright (C) 2017 Stephen F. Norledge and Alces Flight Ltd.
  *
@@ -5,7 +6,6 @@
  *
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
-// @flow
 import React from 'react';
 
 import type { TutorialType } from './types';

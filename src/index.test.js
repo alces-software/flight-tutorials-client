@@ -1,3 +1,10 @@
+/*=============================================================================
+ * Copyright (C) 2017 Stephen F. Norledge and Alces Flight Ltd.
+ *
+ * This file is part of Flight Compute Tutorials.
+ *
+ * All rights reserved, see LICENSE.txt.
+ *===========================================================================*/
 import expect from 'expect'
 import React from 'react'
 import {render, unmountComponentAtNode} from 'react-dom'

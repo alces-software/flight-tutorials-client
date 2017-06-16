@@ -1,4 +1,11 @@
 // @flow
+/*=============================================================================
+ * Copyright (C) 2017 Stephen F. Norledge and Alces Flight Ltd.
+ *
+ * This file is part of Flight Compute Tutorials.
+ *
+ * All rights reserved, see LICENSE.txt.
+ *===========================================================================*/
 import React, {Component} from 'react';
 
 export default class TutorialStep extends Component {

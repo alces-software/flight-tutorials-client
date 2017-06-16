@@ -70,7 +70,7 @@ export default class Tutorial extends Component {
     return (
       <div>
         <h2>{tutorial.title}</h2>
-        <p>{tutorial.description}</p>
+        <div dangerouslySetInnerHTML={{__html: tutorial.description}} />
         {steps}
       </div>
     );

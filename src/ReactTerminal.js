@@ -39,8 +39,8 @@ export default class ReactTerminal extends Component {
 
     this._stream.on("data", (chunk, ev) => {
       debug('Received chunk %o as string: %s', chunk, chunk.toString());
-      if (chunk[0] == 13) {
-        debug('Chunk starts with "\\r"');
+      if (chunk[0] === 13 && chunk[1] === 10) {
+        debug('Chunk starts with "\\r\\n"');
         // The user has just pressed enter.  We have a line of input.
         this.handleInputLine();
       }

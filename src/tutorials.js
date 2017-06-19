@@ -236,7 +236,6 @@ const tutorials: Array<TutorialType> = [{
       matches: [{
         inputLine: '$ sbatch challenge-mpi.sh',
         regexp: false,
-        nextStep: undefined,
       }],
     },
   },

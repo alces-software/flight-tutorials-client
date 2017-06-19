@@ -10,7 +10,7 @@
 export type MatchType = {
   inputLine: string,
   regexp: boolean,
-  nextStep: ?string,
+  nextStep?: string,
 };
 
 export type StepType = {

@@ -30,6 +30,7 @@ export default class extends Component {
   };
 
   handleTutorialSelection = (idx: ?number) => {
+    debug('Selecting tutorial at index %d', idx);
     this.setState({ selectedTutorial: idx });
   }
 

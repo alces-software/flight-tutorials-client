@@ -2,7 +2,7 @@
 /*=============================================================================
  * Copyright (C) 2017 Stephen F. Norledge and Alces Flight Ltd.
  *
- * This file is part of Flight Compute Tutorials.
+ * This file is part of Flight Tutorials.
  *
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
@@ -10,7 +10,7 @@
 import type { TutorialType}  from './types';
 
 const tutorials: Array<TutorialType> = [{
-  title: 'A Lovely Flight Compute Tutorial',
+  title: 'A Lovely Flight Tutorial',
   description: 'Say hello and do something useful',
   firstStep: 'hello',
   steps: {

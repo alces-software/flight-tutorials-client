@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <p>
+    Which tutorial do you wish to undertake?
+  </p>
+  <div>
+    <h3>
+      Tutorial 1
+    </h3>
+    <div
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "Tutorial 1 description",
+        }
+      }
+    />
+    <button
+      onClick={[Function]}
+    >
+      Select
+    </button>
+  </div>
+  <div>
+    <h3>
+      Tutorial 2
+    </h3>
+    <div
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "Tutorial 2 description",
+        }
+      }
+    />
+    <button
+      onClick={[Function]}
+    >
+      Select
+    </button>
+  </div>
+</div>
+`;

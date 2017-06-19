@@ -5,30 +5,38 @@
  *
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
-import expect from 'expect'
 import React from 'react'
-import {render, unmountComponentAtNode} from 'react-dom'
+import { render } from 'react-dom'
+import { shallow } from 'enzyme';
 
 import Component from './'
 
-describe('Component', () => {
-  let node
+it('renders without crashing', () => {
+  const node = document.createElement('div')
+  render(<Component/>, node);
+});
 
-  beforeEach(() => {
-    node = document.createElement('div')
-  })
+it('displays tutorial container when tutorial is selected', () => {
+  const wrapper = shallow(
+    <Component />
+  );
+  const instance = wrapper.instance();
 
-  afterEach(() => {
-    unmountComponentAtNode(node)
-  })
+  instance.handleTutorialSelection(0);
 
-  it('renders without crashing', () => {
-    render(<Component/>, node);
-  });
+  expect(wrapper.find('TutorialSelection')).not.toBePresent();
+  expect(wrapper.find('TutorialContainer')).toBePresent();
+});
 
-  it('displays a welcome message', () => {
-    render(<Component/>, node, () => {
-      expect(node.innerHTML).toContain('Welcome to React components')
-    })
-  })
-})
+it('displays tutorial selection when no tutorial is selected', () => {
+  const wrapper = shallow(
+    <Component />
+  );
+  const instance = wrapper.instance();
+
+  instance.handleTutorialSelection(0);
+  instance.handleShowAllTutorials();
+
+  expect(wrapper.find('TutorialSelection')).toBePresent();
+  expect(wrapper.find('TutorialContainer')).not.toBePresent();
+});

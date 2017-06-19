@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly (currentStep) 1`] = `
+<div>
+  <h3>
+    My step 1
+  </h3>
+  <div
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "My step 1 description",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`renders correctly (futureStep) 1`] = `null`;
+
+exports[`renders correctly (previousStep) 1`] = `
+<div>
+  <h3>
+    My step 1
+  </h3>
+  <div
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "My step 1 description",
+      }
+    }
+  />
+</div>
+`;

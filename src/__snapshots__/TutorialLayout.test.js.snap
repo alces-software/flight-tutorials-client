@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <div>
+    dummy terminal
+  </div>
+  <div>
+    <h2>
+      My tutorial
+    </h2>
+    <div
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "My tutorial description",
+        }
+      }
+    />
+  </div>
+  <div>
+    <div>
+      <h3>
+        My step 1
+      </h3>
+      <div
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "My step 1 description",
+          }
+        }
+      />
+    </div>
+    <div>
+      <h3>
+        My step 2
+      </h3>
+      <div
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "My step 2 description",
+          }
+        }
+      />
+    </div>
+  </div>
+</div>
+`;

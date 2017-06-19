@@ -53,14 +53,21 @@ export default class extends Component {
     return (
       <TutorialContainer tutorial={tutorial}>
         {({ completedSteps, currentStep, terminal }) => (
-          <TutorialLayout
-            completedSteps={completedSteps}
-            currentStep={currentStep}
-            onShowAllTutorials={this.handleShowAllTutorials}
-            showAllTutorialsButton={this.props.showAllTutorialsButton}
-            terminal={terminal}
-            tutorial={tutorial}
-          />
+          <div>
+            {
+              this.props.showAllTutorialsButton ?
+                <button onClick={this.handleShowAllTutorials}>
+                  View all tutorials
+                </button> :
+                null
+            }
+            <TutorialLayout
+              completedSteps={completedSteps}
+              currentStep={currentStep}
+              terminal={terminal}
+              tutorial={tutorial}
+            />
+          </div>
         )}
       </TutorialContainer>
     );

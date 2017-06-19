@@ -31,7 +31,7 @@ const TutorialSelection = ({
   );
 };
 
-const TutorialOption = ({
+export const TutorialOption = ({
   onSelectTutorial,
   tutorial,
 }:{

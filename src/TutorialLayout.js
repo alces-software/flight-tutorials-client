@@ -17,8 +17,6 @@ import type { TutorialType }  from './types';
 type PropsType = {
   completedSteps : Array<string>,
   currentStep: string,
-  onShowAllTutorials: () => void,
-  showAllTutorialsButton: boolean,
   terminal : React$Element<*>,  // A ReactTerminal element.
   tutorial: TutorialType,
 }
@@ -26,19 +24,10 @@ type PropsType = {
 const TutorialLayout = ({
   completedSteps,
   currentStep,
-  onShowAllTutorials,
-  showAllTutorialsButton,
   terminal,
   tutorial,
 } : PropsType ) => (
   <div>
-    {
-      showAllTutorialsButton ?
-        <button onClick={onShowAllTutorials}>
-          View all tutorials
-        </button> :
-        null
-    }
     {terminal}
     {<TutorialInfo tutorial={tutorial} />}
     {

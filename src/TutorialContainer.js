@@ -25,6 +25,7 @@ type ChildrenPropType = ({
 export default class TutorialContainer extends Component {
   props: {
     children: ChildrenPropType,
+    socket: any,
     tutorial: TutorialType,
   };
 
@@ -76,7 +77,12 @@ export default class TutorialContainer extends Component {
 
 
   render() {
-    const terminal = <ReactTerminal onInputLine={this.handleInputLine} />;
+    const terminal = (
+      <ReactTerminal
+        onInputLine={this.handleInputLine}
+        socket={this.props.socket}
+      />
+    );
 
     return this.props.children({
       completedSteps: this.state.completedSteps,

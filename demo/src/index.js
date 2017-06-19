@@ -14,7 +14,10 @@ import Example from '../../src'
 class Demo extends Component {
   render() {
     return <div>
-      <Example/>
+      <Example
+        socketIOUrl="http://localhost:3001/pty"
+        socketIOPath="/tutorial/socket.io"
+      />
     </div>
   }
 }

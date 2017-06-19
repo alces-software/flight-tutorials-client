@@ -9,7 +9,6 @@
 import React, {Component} from 'react';
 import Terminal from 'terminal.js';
 import ss from 'socket.io-stream';
-import io from 'socket.io-client';
 import mkDebug from 'debug';
 
 const debug = mkDebug('FlightTutorials:ReactTerminal');
@@ -26,8 +25,6 @@ const wrapperStyle = {
   float: 'right',
 };
 
-const socket = io('http://localhost:3001/pty', {path: "/tutorial/socket.io"});
-
 export default class ReactTerminal extends Component {
   _terminalEl: HTMLPreElement;
   _term: Terminal;
@@ -37,6 +34,7 @@ export default class ReactTerminal extends Component {
     columns: number,
     onInputLine: (string) => void,
     rows: number,
+    socket: any,
   }
 
   static defaultProps = {
@@ -58,7 +56,7 @@ export default class ReactTerminal extends Component {
     this._term = new Terminal(this._terminalEl.dataset);
     this._stream = ss.createStream({decodeStrings: false, encoding: 'utf-8'});
     const options = { columns: this.props.columns, rows: this.props.rows };
-    ss(socket).emit('new', this._stream, options);
+    ss(this.props.socket).emit('new', this._stream, options);
 
     this._stream.on("data", (chunk, ev) => {
       debug('Received chunk %o as string: %s', chunk, chunk.toString());

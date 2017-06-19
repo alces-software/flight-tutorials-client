@@ -16,12 +16,24 @@ import tutorials from './tutorials';
 const debug = mkDebug('FlightTutorials:index');
 
 export default class extends Component {
+  props: {
+    showAllTutorialsButton: boolean,
+  }
+
+  static defaultProps = {
+    showAllTutorialsButton: true,
+  }
+
   state = {
     selectedTutorial: undefined,
   };
 
   handleTutorialSelection = (idx: ?number) => {
     this.setState({ selectedTutorial: idx });
+  }
+
+  handleShowAllTutorials = () => {
+    this.handleTutorialSelection(undefined);
   }
 
   render() {
@@ -36,7 +48,11 @@ export default class extends Component {
 
     const tutorial = tutorials[this.state.selectedTutorial];
     return (
-      <TutorialContainer tutorial={tutorial} />
+      <TutorialContainer
+        onShowAllTutorials={this.handleShowAllTutorials}
+        showAllTutorialsButton={this.props.showAllTutorialsButton}
+        tutorial={tutorial} 
+      />
     );
   }
 }

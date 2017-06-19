@@ -12,6 +12,7 @@ import mkDebug from 'debug';
 
 import ReactTerminal from './ReactTerminal';
 import TutorialInfo from './TutorialInfo';
+import TutorialLayout from './TutorialLayout';
 import TutorialSteps from './TutorialSteps';
 import escapeRegExp from './utils/escapeRegExp';
 import type { StepType, TutorialType } from './types';
@@ -20,6 +21,8 @@ const debug = mkDebug('FlightTutorials:TutorialContainer');
 
 export default class TutorialContainer extends Component {
   props: {
+    onShowAllTutorials: () => void,
+    showAllTutorialsButton: boolean,
     tutorial: TutorialType,
   };
 
@@ -72,16 +75,25 @@ export default class TutorialContainer extends Component {
 
   render() {
     const tutorial = this.props.tutorial;
+
+    const terminal = <ReactTerminal onInputLine={this.handleInputLine} />;
+    const tutorialInfo = <TutorialInfo tutorial={tutorial} />;
+    const steps = (
+      <TutorialSteps
+        completedSteps={this.state.completedSteps}
+        currentStep={this.state.currentStep}
+        steps={this.props.tutorial.steps}
+      />
+    );
+
     return (
-      <div>
-        <ReactTerminal onInputLine={this.handleInputLine} />
-        <TutorialInfo tutorial={tutorial} />
-        <TutorialSteps
-          completedSteps={this.state.completedSteps}
-          currentStep={this.state.currentStep}
-          steps={this.props.tutorial.steps}
-        />
-      </div>
+      <TutorialLayout
+        terminal={terminal}
+        tutorialInfo={tutorialInfo}
+        steps={steps}
+        showAllTutorialsButton={this.props.showAllTutorialsButton}
+        onShowAllTutorials={this.props.onShowAllTutorials}
+      />
     );
   }
 }

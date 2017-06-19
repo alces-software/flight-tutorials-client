@@ -11,17 +11,15 @@ import React, {Component} from 'react';
 import mkDebug from 'debug';
 
 import ReactTerminal from './ReactTerminal';
-import TutorialInfo from './TutorialInfo';
-import TutorialSteps from './TutorialSteps';
 import escapeRegExp from './utils/escapeRegExp';
 import type { StepType, TutorialType } from './types';
 
 const debug = mkDebug('FlightTutorials:TutorialContainer');
 
 type ChildrenPropType = ({
-  steps : React$Element<*>,  // A TutorialSteps element.
+  completedSteps : Array<string>,
+  currentStep: string,
   terminal : React$Element<*>,  // A ReactTerminal element.
-  tutorialInfo : React$Element<*>,  // A TutorialInfo element.
 }) => React$Element<*>;
 
 export default class TutorialContainer extends Component {
@@ -79,19 +77,11 @@ export default class TutorialContainer extends Component {
 
   render() {
     const terminal = <ReactTerminal onInputLine={this.handleInputLine} />;
-    const tutorialInfo = <TutorialInfo tutorial={this.props.tutorial} />;
-    const steps = (
-      <TutorialSteps
-        completedSteps={this.state.completedSteps}
-        currentStep={this.state.currentStep}
-        steps={this.props.tutorial.steps}
-      />
-    );
 
     return this.props.children({
+      completedSteps: this.state.completedSteps,
+      currentStep: this.state.currentStep,
       terminal: terminal,
-      tutorialInfo: tutorialInfo,
-      steps: steps,
     });
   }
 }

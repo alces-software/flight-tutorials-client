@@ -52,13 +52,14 @@ export default class extends Component {
 
     return (
       <TutorialContainer tutorial={tutorial}>
-        {({ steps, terminal, tutorialInfo }) => (
+        {({ completedSteps, currentStep, terminal }) => (
           <TutorialLayout
+            completedSteps={completedSteps}
+            currentStep={currentStep}
             onShowAllTutorials={this.handleShowAllTutorials}
             showAllTutorialsButton={this.props.showAllTutorialsButton}
-            steps={steps}
             terminal={terminal}
-            tutorialInfo={tutorialInfo}
+            tutorial={tutorial}
           />
         )}
       </TutorialContainer>

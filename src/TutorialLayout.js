@@ -12,21 +12,24 @@ import React, {Component} from 'react';
 import ReactTerminal from './ReactTerminal';
 import TutorialInfo from './TutorialInfo';
 import TutorialSteps from './TutorialSteps';
+import type { TutorialType }  from './types';
 
 type PropsType = {
+  completedSteps : Array<string>,
+  currentStep: string,
   onShowAllTutorials: () => void,
   showAllTutorialsButton: boolean,
-  steps : React$Element<*>,  // A TutorialSteps element.
   terminal : React$Element<*>,  // A ReactTerminal element.
-  tutorialInfo : React$Element<*>,  // A TutorialInfo element.
+  tutorial: TutorialType,
 }
 
 const TutorialLayout = ({
+  completedSteps,
+  currentStep,
   onShowAllTutorials,
   showAllTutorialsButton,
-  steps,
   terminal,
-  tutorialInfo,
+  tutorial,
 } : PropsType ) => (
   <div>
     {
@@ -37,8 +40,14 @@ const TutorialLayout = ({
         null
     }
     {terminal}
-    {tutorialInfo}
-    {steps}
+    {<TutorialInfo tutorial={tutorial} />}
+    {
+      <TutorialSteps
+        completedSteps={completedSteps}
+        currentStep={currentStep}
+        steps={tutorial.steps}
+      />
+    }
   </div>
 );
 

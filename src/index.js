@@ -10,6 +10,7 @@ import React, {Component} from 'react';
 import mkDebug from 'debug';
 
 import TutorialContainer from './TutorialContainer';
+import TutorialLayout from './TutorialLayout';
 import TutorialSelection from './TutorialSelection';
 import tutorials from './tutorials';
 
@@ -47,12 +48,19 @@ export default class extends Component {
     }
 
     const tutorial = tutorials[this.state.selectedTutorial];
+
     return (
-      <TutorialContainer
-        onShowAllTutorials={this.handleShowAllTutorials}
-        showAllTutorialsButton={this.props.showAllTutorialsButton}
-        tutorial={tutorial} 
-      />
+      <TutorialContainer tutorial={tutorial}>
+        {({ steps, terminal, tutorialInfo }) => (
+          <TutorialLayout
+            onShowAllTutorials={this.handleShowAllTutorials}
+            showAllTutorialsButton={this.props.showAllTutorialsButton}
+            steps={steps}
+            terminal={terminal}
+            tutorialInfo={tutorialInfo}
+          />
+        )}
+      </TutorialContainer>
     );
   }
 }

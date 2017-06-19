@@ -12,17 +12,21 @@ import mkDebug from 'debug';
 
 import ReactTerminal from './ReactTerminal';
 import TutorialInfo from './TutorialInfo';
-import TutorialLayout from './TutorialLayout';
 import TutorialSteps from './TutorialSteps';
 import escapeRegExp from './utils/escapeRegExp';
 import type { StepType, TutorialType } from './types';
 
 const debug = mkDebug('FlightTutorials:TutorialContainer');
 
+type ChildrenPropType = ({
+  steps : React$Element<*>,  // A TutorialSteps element.
+  terminal : React$Element<*>,  // A ReactTerminal element.
+  tutorialInfo : React$Element<*>,  // A TutorialInfo element.
+}) => React$Element<*>;
+
 export default class TutorialContainer extends Component {
   props: {
-    onShowAllTutorials: () => void,
-    showAllTutorialsButton: boolean,
+    children: ChildrenPropType,
     tutorial: TutorialType,
   };
 
@@ -74,10 +78,8 @@ export default class TutorialContainer extends Component {
 
 
   render() {
-    const tutorial = this.props.tutorial;
-
     const terminal = <ReactTerminal onInputLine={this.handleInputLine} />;
-    const tutorialInfo = <TutorialInfo tutorial={tutorial} />;
+    const tutorialInfo = <TutorialInfo tutorial={this.props.tutorial} />;
     const steps = (
       <TutorialSteps
         completedSteps={this.state.completedSteps}
@@ -86,14 +88,10 @@ export default class TutorialContainer extends Component {
       />
     );
 
-    return (
-      <TutorialLayout
-        terminal={terminal}
-        tutorialInfo={tutorialInfo}
-        steps={steps}
-        showAllTutorialsButton={this.props.showAllTutorialsButton}
-        onShowAllTutorials={this.props.onShowAllTutorials}
-      />
-    );
+    return this.props.children({
+      terminal: terminal,
+      tutorialInfo: tutorialInfo,
+      steps: steps,
+    });
   }
 }

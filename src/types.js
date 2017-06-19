@@ -19,9 +19,13 @@ export type StepType = {
   matches: Array<MatchType>,
 };
 
+export type StepMap = {
+  [string]: StepType,
+};
+
 export type TutorialType = {
   title: string,
   description: string,
   firstStep: string,
-  steps: { [string]: StepType },
+  steps: StepMap,
 };

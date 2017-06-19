@@ -6,16 +6,19 @@
  *
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
+
 import React, {Component} from 'react';
 import mkDebug from 'debug';
 
+import ReactTerminal from './ReactTerminal';
+import TutorialInfo from './TutorialInfo';
+import TutorialSteps from './TutorialSteps';
 import escapeRegExp from './utils/escapeRegExp';
-import TutorialStep from './TutorialStep';
-import type { StepType, TutorialType}  from './types';
+import type { StepType, TutorialType } from './types';
 
-const debug = mkDebug('FlightTutorials:Tutorial');
+const debug = mkDebug('FlightTutorials:TutorialContainer');
 
-export default class Tutorial extends Component {
+export default class TutorialContainer extends Component {
   props: {
     tutorial: TutorialType,
   };
@@ -27,9 +30,8 @@ export default class Tutorial extends Component {
 
   constructor(...args: any) {
     super(...args);
-    const tutorial = this.props.tutorial;
     this.state = {
-      currentStep: tutorial.firstStep,
+      currentStep: this.props.tutorial.firstStep,
       completedSteps: [],
     };
   }
@@ -70,21 +72,15 @@ export default class Tutorial extends Component {
 
   render() {
     const tutorial = this.props.tutorial;
-    const steps = Object.keys(tutorial.steps).map(stepName => {
-      return <TutorialStep
-        key={stepName}
-        completed={this.state.completedSteps.includes(stepName)}
-        current={stepName === this.state.currentStep}
-        step={tutorial.steps[stepName]}
-      />
-    }
-    );
-
     return (
       <div>
-        <h2>{tutorial.title}</h2>
-        <div dangerouslySetInnerHTML={{__html: tutorial.description}} />
-        {steps}
+        <ReactTerminal onInputLine={this.handleInputLine} />
+        <TutorialInfo tutorial={tutorial} />
+        <TutorialSteps
+          completedSteps={this.state.completedSteps}
+          currentStep={this.state.currentStep}
+          steps={this.props.tutorial.steps}
+        />
       </div>
     );
   }

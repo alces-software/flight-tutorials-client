@@ -2,11 +2,14 @@ sudo: false
 
 language: node_js
 node_js:
-  - 4
   - 6
 
 before_install:
-  - npm install codecov.io coveralls
+  - yarn add codecov.io coveralls flow
+
+script:
+  - yarn run test:coverage
+  - yarn run flow
 
 after_success:
   - cat ./coverage/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js

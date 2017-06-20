@@ -24,6 +24,8 @@ function getAnchorage(anchorage) {
   }
 }
 
+const ps1PromptMatch = '\\$';
+
 function findMatch(matches: Array<MatchType>, line: string) : ?MatchType {
   debug('Finding match for line %s', line);
   for (let i=0; i < matches.length; i++) {
@@ -37,7 +39,7 @@ function findMatch(matches: Array<MatchType>, line: string) : ?MatchType {
     }
     const anchorage = getAnchorage(match.anchored);
     if (anchorage.start) {
-      processedInputLine = `\\$[ \t]*${processedInputLine}`;
+      processedInputLine = `${ps1PromptMatch}[ \t]*${processedInputLine}`;
     }
     if (anchorage.end) {
       processedInputLine = `${processedInputLine}[ \t]*$`;

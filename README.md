@@ -1,4 +1,4 @@
-# flight-tutorials-client
+# Flight Tutorial client
 
 [![Travis][build-badge]][build]
 [![npm package][npm-badge]][npm]

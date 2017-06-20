@@ -7,6 +7,7 @@
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
 import React from 'react';
+import Markdown from 'react-markdown';
 
 type PropTypes = {
   current: boolean,
@@ -25,7 +26,7 @@ const TutorialStep = ({
   return (
     <div>
       <h3>{step.title}</h3>
-      <div dangerouslySetInnerHTML={{ __html: step.description }} />
+      <Markdown escapeHtml={false} source={step.description} />
     </div>
   );
 };

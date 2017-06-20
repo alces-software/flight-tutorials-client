@@ -17,12 +17,16 @@ const debug = mkDebug('FlightTutorials:findMatch');
 function findMatch(matches: Array<MatchType>, line: string) : ?MatchType {
   for (let i=0; i < matches.length; i++) {
     const match = matches[i];
-    var re;
+    let processedInputLine;
     if (match.regexp) {
-      re = new RegExp(match.inputLine);
+      processedInputLine = match.inputLine;
     } else {
-      re = new RegExp(escapeRegExp(match.inputLine));
+      processedInputLine = escapeRegExp(match.inputLine);
     }
+    if (match.anchored) {
+      processedInputLine = `\\$[ \t]*${processedInputLine}[ \t]*$`;
+    }
+    const re = new RegExp(processedInputLine);
     debug('Checking line against %s', re);
 
     if (line.match(re)) {

@@ -6,7 +6,7 @@
  *
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import mkDebug from 'debug';
 import io from 'socket.io-client';
 
@@ -18,7 +18,18 @@ import tutorials from './tutorials';
 const debug = mkDebug('FlightTutorials:index');
 
 export default class extends Component {
-  _socket: any;
+  static defaultProps = {
+    showAllTutorialsButton: true,
+  }
+
+  constructor(...args: any) {
+    super(...args);
+    this.socket = io(this.props.socketIOUrl, { path: this.props.socketIOPath });
+  }
+
+  state = {
+    selectedTutorial: undefined,
+  };
 
   props: {
     showAllTutorialsButton: boolean,
@@ -26,18 +37,7 @@ export default class extends Component {
     socketIOPath: string,
   }
 
-  static defaultProps = {
-    showAllTutorialsButton: true,
-  }
-
-  state = {
-    selectedTutorial: undefined,
-  };
-
-  constructor(...args: any) {
-    super(...args);
-    this._socket = io(this.props.socketIOUrl, {path: this.props.socketIOPath});
-  }
+  socket: any;
 
   handleTutorialSelection = (idx: ?number) => {
     debug('Selecting tutorial at index %d', idx);
@@ -61,7 +61,7 @@ export default class extends Component {
     const tutorial = tutorials[this.state.selectedTutorial];
 
     return (
-      <TutorialContainer tutorial={tutorial} socket={this._socket}>
+      <TutorialContainer tutorial={tutorial} socket={this.socket}>
         {({ completedSteps, currentStep, terminal }) => (
           <div>
             {

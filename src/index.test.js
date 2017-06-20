@@ -6,11 +6,11 @@
  *
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
-import React from 'react'
-import { render } from 'react-dom'
+import React from 'react';
+import { render } from 'react-dom';
 import { shallow } from 'enzyme';
 
-import Component from './'
+import Component from './';
 
 const renderComponent = () => (
   <Component
@@ -20,7 +20,7 @@ const renderComponent = () => (
 );
 
 it('renders without crashing', () => {
-  const node = document.createElement('div')
+  const node = document.createElement('div');
   render(renderComponent(), node);
 });
 

@@ -6,14 +6,14 @@
  *
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
-import React from 'react'
-import { render } from 'react-dom'
+import React from 'react';
+import { render } from 'react-dom';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 
 import TutorialInfo from './TutorialInfo';
 import TutorialLayout from './TutorialLayout';
-import TutorialSteps from './TutorialSteps'
+import TutorialSteps from './TutorialSteps';
 
 const steps = {
   step1: {
@@ -25,14 +25,14 @@ const steps = {
     title: 'My step 2',
     description: 'My step 2 description',
     matches: [],
-  }
+  },
 };
 
 const tutorial = {
   title: 'My tutorial',
   description: 'My tutorial description',
   firstStep: 'step1',
-  steps: steps,
+  steps,
 };
 
 const completedSteps = ['step1'];
@@ -57,7 +57,7 @@ it('renders without crashing', () => {
 
 it('renders correctly', () => {
   const tree = renderer.create(
-    renderTutorialLayout()
+    renderTutorialLayout(),
   ).toJSON();
   expect(tree).toMatchSnapshot();
 });

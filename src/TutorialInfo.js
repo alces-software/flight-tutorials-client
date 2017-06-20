@@ -11,13 +11,13 @@ import React from 'react';
 import type { TutorialType } from './types';
 
 const TutorialInfo = ({
-  tutorial
+  tutorial,
 } : {
   tutorial: TutorialType
 }) => (
   <div>
     <h2>{tutorial.title}</h2>
-    <div dangerouslySetInnerHTML={{__html: tutorial.description}} />
+    <div dangerouslySetInnerHTML={{ __html: tutorial.description }} />
   </div>
 );
 

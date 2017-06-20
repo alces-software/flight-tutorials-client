@@ -13,22 +13,22 @@ const matches = [{
   anchored: false,
   regexp: false,
   nextStep: 'step2',
-},{
+}, {
   inputLine: '$ echo "step1 skipped"',
   anchored: false,
   regexp: false,
   nextStep: 'step2',
-},{
+}, {
   inputLine: '\\$ *echo *["\']step1 regexed["\']',
   anchored: false,
   regexp: true,
   nextStep: 'step2',
-},{
+}, {
   inputLine: 'echo "step1 anchored"',
   anchored: true,
   regexp: false,
   nextStep: 'step2',
-},{
+}, {
   inputLine: 'echo "step1 anchored start only"',
   anchored: {
     start: true,
@@ -36,7 +36,7 @@ const matches = [{
   },
   regexp: false,
   nextStep: 'step2',
-},{
+}, {
   inputLine: 'echo "step1 anchored end only"',
   anchored: {
     start: false,
@@ -63,7 +63,7 @@ it('finds the correct match 2', () => {
   '$ echo "step1 regexed"',
   '$   echo   "step1 regexed"',
   "$   echo   'step1 regexed'",
-].forEach(s => {
+].forEach((s) => {
   it(`supports regexes (${s})`, () => {
     const foundMatch = findMatch(matches, s);
 

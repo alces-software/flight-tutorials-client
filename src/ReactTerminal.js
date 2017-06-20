@@ -6,7 +6,7 @@
  *
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Terminal from 'terminal.js';
 import ss from 'socket.io-stream';
 import mkDebug from 'debug';
@@ -16,7 +16,7 @@ const debug = mkDebug('FlightTutorials:ReactTerminal');
 const terminalStyle = {
   background: 'black',
   color: 'white',
-  'fontFamily': 'Courier, monospace',
+  fontFamily: 'Courier, monospace',
   display: 'inline-block',
 };
 
@@ -26,17 +26,6 @@ const wrapperStyle = {
 };
 
 export default class ReactTerminal extends Component {
-  _terminalEl: HTMLPreElement;
-  _term: Terminal;
-  _stream: any;
-
-  props: {
-    columns: number,
-    onInputLine: (string) => void,
-    rows: number,
-    socket: any,
-  }
-
   static defaultProps = {
     columns: 80,
     rows: 50,
@@ -50,32 +39,43 @@ export default class ReactTerminal extends Component {
     this.disconnectTerminal();
   }
 
+  props: {
+    columns: number,
+    onInputLine: (string) => void,
+    rows: number,
+    socket: any,
+  }
+
+  terminalEl: HTMLPreElement;
+  term: Terminal;
+  stream: any;
+
   connectTerminal() {
     debug('Connecting terminal');
-    this._terminalEl.tabIndex = 0;
-    this._term = new Terminal(this._terminalEl.dataset);
-    this._stream = ss.createStream({decodeStrings: false, encoding: 'utf-8'});
+    this.terminalEl.tabIndex = 0;
+    this.term = new Terminal(this.terminalEl.dataset);
+    this.stream = ss.createStream({ decodeStrings: false, encoding: 'utf-8' });
     const options = { columns: this.props.columns, rows: this.props.rows };
-    ss(this.props.socket).emit('new', this._stream, options);
+    ss(this.props.socket).emit('new', this.stream, options);
 
-    this._stream.on("data", (chunk, ev) => {
+    this.stream.on('data', (chunk) => {
       debug('Received chunk %o as string: %s', chunk, chunk.toString());
       if (chunk[0] === 13 && chunk[1] === 10) {
         debug('Chunk starts with "\\r\\n"');
         // The user has just pressed enter.  We have a line of input.
         this.handleInputLine();
       }
-    })
+    });
 
-    this._stream.pipe(this._term).dom(this._terminalEl).pipe(this._stream);
+    this.stream.pipe(this.term).dom(this.terminalEl).pipe(this.stream);
   }
 
   disconnectTerminal() {
-    this._stream.end();
+    this.stream.end();
   }
 
   handleInputLine() {
-    const line = this._term.state.getLine(this._term.state.cursor.y).str;
+    const line = this.term.state.getLine(this.term.state.cursor.y).str;
     debug('Input line %s', line);
     if (this.props.onInputLine) {
       this.props.onInputLine(line);
@@ -86,7 +86,7 @@ export default class ReactTerminal extends Component {
     return (
       <div style={wrapperStyle}>
         <pre
-          ref={(el) => { this._terminalEl = el; } }
+          ref={(el) => { this.terminalEl = el; }}
           style={terminalStyle}
           data-columns={this.props.columns}
           data-rows={this.props.rows}

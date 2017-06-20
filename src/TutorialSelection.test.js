@@ -6,8 +6,8 @@
  *
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
-import React from 'react'
-import { render } from 'react-dom'
+import React from 'react';
+import { render } from 'react-dom';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 
@@ -27,7 +27,7 @@ const tutorial1 = {
       title: 'Tutorial 1 step 2',
       description: 'Tutorial 1 step 2 description',
       matches: [],
-    }
+    },
   },
 };
 
@@ -45,11 +45,11 @@ const tutorial2 = {
       title: 'Tutorial 2 step 2',
       description: 'Tutorial 2 step 2 description',
       matches: [],
-    }
+    },
   },
 };
 
-const tutorials = [ tutorial1, tutorial2 ];
+const tutorials = [tutorial1, tutorial2];
 const onSelectTutorialSpy = jest.fn();
 
 const renderTutorialSelection = () => (
@@ -66,7 +66,7 @@ it('renders without crashing', () => {
 
 it('renders correctly', () => {
   const tree = renderer.create(
-    renderTutorialSelection()
+    renderTutorialSelection(),
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

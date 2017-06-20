@@ -17,11 +17,11 @@ const TutorialSelection = ({
   onSelectTutorial: (number) => void,
   tutorials: Array<TutorialType>
 }) => {
-  const options = tutorials.map((t, idx) => <TutorialOption
-    key={idx}
+  const options = tutorials.map((t, idx) => (<TutorialOption
+    key={idx} // eslint-disable-line react/no-array-index-key
     tutorial={t}
     onSelectTutorial={() => onSelectTutorial(idx)}
-  />);
+  />));
 
   return (
     <div>
@@ -37,16 +37,14 @@ export const TutorialOption = ({
 }:{
   onSelectTutorial: () => void,
   tutorial: TutorialType
-}) => {
-  return (
-    <div>
-      <h3>{tutorial.title}</h3>
-      <div dangerouslySetInnerHTML={{__html: tutorial.description}} />
-      <button onClick={onSelectTutorial}>
+}) => (
+  <div>
+    <h3>{tutorial.title}</h3>
+    <div dangerouslySetInnerHTML={{ __html: tutorial.description }} />
+    <button onClick={onSelectTutorial}>
         Select
       </button>
-    </div>
+  </div>
   );
-};
 
 export default TutorialSelection;

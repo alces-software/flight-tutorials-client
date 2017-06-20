@@ -6,8 +6,11 @@
  *
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
-import React from 'react'
-import { render } from 'react-dom'
+
+/* eslint-disable react/no-children-prop */
+
+import React from 'react';
+import { render } from 'react-dom';
 import { shallow } from 'enzyme';
 
 import TutorialContainer from './TutorialContainer';
@@ -32,7 +35,7 @@ const tutorial = {
       title: 'Tutorial 1 step 2',
       description: 'Tutorial 1 step 2 description',
       matches: [],
-    }
+    },
   },
 };
 
@@ -43,14 +46,14 @@ it('renders without crashing', () => {
   const node = document.createElement('div');
   render(
     <TutorialContainer tutorial={tutorial} children={() => <div />} socket={mockSocket} />,
-    node
+    node,
   );
 });
 
 it('calls child function with expected arguments', () => {
   const childFunctionSpy = jest.fn().mockReturnValue(null);
   shallow(
-    <TutorialContainer tutorial={tutorial} children={childFunctionSpy} socket={mockSocket} />
+    <TutorialContainer tutorial={tutorial} children={childFunctionSpy} socket={mockSocket} />,
   );
 
   expect(childFunctionSpy).toHaveBeenCalledWith({
@@ -62,7 +65,7 @@ it('calls child function with expected arguments', () => {
 
 it('updates state when given matching input', () => {
   const wrapper = shallow(
-    <TutorialContainer tutorial={tutorial} children={() => <div />} socket={mockSocket} />
+    <TutorialContainer tutorial={tutorial} children={() => <div />} socket={mockSocket} />,
   );
   const instance = wrapper.instance();
 
@@ -82,7 +85,7 @@ it('updates state when given matching input', () => {
 
 it('does not update state when given non-matching input', () => {
   const wrapper = shallow(
-    <TutorialContainer tutorial={tutorial} children={() => <div />} socket={mockSocket} />
+    <TutorialContainer tutorial={tutorial} children={() => <div />} socket={mockSocket} />,
   );
   const instance = wrapper.instance();
 

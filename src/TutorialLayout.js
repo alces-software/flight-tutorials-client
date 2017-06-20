@@ -11,7 +11,7 @@ import React from 'react';
 
 import TutorialInfo from './TutorialInfo';
 import TutorialSteps from './TutorialSteps';
-import type { TutorialType }  from './types';
+import type { TutorialType } from './types';
 
 type PropsType = {
   completedSteps : Array<string>,
@@ -25,7 +25,7 @@ const TutorialLayout = ({
   currentStep,
   terminal,
   tutorial,
-} : PropsType ) => (
+} : PropsType) => (
   <div>
     {terminal}
     {<TutorialInfo tutorial={tutorial} />}

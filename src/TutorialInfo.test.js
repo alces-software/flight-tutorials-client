@@ -6,12 +6,12 @@
  *
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
-import React from 'react'
-import { render } from 'react-dom'
+import React from 'react';
+import { render } from 'react-dom';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 
-import TutorialInfo from './TutorialInfo'
+import TutorialInfo from './TutorialInfo';
 
 const tutorial = {
   title: 'Tutorial 1',
@@ -33,7 +33,7 @@ it('renders without crashing', () => {
 
 it('renders correctly', () => {
   const tree = renderer.create(
-    <TutorialInfo tutorial={tutorial} />
+    <TutorialInfo tutorial={tutorial} />,
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
@@ -41,7 +41,7 @@ it('renders correctly', () => {
 
 it('renders the title', () => {
   const wrapper = shallow(
-    <TutorialInfo tutorial={tutorial} />
+    <TutorialInfo tutorial={tutorial} />,
   );
 
   expect(wrapper).toIncludeText(tutorial.title);
@@ -52,7 +52,7 @@ it('renders the title', () => {
 // description.
 xit('renders the description', () => {
   const wrapper = shallow(
-    <TutorialInfo tutorial={tutorial} />
+    <TutorialInfo tutorial={tutorial} />,
   );
 
   expect(wrapper).toIncludeText(tutorial.description);

@@ -6,8 +6,8 @@
  *
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
-import React from 'react'
-import { render } from 'react-dom'
+import React from 'react';
+import { render } from 'react-dom';
 import { shallow } from 'enzyme';
 
 import TutorialSteps from './TutorialSteps';
@@ -22,37 +22,37 @@ const steps = {
     title: 'My step 2',
     description: 'My step 2 description',
     matches: [],
-  }
+  },
 };
 
 it('renders without crashing', () => {
   const node = document.createElement('div');
   render(
     <TutorialSteps completedSteps={[]} currentStep="step1" steps={steps} />,
-    node
+    node,
   );
 });
 
 Object.keys(steps).forEach((currentStep, idx) => {
   it(`correctly determines the current step (${currentStep})`, () => {
     const wrapper = shallow(
-      <TutorialSteps completedSteps={[]} currentStep={currentStep} steps={steps} />
+      <TutorialSteps completedSteps={[]} currentStep={currentStep} steps={steps} />,
     );
 
-    const renderedSteps = wrapper.find('TutorialStep')
+    const renderedSteps = wrapper.find('TutorialStep');
 
-    expect(renderedSteps.at(0)).toHaveProp('current', 0 === idx);
-    expect(renderedSteps.at(1)).toHaveProp('current', 1 === idx);
+    expect(renderedSteps.at(0)).toHaveProp('current', idx === 0);
+    expect(renderedSteps.at(1)).toHaveProp('current', idx === 1);
   });
 });
 
 
 it('correctly determines if a step has been completed', () => {
   const wrapper = shallow(
-    <TutorialSteps completedSteps={['step1']} currentStep="step2" steps={steps} />
+    <TutorialSteps completedSteps={['step1']} currentStep="step2" steps={steps} />,
   );
 
-  const renderedSteps = wrapper.find('TutorialStep')
+  const renderedSteps = wrapper.find('TutorialStep');
 
   expect(renderedSteps.at(0)).toHaveProp('completed', true);
   expect(renderedSteps.at(1)).toHaveProp('completed', false);
@@ -63,7 +63,7 @@ it('renders the steps in order', () => {
     <TutorialSteps completedSteps={[]} currentStep="step1" steps={steps} />,
   );
 
-  const renderedSteps = wrapper.find('TutorialStep')
+  const renderedSteps = wrapper.find('TutorialStep');
 
   expect(renderedSteps.at(0)).toHaveProp('step', steps.step1);
   expect(renderedSteps.at(1)).toHaveProp('step', steps.step2);

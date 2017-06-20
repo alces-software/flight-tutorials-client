@@ -7,7 +7,7 @@
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import mkDebug from 'debug';
 
 import ReactTerminal from './ReactTerminal';
@@ -23,17 +23,6 @@ type ChildrenPropType = ({
 }) => React$Element<*>;
 
 export default class TutorialContainer extends Component {
-  props: {
-    children: ChildrenPropType,
-    socket: any,
-    tutorial: TutorialType,
-  };
-
-  state: {
-    currentStep: string,
-    completedSteps: Array<string>,
-  };
-
   constructor(...args: any) {
     super(...args);
     this.state = {
@@ -42,18 +31,27 @@ export default class TutorialContainer extends Component {
     };
   }
 
+  state: {
+    currentStep: string,
+    completedSteps: Array<string>,
+  };
+
+  props: {
+    children: ChildrenPropType,
+    socket: any,
+    tutorial: TutorialType,
+  };
+
   handleInputLine = (line: string) => {
     const match = findMatch(this.currentStep().matches, line);
     if (match == null) { return; }
 
     if (match.nextStep != null) {
       debug('Transitioning to step %s', match.nextStep);
-      this.setState((prevState) => {
-        return {
-          completedSteps: [ ...prevState.completedSteps, prevState.currentStep ],
-          currentStep: match.nextStep,
-        };
-      });
+      this.setState(prevState => ({
+        completedSteps: [...prevState.completedSteps, prevState.currentStep],
+        currentStep: match.nextStep,
+      }));
     }
   }
 
@@ -73,7 +71,7 @@ export default class TutorialContainer extends Component {
     return this.props.children({
       completedSteps: this.state.completedSteps,
       currentStep: this.state.currentStep,
-      terminal: terminal,
+      terminal,
     });
   }
 }

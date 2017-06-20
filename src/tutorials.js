@@ -7,7 +7,7 @@
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
 
-import type { TutorialType}  from './types';
+import type { TutorialType } from './types';
 
 const tutorials: Array<TutorialType> = [{
   title: 'A Lovely Flight Tutorial',
@@ -61,7 +61,7 @@ const tutorials: Array<TutorialType> = [{
         </div>
       `,
       matches: [],
-    }
+    },
   },
 }, {
 

@@ -9,7 +9,7 @@
 
 import React from 'react';
 
-import type { StepMap }  from './types';
+import type { StepMap } from './types';
 import TutorialStep from './TutorialStep';
 
 const TutorialSteps = ({

@@ -1,3 +1,18 @@
 {
-  "extends": "airbnb"
+  "extends": "airbnb",
+
+  "rules": {
+    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
+    "spaced-comment": ["error", "always", {
+      "line": {
+        "exceptions": ["-", "+", "="],
+        "markers": ["=", "!"]
+      },
+      "block": {
+        "exceptions": ["-", "+", "="],
+        "markers": ["=", "!"],
+        "balanced": true
+      }
+    }]
+  }
 }

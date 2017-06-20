@@ -6,6 +6,10 @@
 
 Describe flight-tutorials-client here.
 
+[![Build Status](https://travis-ci.org/alces-software/flight-tutorials-client.svg?branch=master)](https://travis-ci.org/alces-software/flight-tutorials-client)
+
+[![Coverage Status](https://coveralls.io/repos/github/alces-software/flight-tutorials-client/badge.svg?branch=master)](https://coveralls.io/github/alces-software/flight-tutorials-client?branch=master)
+
 [build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
 [build]: https://travis-ci.org/alces-software/flight-tutorials-client
 

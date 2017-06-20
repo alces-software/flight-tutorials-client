@@ -1,3 +1,4 @@
+// @flow
 /*=============================================================================
  * Copyright (C) 2017 Stephen F. Norledge and Alces Flight Ltd.
  *
@@ -19,10 +20,12 @@ const steps = {
   step1: {
     title: 'My step 1',
     description: 'My step 1 description',
+    matches: [],
   },
   step2: {
     title: 'My step 2',
     description: 'My step 2 description',
+    matches: [],
   }
 };
 

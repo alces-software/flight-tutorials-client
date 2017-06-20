@@ -1,3 +1,4 @@
+// @flow
 /*=============================================================================
  * Copyright (C) 2017 Stephen F. Norledge and Alces Flight Ltd.
  *
@@ -13,8 +14,16 @@ import { shallow } from 'enzyme';
 import TutorialInfo from './TutorialInfo'
 
 const tutorial = {
-  title: 'My tutorial',
-  description: 'My tutorial description',
+  title: 'Tutorial 1',
+  description: 'Tutorial 1 description',
+  firstStep: 'step1',
+  steps: {
+    step1: {
+      title: 'Tutorial 1 step 1',
+      description: 'Tutorial 1 step 1 description',
+      matches: [],
+    },
+  },
 };
 
 it('renders without crashing', () => {
@@ -26,6 +35,7 @@ it('renders correctly', () => {
   const tree = renderer.create(
     <TutorialInfo tutorial={tutorial} />
   ).toJSON();
+
   expect(tree).toMatchSnapshot();
 });
 

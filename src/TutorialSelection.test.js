@@ -1,3 +1,4 @@
+// @flow
 /*=============================================================================
  * Copyright (C) 2017 Stephen F. Norledge and Alces Flight Ltd.
  *
@@ -20,10 +21,12 @@ const tutorial1 = {
     step1: {
       title: 'Tutorial 1 step 1',
       description: 'Tutorial 1 step 1 description',
+      matches: [],
     },
     step2: {
       title: 'Tutorial 1 step 2',
       description: 'Tutorial 1 step 2 description',
+      matches: [],
     }
   },
 };
@@ -36,10 +39,12 @@ const tutorial2 = {
     step1: {
       title: 'Tutorial 2 step 1',
       description: 'Tutorial 2 step 1 description',
+      matches: [],
     },
     step2: {
       title: 'Tutorial 2 step 2',
       description: 'Tutorial 2 step 2 description',
+      matches: [],
     }
   },
 };
@@ -63,6 +68,7 @@ it('renders correctly', () => {
   const tree = renderer.create(
     renderTutorialSelection()
   ).toJSON();
+
   expect(tree).toMatchSnapshot();
 });
 

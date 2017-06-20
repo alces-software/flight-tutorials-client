@@ -1,3 +1,4 @@
+// @flow
 /*=============================================================================
  * Copyright (C) 2017 Stephen F. Norledge and Alces Flight Ltd.
  *
@@ -30,14 +31,18 @@ const tutorial = {
     step2: {
       title: 'Tutorial 1 step 2',
       description: 'Tutorial 1 step 2 description',
+      matches: [],
     }
   },
 };
 
+// XXX Find a better way of mocking the socket than this.
+const mockSocket = {};
+
 it('renders without crashing', () => {
   const node = document.createElement('div');
   render(
-    <TutorialContainer tutorial={tutorial} children={() => null} />,
+    <TutorialContainer tutorial={tutorial} children={() => <div />} socket={mockSocket} />,
     node
   );
 });
@@ -45,25 +50,30 @@ it('renders without crashing', () => {
 it('calls child function with expected arguments', () => {
   const childFunctionSpy = jest.fn().mockReturnValue(null);
   const wrapper = shallow(
-    <TutorialContainer tutorial={tutorial} children={childFunctionSpy} />
+    <TutorialContainer tutorial={tutorial} children={childFunctionSpy} socket={mockSocket} />
   );
 
   expect(childFunctionSpy).toHaveBeenCalledWith({
     completedSteps: [],
     currentStep: tutorial.firstStep,
-    terminal: <ReactTerminal onInputLine={expect.anything()} />,
+    terminal: <ReactTerminal onInputLine={expect.anything()} socket={mockSocket} />,
   });
 });
 
 it('updates state when given matching input', () => {
   const wrapper = shallow(
-    <TutorialContainer tutorial={tutorial} children={() => null} />
+    <TutorialContainer tutorial={tutorial} children={() => <div />} socket={mockSocket} />
   );
   const instance = wrapper.instance();
 
   expect(wrapper).toHaveState('completedSteps', []);
   expect(wrapper).toHaveState('currentStep', tutorial.firstStep);
 
+  // The flow type definition for `wrapper.instance()` returns a generic
+  // React$Component type, not the specific TutorialContainer type.  When that
+  // is fixed, we can remove this. See
+  // https://github.com/flowtype/flow-typed/issues/925
+  // $FlowFixMe
   instance.handleInputLine(tutorial.steps.step1.matches[0].inputLine);
 
   expect(wrapper).toHaveState('completedSteps', [tutorial.firstStep]);
@@ -72,13 +82,18 @@ it('updates state when given matching input', () => {
 
 it('does not update state when given non-matching input', () => {
   const wrapper = shallow(
-    <TutorialContainer tutorial={tutorial} children={() => null} />
+    <TutorialContainer tutorial={tutorial} children={() => <div />} socket={mockSocket} />
   );
   const instance = wrapper.instance();
 
   expect(wrapper).toHaveState('completedSteps', []);
   expect(wrapper).toHaveState('currentStep', tutorial.firstStep);
 
+  // The flow type definition for `wrapper.instance()` returns a generic
+  // React$Component type, not the specific TutorialContainer type.  When that
+  // is fixed, we can remove this. See
+  // https://github.com/flowtype/flow-typed/issues/925
+  // $FlowFixMe
   instance.handleInputLine('you shall not match');
 
   expect(wrapper).toHaveState('completedSteps', []);

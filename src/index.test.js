@@ -52,6 +52,6 @@ it('displays tutorial selection when no tutorial is selected', () => {
   // $FlowFixMe
   instance.handleShowAllTutorials();
 
-  expect(wrapper.find('TutorialSelection')).not.toBePresent();
+  expect(wrapper.find('TutorialSelection')).toBePresent();
   expect(wrapper.find('TutorialContainer')).not.toBePresent();
 });

@@ -13,7 +13,6 @@ import { shallow } from 'enzyme';
 
 import TutorialInfo from './TutorialInfo';
 import TutorialLayout from './TutorialLayout';
-import TutorialStep from './TutorialStep'
 import TutorialSteps from './TutorialSteps'
 
 const steps = {

@@ -7,9 +7,8 @@
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
 
-import React, {Component} from 'react';
+import React from 'react';
 
-import ReactTerminal from './ReactTerminal';
 import TutorialInfo from './TutorialInfo';
 import TutorialSteps from './TutorialSteps';
 import type { TutorialType }  from './types';

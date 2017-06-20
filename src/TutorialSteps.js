@@ -7,7 +7,7 @@
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
 
-import React, {Component} from 'react';
+import React from 'react';
 
 import type { StepMap }  from './types';
 import TutorialStep from './TutorialStep';

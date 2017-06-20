@@ -49,7 +49,7 @@ it('renders without crashing', () => {
 
 it('calls child function with expected arguments', () => {
   const childFunctionSpy = jest.fn().mockReturnValue(null);
-  const wrapper = shallow(
+  shallow(
     <TutorialContainer tutorial={tutorial} children={childFunctionSpy} socket={mockSocket} />
   );
 

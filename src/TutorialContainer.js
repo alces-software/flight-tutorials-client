@@ -11,7 +11,6 @@ import React, {Component} from 'react';
 import mkDebug from 'debug';
 
 import ReactTerminal from './ReactTerminal';
-import escapeRegExp from './utils/escapeRegExp';
 import findMatch from './utils/findMatch';
 import type { StepType, TutorialType } from './types';
 

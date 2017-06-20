@@ -12,6 +12,7 @@ import mkDebug from 'debug';
 
 import ReactTerminal from './ReactTerminal';
 import escapeRegExp from './utils/escapeRegExp';
+import findMatch from './utils/findMatch';
 import type { StepType, TutorialType } from './types';
 
 const debug = mkDebug('FlightTutorials:TutorialContainer');
@@ -43,32 +44,18 @@ export default class TutorialContainer extends Component {
   }
 
   handleInputLine = (line: string) => {
-    const matches = this.currentStep().matches;
+    const match = findMatch(this.currentStep().matches, line);
+    if (match == null) { return; }
 
-    for (let i=0; i < matches.length; i++) {
-      const match = matches[i];
-      var re;
-      if (match.regexp) {
-        re = new RegExp(match.inputLine);
-      } else {
-        re = new RegExp(escapeRegExp(match.inputLine));
-      }
-      debug('Checking line against %s', re);
-
-      if (line.match(re)) {
-        debug('Line matched');
-        if (match.nextStep != null) {
-          debug('Transitioning to step %s', match.nextStep);
-          this.setState((prevState) => {
-            return {
-              completedSteps: [ ...prevState.completedSteps, prevState.currentStep ],
-              currentStep: match.nextStep,
-            };
-          });
-        }
-        break;
-      }
-    };
+    if (match.nextStep != null) {
+      debug('Transitioning to step %s', match.nextStep);
+      this.setState((prevState) => {
+        return {
+          completedSteps: [ ...prevState.completedSteps, prevState.currentStep ],
+          currentStep: match.nextStep,
+        };
+      });
+    }
   }
 
   currentStep() : StepType {

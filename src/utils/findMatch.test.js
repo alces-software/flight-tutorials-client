@@ -10,20 +10,39 @@ import findMatch from './findMatch';
 
 const matches = [{
   inputLine: '$ echo "step1 completed"',
+  anchored: false,
   regexp: false,
   nextStep: 'step2',
 },{
   inputLine: '$ echo "step1 skipped"',
+  anchored: false,
   regexp: false,
   nextStep: 'step2',
 },{
   inputLine: '\\$ *echo *["\']step1 regexed["\']',
+  anchored: false,
   regexp: true,
   nextStep: 'step2',
 },{
   inputLine: 'echo "step1 anchored"',
-  regexp: false,
   anchored: true,
+  regexp: false,
+  nextStep: 'step2',
+},{
+  inputLine: 'echo "step1 anchored start only"',
+  anchored: {
+    start: true,
+    end: false,
+  },
+  regexp: false,
+  nextStep: 'step2',
+},{
+  inputLine: 'echo "step1 anchored end only"',
+  anchored: {
+    start: false,
+    end: true,
+  },
+  regexp: false,
   nextStep: 'step2',
 }];
 
@@ -53,28 +72,94 @@ it('finds the correct match 2', () => {
 });
 
 describe('when anchored', () => {
-  it('matches when the line directly follows the prompt', () => {
-    const foundMatch = findMatch(matches, '$ \techo "step1 anchored"');
+  describe('=== true', () => {
+    const expectedMatch = matches[3];
+    const matchingInput = 'echo "step1 anchored"';
+    const extraInput = 'echo "extra stuff"';
 
-    expect(foundMatch).toBe(matches[3]);
+    it('matches when the line directly follows the prompt', () => {
+      const foundMatch = findMatch(matches, `$ \t${matchingInput}`);
+
+      expect(foundMatch).toBe(expectedMatch);
+    });
+
+    it('does not match when the line does not directly follow the prompt', () => {
+      const foundMatch = findMatch(matches, `$ ${extraInput}; ${matchingInput}`);
+
+      expect(foundMatch).toBe(undefined);
+    });
+
+    it('matches when there is no trailing content', () => {
+      const foundMatch = findMatch(matches, `$ ${matchingInput} \t`);
+
+      expect(foundMatch).toBe(expectedMatch);
+    });
+
+    it('does not match when there is trailing content', () => {
+      const foundMatch = findMatch(matches, `$ ${matchingInput}; ${extraInput}`);
+
+      expect(foundMatch).toBe(undefined);
+    });
   });
 
-  it('does not match when the line does not directly follow the prompt', () => {
-    const foundMatch = findMatch(matches, '$ echo "extra stuff"; echo "step1 anchored"');
+  describe('=== { start: true, end: false }', () => {
+    const expectedMatch = matches[4];
+    const matchingInput = 'echo "step1 anchored start only"';
+    const extraInput = 'echo "extra stuff"';
 
-    expect(foundMatch).toBe(undefined);
+    it('matches when the line directly follows the prompt', () => {
+      const foundMatch = findMatch(matches, `$ \t${matchingInput}`);
+
+      expect(foundMatch).toBe(expectedMatch);
+    });
+
+    it('does not match when the line does not directly follow the prompt', () => {
+      const foundMatch = findMatch(matches, `$ ${extraInput}; ${matchingInput}`);
+
+      expect(foundMatch).toBe(undefined);
+    });
+
+    it('matches when there is no trailing content', () => {
+      const foundMatch = findMatch(matches, `$ ${matchingInput} \t`);
+
+      expect(foundMatch).toBe(expectedMatch);
+    });
+
+    it('matches when there is trailing content', () => {
+      const foundMatch = findMatch(matches, `$ ${matchingInput}; ${extraInput}`);
+
+      expect(foundMatch).toBe(expectedMatch);
+    });
   });
 
-  it('matches when there is no trailing content', () => {
-    const foundMatch = findMatch(matches, '$ echo "step1 anchored" \t');
+  describe('=== { start: false, end: true }', () => {
+    const expectedMatch = matches[5];
+    const matchingInput = 'echo "step1 anchored end only"';
+    const extraInput = 'echo "extra stuff"';
 
-    expect(foundMatch).toBe(matches[3]);
-  });
+    it('matches when the line directly follows the prompt', () => {
+      const foundMatch = findMatch(matches, `$ \t${matchingInput}`);
 
-  it('does not match when there is trailing content', () => {
-    const foundMatch = findMatch(matches, '$ echo "step1 anchored"; echo "extra stuff"');
+      expect(foundMatch).toBe(expectedMatch);
+    });
 
-    expect(foundMatch).toBe(undefined);
+    it('matches when the line does not directly follow the prompt', () => {
+      const foundMatch = findMatch(matches, `$ ${extraInput}; ${matchingInput}`);
+
+      expect(foundMatch).toBe(expectedMatch);
+    });
+
+    it('matches when there is no trailing content', () => {
+      const foundMatch = findMatch(matches, `$ ${matchingInput} \t`);
+
+      expect(foundMatch).toBe(expectedMatch);
+    });
+
+    it('does not matches when there is trailing content', () => {
+      const foundMatch = findMatch(matches, `$ ${matchingInput}; ${extraInput}`);
+
+      expect(foundMatch).toBe(undefined);
+    });
   });
 });
 

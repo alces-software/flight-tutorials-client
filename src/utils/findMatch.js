@@ -14,20 +14,36 @@ import type { MatchType } from '../types';
 
 const debug = mkDebug('FlightTutorials:findMatch');
 
+function getAnchorage(anchorage) {
+  if (anchorage === true) {
+    return { start: true, end: true };
+  } else if (anchorage === false) {
+    return { start: false, end: false };
+  } else {
+    return anchorage
+  }
+}
+
 function findMatch(matches: Array<MatchType>, line: string) : ?MatchType {
+  debug('Finding match for line %s', line);
   for (let i=0; i < matches.length; i++) {
     const match = matches[i];
+    debug('Processing match %O', match);
     let processedInputLine;
     if (match.regexp) {
       processedInputLine = match.inputLine;
     } else {
       processedInputLine = escapeRegExp(match.inputLine);
     }
-    if (match.anchored) {
-      processedInputLine = `\\$[ \t]*${processedInputLine}[ \t]*$`;
+    const anchorage = getAnchorage(match.anchored);
+    if (anchorage.start) {
+      processedInputLine = `\\$[ \t]*${processedInputLine}`;
+    }
+    if (anchorage.end) {
+      processedInputLine = `${processedInputLine}[ \t]*$`;
     }
     const re = new RegExp(processedInputLine);
-    debug('Checking line against %s', re);
+    debug('Checking line against regexp %s', re);
 
     if (line.match(re)) {
       debug('Line matched');

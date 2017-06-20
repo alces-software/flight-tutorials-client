@@ -24,7 +24,8 @@ const tutorials: Array<TutorialType> = [{
         </div>
       `,
       matches: [{
-        inputLine: '$ echo "Hello, world."',
+        inputLine: 'echo "Hello, world."',
+        anchored: true,
         regexp: false,
         nextStep: 'sinfo',
       // }, {
@@ -45,7 +46,8 @@ const tutorials: Array<TutorialType> = [{
         </div>
       `,
       matches: [{
-        inputLine: '$ sinfo',
+        inputLine: 'sinfo',
+        anchored: true,
         regexp: false,
         nextStep: 'complete',
       }],
@@ -110,7 +112,8 @@ const tutorials: Array<TutorialType> = [{
       `,
 
       matches: [{
-        inputLine: '$ alces gridware install mpi/openmpi --latest',
+        inputLine: 'alces gridware install mpi/openmpi --latest',
+        anchored: true,
         regexp: false,
         nextStep: 'configureStorage',
       }],
@@ -139,11 +142,13 @@ const tutorials: Array<TutorialType> = [{
       `,
 
       matches: [{
-        inputLine: '$ curl -L http://bit.ly/flight-challenge | bash -l',
+        inputLine: 'curl -L http://bit.ly/flight-challenge | bash -l',
+        anchored: true,
         regexp: false,
         nextStep: 'getWorkloadFiles',
       }, {
-        inputLine: '$ curl -L http://bit.ly/flight-challenge',
+        inputLine: 'curl -L http://bit.ly/flight-challenge',
+        anchored: true,
         regexp: false,
         nextStep: 'getWorkloadFiles',
       }],
@@ -173,7 +178,8 @@ const tutorials: Array<TutorialType> = [{
       `,
 
       matches: [{
-        inputLine: '$ alces storage get -R s3://alces-flight-challenge/challenge .',
+        inputLine: 'alces storage get -R s3://alces-flight-challenge/challenge .',
+        anchored: true,
         regexp: false,
         nextStep: 'prepareJob',
       }],
@@ -204,7 +210,11 @@ const tutorials: Array<TutorialType> = [{
       `,
 
       matches: [{
-        inputLine: '$ bash -l configure-challenge.sh ',
+        inputLine: 'bash -l configure-challenge.sh ',
+        anchored: {
+          start: true,
+          end: false,
+        },
         regexp: false,
         nextStep: 'submitJob',
       }],
@@ -234,7 +244,8 @@ const tutorials: Array<TutorialType> = [{
       `,
 
       matches: [{
-        inputLine: '$ sbatch challenge-mpi.sh',
+        inputLine: 'sbatch challenge-mpi.sh',
+        anchored: true,
         regexp: false,
       }],
     },

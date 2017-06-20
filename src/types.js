@@ -9,6 +9,7 @@
 
 export type MatchType = {
   inputLine: string,
+  anchored: boolean | { start: boolean, end: boolean },
   regexp: boolean,
   nextStep?: string,
 };

@@ -22,6 +22,7 @@ const tutorial = {
       description: 'Tutorial 1 step 1 description',
       matches: [{
         inputLine: '$ echo "step1 completed"',
+        anchored: false,
         regexp: false,
         nextStep: 'step2',
       }],

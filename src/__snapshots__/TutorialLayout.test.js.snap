@@ -15,25 +15,101 @@ exports[`renders correctly 1`] = `
       </p>
     </div>
   </div>
-  <div>
-    <div>
-      <h3>
-        My step 1
-      </h3>
-      <div>
-        <p>
-          My step 1 description
-        </p>
+  <div
+    style={
+      Object {
+        "float": "left",
+        "width": "50%",
+      }
+    }
+  >
+    <div
+      className="panel-group"
+      role="tablist"
+    >
+      <div
+        className="panel panel-success"
+        id={null}
+      >
+        <div
+          className="panel-heading"
+        >
+          <h4
+            className="panel-title"
+            role="presentation"
+          >
+            <a
+              aria-controls={undefined}
+              aria-expanded={false}
+              aria-selected={false}
+              className="collapsed"
+              href={undefined}
+              onClick={[Function]}
+              role="tab"
+            >
+              Step 1 My step 1
+            </a>
+          </h4>
+        </div>
+        <div
+          aria-expanded={null}
+          aria-hidden={true}
+          className="panel-collapse collapse"
+          id={undefined}
+          role="tabpanel"
+        >
+          <div
+            className="panel-body"
+          >
+            <div>
+              <p>
+                My step 1 description
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div>
-      <h3>
-        My step 2
-      </h3>
-      <div>
-        <p>
-          My step 2 description
-        </p>
+      <div
+        className="panel panel-primary"
+        id={null}
+      >
+        <div
+          className="panel-heading"
+        >
+          <h4
+            className="panel-title"
+            role="presentation"
+          >
+            <a
+              aria-controls={undefined}
+              aria-expanded={true}
+              aria-selected={true}
+              className={null}
+              href={undefined}
+              onClick={[Function]}
+              role="tab"
+            >
+              Step 2 My step 2
+            </a>
+          </h4>
+        </div>
+        <div
+          aria-expanded={null}
+          aria-hidden={false}
+          className="panel-collapse collapse in"
+          id={undefined}
+          role="tabpanel"
+        >
+          <div
+            className="panel-body"
+          >
+            <div>
+              <p>
+                My step 2 description
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

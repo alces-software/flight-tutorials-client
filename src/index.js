@@ -14,6 +14,7 @@ import TutorialContainer from './TutorialContainer';
 import TutorialLayout from './TutorialLayout';
 import TutorialSelection from './TutorialSelection';
 import tutorials from './tutorials';
+import './styles/main.scss';
 
 const debug = mkDebug('FlightTutorials:index');
 

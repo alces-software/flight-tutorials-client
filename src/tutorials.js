@@ -15,7 +15,7 @@ const tutorials: Array<TutorialType> = [{
   firstStep: 'hello',
   steps: {
     hello: {
-      title: 'Say hello',
+      title: 'Say hello to the world',
       description: `
 You should type this:
 
@@ -38,9 +38,13 @@ I shall reward you with a pegamoose. I promise.
     },
 
     sinfo: {
-      title: 'WOW! LOOK! A PEGAMOOSE APPEARED!',
+      title: 'Run a useful command',
       description: `
+WOW! LOOK! A PEGAMOOSE APPEARED!
+
 <img src="https://c1.staticflickr.com/7/6119/6279650182_0f9ac9093e_b.jpg" style="width: 200px" />
+
+<p></p>
 
 Now try doing something useful, like, I dunno \`sinfo\`.
       `,
@@ -53,9 +57,15 @@ Now try doing something useful, like, I dunno \`sinfo\`.
     },
 
     complete: {
-      title: 'YOU SO MAZIN! YOU HAVE MORE PEGAMOOSE!',
+      title: 'Your final reward',
       description: `
+YOU SO **MAZIN!** YOU HAVE MORE PEGAMOOSE!
+
 <img src="https://c1.staticflickr.com/6/5105/5617082954_904c4d7b71_b.jpg" style="width: 200px"/>
+
+<p></p>
+
+You're all done now. Goodbye!
       `,
       matches: [],
     },
@@ -92,10 +102,6 @@ case the OpenMPI message-passing system:
 \`\`\`
 alces gridware install mpi/openmpi --latest
 \`\`\`
-
-Does it now say ‘Installation complete?’ Great!  Now that we have
-installed our HPC software we need to obtain the challenge workload
-that is stored in Amazon S3
       `,
 
       matches: [{
@@ -109,7 +115,11 @@ that is stored in Amazon S3
     configureStorage: {
       title: 'Configure your storage',
       description: `
-Now we’ll retrieve the challenge by using the “alces storage”
+Does it now say ‘Installation complete?’ Great!  Now that we have
+installed our HPC software we need to obtain the challenge workload
+that is stored in Amazon S3.
+
+We’ll retrieve the challenge by using the “alces storage”
 tool to configure access to object storage. To save time
 we’ve created a shortcut to perform this configuration step:
 
@@ -118,9 +128,6 @@ curl -L http://bit.ly/flight-challenge | bash -l
 \`\`\`
 
 \\* that last letter is a lowercase ‘L’. Aren’t fonts fun?
-
-When notified that the storage configuration ‘challenge’ is
-now set as default you are ready to proceed
       `,
 
       matches: [{
@@ -139,7 +146,10 @@ now set as default you are ready to proceed
     getWorkloadFiles: {
       title: 'Get the workload files',
       description: `
-Now the object storage configuration is in place we can go
+When notified that the storage configuration ‘challenge’ is
+now set as default you are ready to proceed.
+
+The object storage configuration is in place we can go
 ahead and get the workload files:
 
 \`\`\`
@@ -147,11 +157,6 @@ alces storage get -R s3://alces-flight-challenge/challenge .
 \`\`\`
 
 \\* don’t forget the “.” on the end!
-
-Once the workload files are retrieved it's time to prepare the
-job for submission. You’ll know it’s time when the request to
-retrieve files has stopped running and you can enter the next
-command.
       `,
 
       matches: [{
@@ -165,6 +170,11 @@ command.
     prepareJob: {
       title: 'Prepare your job',
       description: `
+Once the workload files are retrieved it's time to prepare the
+job for submission. You’ll know it’s time when the request to
+retrieve files has stopped running and you can enter the next
+command.
+
 Create your job script with a challenge identifier (which will
 be an anonymized string based on your email address):
 
@@ -178,7 +188,7 @@ struggling.
 
 The configuration script will compile an MPI program, create
 a job script that can be submitted to the HPC job scheduler
-and output your challenge identifier
+and output your challenge identifier.
       `,
 
       matches: [{
@@ -200,7 +210,19 @@ We're ready to compute! Submit your job to the HPC job scheduler:
 \`\`\`
 sbatch challenge-mpi.sh 
 \`\`\`
+      `,
 
+      matches: [{
+        inputLine: 'sbatch challenge-mpi.sh',
+        anchored: true,
+        regexp: false,
+        nextStep: 'checkProgress'
+      }],
+    },
+
+    checkProgress: {
+      title: 'Check the progress of your job',
+      description: `
 Your job is now being executed. You can check its progress by
 running the queue monitoring command:
 
@@ -211,11 +233,7 @@ squeue
 When your job completes you’ll get an email with results.
       `,
 
-      matches: [{
-        inputLine: 'sbatch challenge-mpi.sh',
-        anchored: true,
-        regexp: false,
-      }],
+      matches: [],
     },
   },
 }];

@@ -9,6 +9,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { shallow } from 'enzyme';
+import renderer from 'react-test-renderer';
 
 import TutorialSteps from './TutorialSteps';
 
@@ -23,6 +24,11 @@ const steps = {
     description: 'My step 2 description',
     matches: [],
   },
+  step3: {
+    title: 'My step 3',
+    description: 'My step 3 description',
+    matches: [],
+  },
 };
 
 it('renders without crashing', () => {
@@ -33,29 +39,37 @@ it('renders without crashing', () => {
   );
 });
 
-Object.keys(steps).forEach((currentStep, idx) => {
-  it(`correctly determines the current step (${currentStep})`, () => {
-    const wrapper = shallow(
-      <TutorialSteps completedSteps={[]} currentStep={currentStep} steps={steps} />,
-    );
-
-    const renderedSteps = wrapper.find('TutorialStep');
-
-    expect(renderedSteps.at(0)).toHaveProp('current', idx === 0);
-    expect(renderedSteps.at(1)).toHaveProp('current', idx === 1);
+[
+  { completedSteps: [], currentStep: 'step1' }, 
+  { completedSteps: ['step1'], currentStep: 'step2' }, 
+  { completedSteps: ['step1', 'step2'], currentStep: 'step3' },
+].forEach((props) => {
+  it(`renders correctly when currentStep === ${props.currentStep}`, () => {
+    const tree = renderer.create(
+      <TutorialSteps {...props} steps={steps} />,
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
   });
 });
 
-
-it('correctly determines if a step has been completed', () => {
+describe('Panel headers', () => {
   const wrapper = shallow(
-    <TutorialSteps completedSteps={['step1']} currentStep="step2" steps={steps} />,
+    <TutorialSteps completedSteps={['step1']} currentStep={'step2'} steps={steps} />,
   );
 
-  const renderedSteps = wrapper.find('TutorialStep');
+  const panels = wrapper.find('Panel');
 
-  expect(renderedSteps.at(0)).toHaveProp('completed', true);
-  expect(renderedSteps.at(1)).toHaveProp('completed', false);
+  it('completed steps are styled correctly', () => {
+    expect(panels.at(0)).toHaveProp('bsStyle', 'success');
+  });
+
+  it('current step styled correctly', () => {
+    expect(panels.at(1)).toHaveProp('bsStyle', 'primary');
+  });
+
+  it('pending steps are styled correctly', () => {
+    expect(panels.at(2)).toHaveProp('bsStyle', 'default');
+  });
 });
 
 it('renders the steps in order', () => {
@@ -63,8 +77,9 @@ it('renders the steps in order', () => {
     <TutorialSteps completedSteps={[]} currentStep="step1" steps={steps} />,
   );
 
-  const renderedSteps = wrapper.find('TutorialStep');
+  const renderedSteps = wrapper.find('Panel');
 
-  expect(renderedSteps.at(0)).toHaveProp('step', steps.step1);
-  expect(renderedSteps.at(1)).toHaveProp('step', steps.step2);
+  expect(renderedSteps.at(0)).toHaveProp('eventKey', 'step1');
+  expect(renderedSteps.at(1)).toHaveProp('eventKey', 'step2');
+  expect(renderedSteps.at(2)).toHaveProp('eventKey', 'step3');
 });

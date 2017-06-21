@@ -8,6 +8,8 @@
  *===========================================================================*/
 
 import React from 'react';
+import Markdown from 'react-markdown';
+
 import type { TutorialType } from './types';
 
 const TutorialInfo = ({
@@ -17,7 +19,7 @@ const TutorialInfo = ({
 }) => (
   <div>
     <h2>{tutorial.title}</h2>
-    <div dangerouslySetInnerHTML={{ __html: tutorial.description }} />
+    <Markdown source={tutorial.description} />
   </div>
 );
 

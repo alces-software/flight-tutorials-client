@@ -7,6 +7,7 @@
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
 import React from 'react';
+import Markdown from 'react-markdown';
 
 import type { TutorialType } from './types';
 
@@ -40,11 +41,11 @@ export const TutorialOption = ({
 }) => (
   <div>
     <h3>{tutorial.title}</h3>
-    <div dangerouslySetInnerHTML={{ __html: tutorial.description }} />
+    <Markdown source={tutorial.description} />
     <button onClick={onSelectTutorial}>
-        Select
-      </button>
+      Select
+    </button>
   </div>
-  );
+);
 
 export default TutorialSelection;

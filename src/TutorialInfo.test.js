@@ -15,7 +15,7 @@ import TutorialInfo from './TutorialInfo';
 
 const tutorial = {
   title: 'Tutorial 1',
-  description: 'Tutorial 1 description',
+  description: 'Tutorial 1 description.\n\nWith *markdown* **support**.',
   firstStep: 'step1',
   steps: {
     step1: {
@@ -50,10 +50,11 @@ it('renders the title', () => {
 
 // Add this test back in once we support markdown rendering of the
 // description.
-xit('renders the description', () => {
+it('renders the description', () => {
   const wrapper = shallow(
     <TutorialInfo tutorial={tutorial} />,
   );
+  const textOnlyDescription = 'Tutorial 1 description.With markdown support.';
 
-  expect(wrapper).toIncludeText(tutorial.description);
+  expect(wrapper.find('ReactMarkdown').dive()).toIncludeText(textOnlyDescription);
 });

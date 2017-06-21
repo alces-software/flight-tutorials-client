@@ -9,38 +9,32 @@ exports[`renders correctly 1`] = `
     <h2>
       My tutorial
     </h2>
-    <div
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "My tutorial description",
-        }
-      }
-    />
+    <div>
+      <p>
+        My tutorial description
+      </p>
+    </div>
   </div>
   <div>
     <div>
       <h3>
         My step 1
       </h3>
-      <div
-        dangerouslySetInnerHTML={
-          Object {
-            "__html": "My step 1 description",
-          }
-        }
-      />
+      <div>
+        <p>
+          My step 1 description
+        </p>
+      </div>
     </div>
     <div>
       <h3>
         My step 2
       </h3>
-      <div
-        dangerouslySetInnerHTML={
-          Object {
-            "__html": "My step 2 description",
-          }
-        }
-      />
+      <div>
+        <p>
+          My step 2 description
+        </p>
+      </div>
     </div>
   </div>
 </div>

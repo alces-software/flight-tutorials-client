@@ -5,12 +5,21 @@ exports[`renders correctly 1`] = `
   <h2>
     Tutorial 1
   </h2>
-  <div
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "Tutorial 1 description",
-      }
-    }
-  />
+  <div>
+    <p>
+      Tutorial 1 description.
+    </p>
+    <p>
+      With 
+      <em>
+        markdown
+      </em>
+       
+      <strong>
+        support
+      </strong>
+      .
+    </p>
+  </div>
 </div>
 `;

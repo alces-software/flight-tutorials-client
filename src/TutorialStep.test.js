@@ -15,7 +15,7 @@ import TutorialStep from './TutorialStep';
 
 const step = {
   title: 'My step 1',
-  description: 'My step 1 description',
+  description: 'My step 1 description.\n\nWith *markdown* **support**.',
 };
 
 const varieties = {
@@ -47,12 +47,13 @@ describe('Current step', () => {
     expect(wrapper).toIncludeText(step.title);
   });
 
-  xit('includes the description', () => {
+  it('includes the description', () => {
     const wrapper = shallow(
       <TutorialStep {...varieties.currentStep} step={step} />,
     );
+    const textOnlyDescription = 'My step 1 description.With markdown support.';
 
-    expect(wrapper).toIncludeText(step.description);
+    expect(wrapper.find('ReactMarkdown').dive()).toIncludeText(textOnlyDescription);
   });
 });
 
@@ -65,12 +66,13 @@ describe('Previous steps', () => {
     expect(wrapper).toIncludeText(step.title);
   });
 
-  xit('includes the description', () => {
+  it('includes the description', () => {
     const wrapper = shallow(
       <TutorialStep {...varieties.previousStep} step={step} />,
     );
+    const textOnlyDescription = 'My step 1 description.With markdown support.';
 
-    expect(wrapper).toIncludeText(step.description);
+    expect(wrapper.find('ReactMarkdown').dive()).toIncludeText(textOnlyDescription);
   });
 });
 
@@ -83,7 +85,7 @@ describe('Future steps', () => {
     expect(wrapper).not.toIncludeText(step.title);
   });
 
-  xit('does not include the description', () => {
+  it('does not include the description', () => {
     const wrapper = shallow(
       <TutorialStep {...varieties.futureStep} step={step} />,
     );

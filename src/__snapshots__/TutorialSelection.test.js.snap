@@ -9,13 +9,11 @@ exports[`renders correctly 1`] = `
     <h3>
       Tutorial 1
     </h3>
-    <div
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "Tutorial 1 description",
-        }
-      }
-    />
+    <div>
+      <p>
+        Tutorial 1 description
+      </p>
+    </div>
     <button
       onClick={[Function]}
     >
@@ -26,13 +24,11 @@ exports[`renders correctly 1`] = `
     <h3>
       Tutorial 2
     </h3>
-    <div
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "Tutorial 2 description",
-        }
-      }
-    />
+    <div>
+      <p>
+        Tutorial 2 description
+      </p>
+    </div>
     <button
       onClick={[Function]}
     >

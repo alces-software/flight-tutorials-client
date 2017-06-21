@@ -5,13 +5,22 @@ exports[`renders correctly (currentStep) 1`] = `
   <h3>
     My step 1
   </h3>
-  <div
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "My step 1 description",
-      }
-    }
-  />
+  <div>
+    <p>
+      My step 1 description.
+    </p>
+    <p>
+      With 
+      <em>
+        markdown
+      </em>
+       
+      <strong>
+        support
+      </strong>
+      .
+    </p>
+  </div>
 </div>
 `;
 
@@ -22,12 +31,21 @@ exports[`renders correctly (previousStep) 1`] = `
   <h3>
     My step 1
   </h3>
-  <div
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "My step 1 description",
-      }
-    }
-  />
+  <div>
+    <p>
+      My step 1 description.
+    </p>
+    <p>
+      With 
+      <em>
+        markdown
+      </em>
+       
+      <strong>
+        support
+      </strong>
+      .
+    </p>
+  </div>
 </div>
 `;

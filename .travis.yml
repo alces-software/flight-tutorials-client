@@ -10,6 +10,8 @@ before_install:
 script:
   - yarn run test:coverage
   - yarn run flow
+  - yarn run lint
+  - yarn run lint:style
 
 after_success:
   - cat ./coverage/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js

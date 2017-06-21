@@ -28,14 +28,12 @@ const TutorialLayout = ({
 } : PropsType) => (
   <div>
     {terminal}
-    {<TutorialInfo tutorial={tutorial} />}
-    {
-      <TutorialSteps
-        completedSteps={completedSteps}
-        currentStep={currentStep}
-        steps={tutorial.steps}
-      />
-    }
+    <TutorialInfo tutorial={tutorial} />
+    <TutorialSteps
+      completedSteps={completedSteps}
+      currentStep={currentStep}
+      steps={tutorial.steps}
+    />
   </div>
 );
 

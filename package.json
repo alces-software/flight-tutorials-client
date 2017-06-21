@@ -24,7 +24,9 @@
     "lint:style:fix": "eslint --config ./.eslintrc.airbnb --fix src"
   },
   "dependencies": {
+    "bootstrap-sass": "^3.3.7",
     "debug": "^2.6.8",
+    "react-bootstrap": "^0.31.0",
     "react-markdown": "^2.5.0",
     "socket.io-client": "^2.0.3",
     "socket.io-stream": "^0.9.1",
@@ -50,6 +52,7 @@
     "jest": "^20.0.4",
     "jest-enzyme": "^3.2.0",
     "nwb": "0.16.x",
+    "nwb-sass": "^0.8.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-test-renderer": "^15.6.1"
@@ -71,7 +74,8 @@
     ],
     "testURL": "http://localhost",
     "transform": {
-      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest"
+      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.(scss|css$)": "<rootDir>/config/jest/cssTransform.js"
     }
   },
   "babel": {

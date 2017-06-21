@@ -26,6 +26,7 @@
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
     "debug": "^2.6.8",
+    "flight-common": "file:///home/barmston/src/flight-common/",
     "react-bootstrap": "^0.31.0",
     "react-markdown": "^2.5.0",
     "socket.io-client": "^2.0.3",

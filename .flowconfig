@@ -6,6 +6,8 @@
 <PROJECT_ROOT>/node_modules/enzyme-matchers/.*.js
 <PROJECT_ROOT>/node_modules/jest-enzyme/.*.js
 <PROJECT_ROOT>/node_modules/eslint-plugin-jsx-a11y/.*.js
+<PROJECT_ROOT>/node_modules/react-timeago/lib/index.js.flow
+.*/flight-common/node_modules/react-timeago/lib/index.js.flow
 
 [include]
 

@@ -47,7 +47,7 @@ function matchMatches(match: MatchType, line: string) : boolean {
 }
 
 function findMatch(matches: Array<MatchType>, line: string) : ?MatchType {
-  debug('Finding match for line %s', line);
+  debug('Finding match for line "%s"', line);
 
   const m = matches.find(match => matchMatches(match, line));
   if (m == null) {

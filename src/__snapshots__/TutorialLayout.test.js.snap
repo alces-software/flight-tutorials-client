@@ -2,113 +2,142 @@
 
 exports[`renders correctly 1`] = `
 <div>
-  <div>
-    dummy terminal
-  </div>
-  <div>
-    <h2>
-      My tutorial
-    </h2>
-    <div>
-      <p>
-        My tutorial description
-      </p>
-    </div>
-  </div>
   <div
+    onClick={[Function]}
     style={
       Object {
-        "float": "left",
-        "width": "50%",
+        "float": "right",
       }
     }
   >
+    X
+  </div>
+  <div
+    className="container"
+  >
+    <h2
+      className="flight-tutorials-header"
+    >
+      Flight Compute Tutorial
+    </h2>
+    <hr
+      className="star-primary"
+    />
+  </div>
+  <div
+    className="container-fluid"
+  >
     <div
-      className="panel-group"
-      role="tablist"
+      className="row"
     >
       <div
-        className="panel panel-success"
-        id={null}
+        className="col-lg-4 col-lg-offset-1 col-md-4 col-sm-12 col-xs-12"
       >
-        <div
-          className="panel-heading"
-        >
-          <h4
-            className="panel-title"
-            role="presentation"
-          >
-            <a
-              aria-controls={undefined}
-              aria-expanded={false}
-              aria-selected={false}
-              className="collapsed"
-              href={undefined}
-              onClick={[Function]}
-              role="tab"
-            >
-              Step 1 My step 1
-            </a>
-          </h4>
+        <div>
+          <h2>
+            My tutorial
+          </h2>
+          <div>
+            <p>
+              My tutorial description
+            </p>
+          </div>
         </div>
         <div
-          aria-expanded={null}
-          aria-hidden={true}
-          className="panel-collapse collapse"
-          id={undefined}
-          role="tabpanel"
+          className="panel-group"
+          role="tablist"
         >
           <div
-            className="panel-body"
+            className="panel panel-success"
+            id={null}
           >
-            <div>
-              <p>
-                My step 1 description
-              </p>
+            <div
+              className="panel-heading"
+            >
+              <h4
+                className="panel-title"
+                role="presentation"
+              >
+                <a
+                  aria-controls={undefined}
+                  aria-expanded={false}
+                  aria-selected={false}
+                  className="collapsed"
+                  href={undefined}
+                  onClick={[Function]}
+                  role="tab"
+                >
+                  Step 1 My step 1
+                </a>
+              </h4>
+            </div>
+            <div
+              aria-expanded={null}
+              aria-hidden={true}
+              className="panel-collapse collapse"
+              id={undefined}
+              role="tabpanel"
+            >
+              <div
+                className="panel-body"
+              >
+                <div>
+                  <p>
+                    My step 1 description
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="panel panel-primary"
+            id={null}
+          >
+            <div
+              className="panel-heading"
+            >
+              <h4
+                className="panel-title"
+                role="presentation"
+              >
+                <a
+                  aria-controls={undefined}
+                  aria-expanded={true}
+                  aria-selected={true}
+                  className={null}
+                  href={undefined}
+                  onClick={[Function]}
+                  role="tab"
+                >
+                  Step 2 My step 2
+                </a>
+              </h4>
+            </div>
+            <div
+              aria-expanded={null}
+              aria-hidden={false}
+              className="panel-collapse collapse in"
+              id={undefined}
+              role="tabpanel"
+            >
+              <div
+                className="panel-body"
+              >
+                <div>
+                  <p>
+                    My step 2 description
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div
-        className="panel panel-primary"
-        id={null}
+        className="col-lg-7 col-md-8 col-sm-12 col-xs-12"
       >
-        <div
-          className="panel-heading"
-        >
-          <h4
-            className="panel-title"
-            role="presentation"
-          >
-            <a
-              aria-controls={undefined}
-              aria-expanded={true}
-              aria-selected={true}
-              className={null}
-              href={undefined}
-              onClick={[Function]}
-              role="tab"
-            >
-              Step 2 My step 2
-            </a>
-          </h4>
-        </div>
-        <div
-          aria-expanded={null}
-          aria-hidden={false}
-          className="panel-collapse collapse in"
-          id={undefined}
-          role="tabpanel"
-        >
-          <div
-            className="panel-body"
-          >
-            <div>
-              <p>
-                My step 2 description
-              </p>
-            </div>
-          </div>
+        <div>
+          dummy terminal
         </div>
       </div>
     </div>

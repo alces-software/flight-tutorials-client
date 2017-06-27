@@ -9,6 +9,7 @@ import React from 'react';
 
 import Card from './Card';
 import Markdown from 'react-markdown';
+import Overlay from './TutorialCardOverlay';
 import './styles/TutorialCard.scss';
 
 const TutorialCard = ({
@@ -26,6 +27,7 @@ const TutorialCard = ({
     titleSize="large"
   >
     <Markdown source={tutorial.description} />
+    <Overlay onSelectTutorial={onSelectTutorial} />
   </Card>
 );
 

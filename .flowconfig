@@ -8,6 +8,7 @@
 <PROJECT_ROOT>/node_modules/eslint-plugin-jsx-a11y/.*.js
 <PROJECT_ROOT>/node_modules/react-timeago/lib/index.js.flow
 .*/flight-common/node_modules/react-timeago/lib/index.js.flow
+.*/flight-common/*.js
 
 [include]
 

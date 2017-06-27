@@ -9,6 +9,7 @@ import React from 'react';
 
 import Card from './Card';
 import Markdown from 'react-markdown';
+import './styles/TutorialCard.scss';
 
 const TutorialCard = ({
   onSelectTutorial,
@@ -25,9 +26,6 @@ const TutorialCard = ({
     titleSize="large"
   >
     <Markdown source={tutorial.description} />
-    <button onClick={onSelectTutorial}>
-      Select
-    </button>
   </Card>
 );
 

@@ -68,16 +68,10 @@ export default class extends Component {
       <TutorialContainer tutorial={tutorial} socket={this.socket}>
         {({ completedSteps, currentStep, terminal }) => (
           <div>
-            {
-              this.props.showAllTutorialsButton ?
-                <button onClick={this.handleShowAllTutorials}>
-                  View all tutorials
-                </button> :
-                null
-            }
             <TutorialLayout
               completedSteps={completedSteps}
               currentStep={currentStep}
+              onShowAllTutorials={this.handleShowAllTutorials}
               terminal={terminal}
               tutorial={tutorial}
             />

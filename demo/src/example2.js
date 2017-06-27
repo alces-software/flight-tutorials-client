@@ -51,12 +51,10 @@ function renderTutorialContainer() {
     >
       {({ completedSteps, currentStep, terminal }) => (
         <div>
-          <button onClick={() => handleTutorialSelection(undefined)}>
-            Return to list of tutorials
-          </button>
           <TutorialLayout
             completedSteps={completedSteps}
             currentStep={currentStep}
+            onShowAllTutorials={() => handleTutorialSelection(undefined)}
             terminal={terminal}
             tutorial={tutorial}
           />

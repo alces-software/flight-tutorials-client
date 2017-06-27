@@ -155,13 +155,6 @@ export default class ReactTerminal extends Component {
     this.stream.end();
   }
 
-  // handleInputLine(logicalLine: string) {
-  //   debug('Logical input line "%s"', logicalLine);
-  //   if (this.props.onInputLine) {
-  //     this.props.onInputLine(logicalLine);
-  //   }
-  // }
-
   render() {
     return (
       <div style={wrapperStyle}>

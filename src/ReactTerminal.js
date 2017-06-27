@@ -22,11 +22,6 @@ const terminalStyle = {
   display: 'inline-block',
 };
 
-const wrapperStyle = {
-  width: '800px',
-  float: 'right',
-};
-
 export default class ReactTerminal extends Component {
   static defaultProps = {
     columns: 80,
@@ -157,7 +152,7 @@ export default class ReactTerminal extends Component {
 
   render() {
     return (
-      <div style={wrapperStyle}>
+      <div>
         <pre
           ref={(el) => { this.terminalEl = el; }}
           style={terminalStyle}

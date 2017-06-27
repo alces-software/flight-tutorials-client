@@ -8,6 +8,7 @@
  *===========================================================================*/
 
 import React from 'react';
+import { Grid, Row, Col } from 'react-bootstrap';
 
 import TutorialInfo from './TutorialInfo';
 import TutorialSteps from './TutorialSteps';
@@ -26,15 +27,21 @@ const TutorialLayout = ({
   terminal,
   tutorial,
 } : PropsType) => (
-  <div>
-    {terminal}
-    <TutorialInfo tutorial={tutorial} />
-    <TutorialSteps
-      completedSteps={completedSteps}
-      currentStep={currentStep}
-      steps={tutorial.steps}
-    />
-  </div>
+  <Grid fluid >
+    <Row>
+      <Col xs={12} sm={12} md={4} lg={4} lgOffset={1} >
+        <TutorialInfo tutorial={tutorial} />
+        <TutorialSteps
+          completedSteps={completedSteps}
+          currentStep={currentStep}
+          steps={tutorial.steps}
+        />
+      </Col>
+      <Col xs={12} sm={12} md={8} lg={7} >
+        {terminal}
+      </Col>
+    </Row>
+  </Grid>
 );
 
 export default TutorialLayout;

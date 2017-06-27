@@ -48,11 +48,9 @@ const TutorialSteps = ({
   })
 
   return (
-    <div style={{float: 'left', width: '50%'}} >
-      <PanelGroup activeKey={currentStep} accordion >
-        { panels }
-      </PanelGroup>
-    </div>
+    <PanelGroup activeKey={currentStep} accordion >
+      { panels }
+    </PanelGroup>
   );
 };
 

@@ -12,6 +12,7 @@ import io from 'socket.io-client';
 
 import TutorialContainer from './TutorialContainer';
 import TutorialLayout from './TutorialLayout';
+import TutorialSelectionLayout from './TutorialSelectionLayout';
 import TutorialSelection from './TutorialSelection';
 import tutorials from './tutorials';
 import './styles/main.scss';
@@ -52,10 +53,12 @@ export default class extends Component {
   render() {
     if (this.state.selectedTutorial == null) {
       return (
-        <TutorialSelection
-          tutorials={tutorials}
-          onSelectTutorial={this.handleTutorialSelection}
-        />
+        <TutorialSelectionLayout>
+          <TutorialSelection
+            tutorials={tutorials}
+            onSelectTutorial={this.handleTutorialSelection}
+          />
+        </TutorialSelectionLayout>
       );
     }
 

@@ -25,11 +25,8 @@ const TutorialSelection = ({
   />));
 
   return (
-    <div>
-      <p>Which tutorial do you wish to undertake?</p>
-      <div className="card-deck">
-        {cards}
-      </div>
+    <div className="card-deck">
+      {cards}
     </div>
   );
 };

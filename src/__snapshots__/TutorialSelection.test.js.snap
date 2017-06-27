@@ -1,39 +1,132 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<div>
-  <p>
-    Which tutorial do you wish to undertake?
-  </p>
-  <div>
-    <h3>
-      Tutorial 1
-    </h3>
-    <div>
-      <p>
-        Tutorial 1 description
-      </p>
-    </div>
-    <button
+<div
+  className="card-deck"
+>
+  <div
+    className="card-wrapper"
+  >
+    <div
+      className="card TutorialCard card--logo-right"
       onClick={[Function]}
     >
-      Select
-    </button>
+      <div
+        className="card-block"
+      >
+        <div
+          className="card-title-block"
+        >
+          <div
+            className="card-title-block-inner"
+          >
+            <div
+              className="card-title-logo-container"
+            >
+              <div
+                className="card-title-logo-helper"
+              />
+            </div>
+            <h2
+              className="card-title large"
+              title="Tutorial 1"
+            >
+              Tutorial 1
+            </h2>
+          </div>
+          <h6
+            className="card-subtitle medium"
+          />
+        </div>
+        <div>
+          <p>
+            Tutorial 1 description
+          </p>
+        </div>
+        <div
+          className="flight-cardOverlay"
+        >
+          <button
+            className="btn btn-link"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            <span
+              aria-hidden={true}
+              className="fa fa-search-plus fa-2x flight-icon flight-icon-search-plus"
+              onBlur={[Function]}
+              onClick={null}
+              onFocus={[Function]}
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            />
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
-  <div>
-    <h3>
-      Tutorial 2
-    </h3>
-    <div>
-      <p>
-        Tutorial 2 description
-      </p>
-    </div>
-    <button
+  <div
+    className="card-wrapper"
+  >
+    <div
+      className="card TutorialCard card--logo-right"
       onClick={[Function]}
     >
-      Select
-    </button>
+      <div
+        className="card-block"
+      >
+        <div
+          className="card-title-block"
+        >
+          <div
+            className="card-title-block-inner"
+          >
+            <div
+              className="card-title-logo-container"
+            >
+              <div
+                className="card-title-logo-helper"
+              />
+            </div>
+            <h2
+              className="card-title large"
+              title="Tutorial 2"
+            >
+              Tutorial 2
+            </h2>
+          </div>
+          <h6
+            className="card-subtitle medium"
+          />
+        </div>
+        <div>
+          <p>
+            Tutorial 2 description
+          </p>
+        </div>
+        <div
+          className="flight-cardOverlay"
+        >
+          <button
+            className="btn btn-link"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            <span
+              aria-hidden={true}
+              className="fa fa-search-plus fa-2x flight-icon flight-icon-search-plus"
+              onBlur={[Function]}
+              onClick={null}
+              onFocus={[Function]}
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            />
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 `;

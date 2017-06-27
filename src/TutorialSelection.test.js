@@ -85,8 +85,9 @@ it('calls onSelectTutorial when tutorial is selected', () => {
   const wrapper = shallow(renderTutorialSelection());
 
   tutorials.forEach((tutorial, idx) => {
-    const option = wrapper.find(TutorialCard).at(idx);
-    const button = option.dive().find('button').first();
+    const card = wrapper.find(TutorialCard).at(idx);
+    const overlay = card.dive().find('TutorialCardOverlay').first();
+    const button = overlay.dive().find('Button').first();
 
     button.simulate('click');
 

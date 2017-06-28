@@ -58,7 +58,8 @@
     "nwb-sass": "^0.8.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-test-renderer": "^15.6.1"
+    "react-test-renderer": "^15.6.1",
+    "resolve-url-loader": "^2.1.0"
   },
   "author": "",
   "homepage": "",

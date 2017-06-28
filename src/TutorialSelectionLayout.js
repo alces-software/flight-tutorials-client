@@ -8,8 +8,6 @@
  *===========================================================================*/
 import React from 'react';
 
-import type { TutorialType } from './types';
-import TutorialSelection from './TutorialSelection';
 import StarPrimary from './StarPrimary';
 
 type PropTypes = {

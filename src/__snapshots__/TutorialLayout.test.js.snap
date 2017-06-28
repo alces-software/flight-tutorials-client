@@ -2,16 +2,20 @@
 
 exports[`renders correctly 1`] = `
 <div>
-  <div
+  <button
+    className="flight-CloseButton btn btn-link"
+    disabled={false}
     onClick={[Function]}
-    style={
-      Object {
-        "float": "right",
-      }
-    }
+    type="button"
   >
-    X
-  </div>
+    <div
+      className="lr"
+    >
+      <div
+        className="rl"
+      />
+    </div>
+  </button>
   <div
     className="container"
   >

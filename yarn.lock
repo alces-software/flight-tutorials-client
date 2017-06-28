@@ -2982,8 +2982,9 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-"flight-common@file:///home/barmston/src/flight-common/":
+"flight-common@git+https://github.com/alces-software/flight-common.git#react-15-react-router-4":
   version "0.0.0"
+  resolved "git+https://github.com/alces-software/flight-common.git#e6597874ff8c81fc1450b405cf57f1626e784d1a"
   dependencies:
     bootstrap-sass "^3.3.7"
     classnames "^2.2.5"

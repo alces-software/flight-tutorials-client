@@ -12,7 +12,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 
 import TutorialInfo from './TutorialInfo';
 import TutorialSteps from './TutorialSteps';
-import StarPrimary from './StarPrimary';
+import StarRule from './StarRule';
 import type { TutorialType } from './types';
 
 type PropsType = {
@@ -36,7 +36,7 @@ const TutorialLayout = ({
     {/* eslint-enable jsx-a11y/no-static-element-interactions */}
     <div className="container">
       <h2 className="flight-tutorials-header">Flight Compute Tutorial</h2>
-      <StarPrimary />
+      <StarRule variant="primary" />
     </div>
     <Grid fluid >
       <Row>

@@ -44,7 +44,6 @@ const renderTutorialLayout = () => (
     completedSteps={completedSteps}
     currentStep={currentStep}
     onShowAllTutorials={() => {}}
-    showAllTutorialsButton
     terminal={dummyTerminal}
     tutorial={tutorial}
   />

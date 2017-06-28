@@ -20,10 +20,6 @@ import './styles/main.scss';
 const debug = mkDebug('FlightTutorials:index');
 
 export default class extends Component {
-  static defaultProps = {
-    showAllTutorialsButton: true,
-  }
-
   constructor(...args: any) {
     super(...args);
     this.socket = io(this.props.socketIOUrl, { path: this.props.socketIOPath });
@@ -34,7 +30,6 @@ export default class extends Component {
   };
 
   props: {
-    showAllTutorialsButton: boolean,
     socketIOUrl: string,
     socketIOPath: string,
   }

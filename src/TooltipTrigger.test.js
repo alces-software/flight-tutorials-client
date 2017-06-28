@@ -18,22 +18,22 @@ it('renders without crashing', () => {
 });
 
 const variants = {
-  'with tooltip' : {
+  'with tooltip': {
     children: <div>My children</div>,
     tooltip: 'My tooltip',
   },
-  'with empty tooltip' : {
+  'with empty tooltip': {
     children: <div>My children</div>,
     tooltip: '',
   },
-  'without tooltip' : {
+  'without tooltip': {
     children: <div>My children</div>,
   },
-  'with className' : {
+  'with className': {
     children: <div>My children</div>,
     className: 'myClass',
   },
-  'without className' : {
+  'without className': {
     children: <div>My children</div>,
   },
 };

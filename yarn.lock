@@ -2965,23 +2965,6 @@ flatten@^1.0.2:
     react-redux "^4.4.6"
     react-timeago "^3.1.3"
 
-"flight-common@git+https://github.com/alces-software/flight-common.git#react-15-react-router-4":
-  version "0.0.0"
-  resolved "git+https://github.com/alces-software/flight-common.git#8820bc6735104dd1d77e32498dff5db08f735237"
-  dependencies:
-    bootstrap-sass "^3.3.7"
-    classnames "^2.2.5"
-    clipboard "^1.5.15"
-    font-awesome "^4.7.0"
-    lodash "^4.17.2"
-    moment "^2.16.0"
-    react-addons-css-transition-group "^15.3.2"
-    react-bootstrap "^0.30.6"
-    react-cookie-banner "0.0.17"
-    react-fontawesome "^1.4.0"
-    react-redux "^4.4.6"
-    react-timeago "^3.1.3"
-
 flow-bin@^0.48.0:
   version "0.48.0"
   resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.48.0.tgz#72d075143524358db8901525e3c784dc13a7c7ee"
@@ -6134,7 +6117,7 @@ react-dom@^15.6.1:
     object-assign "^4.1.0"
     prop-types "^15.5.10"
 
-react-fontawesome@^1.4.0:
+react-fontawesome@^1.4.0, react-fontawesome@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/react-fontawesome/-/react-fontawesome-1.6.1.tgz#eddce17e7dc731aa09fd4a186688a61793a16c5c"
   dependencies:

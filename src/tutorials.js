@@ -216,7 +216,7 @@ sbatch challenge-mpi.sh
         inputLine: 'sbatch challenge-mpi.sh',
         anchored: true,
         regexp: false,
-        nextStep: 'checkProgress'
+        nextStep: 'checkProgress',
       }],
     },
 

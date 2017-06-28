@@ -16,18 +16,26 @@ type PropTypes = {
   size?: 'lg' | '2x' | '3x' | '4x' | '5x',
 };
 
+const defaultProps = {
+  className: undefined,
+  size: undefined,
+};
+
 const Icon = (props : PropTypes) => {
   const classes = cx(
-    "flight-icon",
+    'flight-icon',
     `flight-icon-${props.name}`,
-    props.className
-  )
+    props.className,
+  );
   return (
     <FontAwesome
       {...props}
+      size={props.size}
       className={classes}
     />
   );
 };
+
+Icon.defaultProps = defaultProps;
 
 export default Icon;

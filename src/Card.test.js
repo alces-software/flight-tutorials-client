@@ -26,7 +26,7 @@ function renderCard(props) {
       Card 1 description.
     </Card>
   );
-};
+}
 
 it('renders without crashing', () => {
   const node = document.createElement('div');
@@ -35,14 +35,14 @@ it('renders without crashing', () => {
 
 it('renders correctly without footer', () => {
   const tree = renderer.create(
-    renderCard()
+    renderCard(),
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
 it('renders correctly with footer', () => {
   const tree = renderer.create(
-    renderCard({ footer: <div>My footer</div> })
+    renderCard({ footer: <div>My footer</div> }),
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

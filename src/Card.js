@@ -12,6 +12,7 @@ import classNames from 'classnames';
 import CardTitle from './CardTitle';
 
 type PropTypes = {
+  /* eslint-disable react/require-default-props */
   children : React$Element<*>,
   className? : string,
   onClick : () => void,
@@ -24,6 +25,7 @@ type PropTypes = {
   titleLogoUrl? : string,
   titlePopoverText? : string,
   titleSize? : 'medium' | 'large' | 'x-large',
+  /* eslint-enable react/require-default-props */
 };
 
 const Card = ({

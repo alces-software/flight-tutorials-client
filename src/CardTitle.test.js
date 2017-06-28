@@ -19,29 +19,29 @@ it('renders without crashing', () => {
 });
 
 const variants = {
-  'default sized' : {
+  'default sized': {
     title: 'My title',
     subtitle: 'My subtitle',
   },
-  'large title and subtitle' : {
+  'large title and subtitle': {
     title: 'My title',
     subtitle: 'My subtitle',
     titleSize: 'large',
     subtitleSize: 'large',
   },
-  'x-large title and subtitle' : {
+  'x-large title and subtitle': {
     title: 'My title',
     subtitle: 'My subtitle',
     titleSize: 'x-large',
     subtitleSize: 'x-large',
   },
-  'medium title and subtitle' : {
+  'medium title and subtitle': {
     title: 'My title',
     subtitle: 'My subtitle',
     titleSize: 'medium',
     subtitleSize: 'medium',
   },
-  'differing title and subtitle sizes' : {
+  'differing title and subtitle sizes': {
     title: 'My title',
     subtitle: 'My subtitle',
     titleSize: 'x-large',
@@ -56,7 +56,7 @@ const variants = {
     title: 'My title',
     subtitle: 'My subtitle',
     logoUrl: 'http://localhost/my/logo.png',
-  }
+  },
 };
 
 Object.keys(variants).forEach((name) => {
@@ -73,7 +73,7 @@ Object.keys(variants).forEach((name) => {
 describe('title attribute', () => {
   it('sets a title attribute when title prop is a string', () => {
     const wrapper = shallow(
-      <CardTitle title="My title" subtitle="Subtitle" />
+      <CardTitle title="My title" subtitle="Subtitle" />,
     );
 
     expect(wrapper.find('.card-title')).toHaveProp('title', 'My title');
@@ -83,7 +83,7 @@ describe('title attribute', () => {
     // This behaviour prevents the title being set to `[Object object]`.
     // Ideally, we'd extract the text from the title prop.
     const wrapper = shallow(
-      <CardTitle title={<span>My title</span>} subtitle="Subtitle" />
+      <CardTitle title={<span>My title</span>} subtitle="Subtitle" />,
     );
 
     expect(wrapper.find('.card-title')).not.toHaveProp('title', 'My title');
@@ -97,7 +97,7 @@ it('does not crash when given an invalid titleSize', () => {
     // even if the tutorials contain bad data.
     // $FlowFixMe
     <CardTitle title="My title" subtitle="Subtitle" titleSize="not_valid" />,
-    node
+    node,
   );
 });
 
@@ -108,6 +108,6 @@ it('does not crash when given an invalid subtitleSize', () => {
     // even if the tutorials contain bad data.
     // $FlowFixMe
     <CardTitle title="My title" subtitle="Subtitle" subtitleSize="not_valid" />,
-    node
+    node,
   );
 });

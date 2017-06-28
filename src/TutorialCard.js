@@ -7,9 +7,9 @@
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
 import React from 'react';
+import Markdown from 'react-markdown';
 
 import Card from './Card';
-import Markdown from 'react-markdown';
 import Overlay from './TutorialCardOverlay';
 import './styles/TutorialCard.scss';
 import type { TutorialType } from './types';

@@ -31,7 +31,9 @@ const TutorialLayout = ({
   tutorial,
 } : PropsType) => (
   <div>
-    <div style={{float: 'right'}} onClick={onShowAllTutorials} >X</div>
+    {/* eslint-disable jsx-a11y/no-static-element-interactions */}
+    <div style={{ float: 'right' }} onClick={onShowAllTutorials} >X</div>
+    {/* eslint-enable jsx-a11y/no-static-element-interactions */}
     <div className="container">
       <h2 className="flight-tutorials-header">Flight Compute Tutorial</h2>
       <StarPrimary />

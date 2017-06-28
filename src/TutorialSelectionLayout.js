@@ -16,14 +16,12 @@ type PropTypes = {
 
 const TutorialSelectionLayout = ({
   children,
-}: PropTypes) => {
-  return (
-    <div className="container">
-      <h2 className="flight-tutorials-header">Flight Compute Tutorial</h2>
-      <StarPrimary />
-      {children}
-    </div>
-  );
-};
+}: PropTypes) => (
+  <div className="container">
+    <h2 className="flight-tutorials-header">Flight Compute Tutorial</h2>
+    <StarPrimary />
+    {children}
+  </div>
+);
 
 export default TutorialSelectionLayout;

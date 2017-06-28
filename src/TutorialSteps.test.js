@@ -40,8 +40,8 @@ it('renders without crashing', () => {
 });
 
 [
-  { completedSteps: [], currentStep: 'step1' }, 
-  { completedSteps: ['step1'], currentStep: 'step2' }, 
+  { completedSteps: [], currentStep: 'step1' },
+  { completedSteps: ['step1'], currentStep: 'step2' },
   { completedSteps: ['step1', 'step2'], currentStep: 'step3' },
 ].forEach((props) => {
   it(`renders correctly when currentStep === ${props.currentStep}`, () => {

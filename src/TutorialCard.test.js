@@ -32,7 +32,7 @@ function renderCard() {
       tutorial={tutorial}
     />
   );
-};
+}
 
 it('renders without crashing', () => {
   const node = document.createElement('div');
@@ -41,7 +41,7 @@ it('renders without crashing', () => {
 
 it('renders correctly', () => {
   const tree = renderer.create(
-    renderCard()
+    renderCard(),
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

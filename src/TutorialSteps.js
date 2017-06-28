@@ -45,7 +45,7 @@ const TutorialSteps = ({
         <Markdown escapeHtml={false} source={step.description} />
       </Panel>
     );
-  })
+  });
 
   return (
     <PanelGroup activeKey={currentStep} accordion >

@@ -15,6 +15,11 @@ type PropTypes = {
   className? : string,
 };
 
+const defaultProps = {
+  tooltip: '',
+  className: undefined,
+};
+
 const TooltipTrigger = ({ children, tooltip, className }: PropTypes) => {
   if (tooltip == null || tooltip === '') {
     return <div style={{ display: 'inline-block' }}>{children}</div>;
@@ -33,5 +38,7 @@ const TooltipTrigger = ({ children, tooltip, className }: PropTypes) => {
     </OverlayTrigger>
   );
 };
+
+TooltipTrigger.defaultProps = defaultProps;
 
 export default TooltipTrigger;

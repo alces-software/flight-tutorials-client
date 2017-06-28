@@ -38,12 +38,12 @@ const subtitleElemFromSize = (size) => {
 };
 
 type PropTypes = {
-  icon? : React$Element<*>,
-  logoUrl? : string,
-  subtitle? : string | React$Element<*>,
+  icon? : React$Element<*>,  // eslint-disable-line react/require-default-props
+  logoUrl? : string,  // eslint-disable-line react/require-default-props
+  subtitle? : string | React$Element<*>,  // eslint-disable-line react/require-default-props
   subtitleSize? : 'medium' | 'large' | 'x-large',
   title : string | React$Element<*>,
-  titlePopoverText? : string,
+  titlePopoverText? : string,  // eslint-disable-line react/require-default-props
   titleSize? : 'medium' | 'large' | 'x-large',
 };
 

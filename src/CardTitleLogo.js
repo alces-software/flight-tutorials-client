@@ -9,12 +9,17 @@
 import React from 'react';
 
 class CardTitleLogo extends React.Component {
-  props: {
-    logoUrl?: string,
-  }
+  // static defaultProps = {
+  //   logoUrl: undefined,
+  // }
 
   state = {
     showImage: false,
+  }
+
+  props: {
+    // eslint-disable-next-line react/require-default-props
+    logoUrl?: string,
   }
 
   showImage = () => {

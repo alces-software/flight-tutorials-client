@@ -7,9 +7,9 @@
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
 import React from 'react';
-import Markdown from 'react-markdown';
 
 import type { TutorialType } from './types';
+import TutorialCard from './TutorialCard';
 
 const TutorialSelection = ({
   onSelectTutorial,
@@ -18,34 +18,17 @@ const TutorialSelection = ({
   onSelectTutorial: (number) => void,
   tutorials: Array<TutorialType>
 }) => {
-  const options = tutorials.map((t, idx) => (<TutorialOption
+  const cards = tutorials.map((t, idx) => (<TutorialCard
     key={idx} // eslint-disable-line react/no-array-index-key
     tutorial={t}
     onSelectTutorial={() => onSelectTutorial(idx)}
   />));
 
   return (
-    <div>
-      <p>Which tutorial do you wish to undertake?</p>
-      {options}
+    <div className="card-deck">
+      {cards}
     </div>
   );
 };
-
-export const TutorialOption = ({
-  onSelectTutorial,
-  tutorial,
-}:{
-  onSelectTutorial: () => void,
-  tutorial: TutorialType
-}) => (
-  <div>
-    <h3>{tutorial.title}</h3>
-    <Markdown source={tutorial.description} />
-    <button onClick={onSelectTutorial}>
-      Select
-    </button>
-  </div>
-);
 
 export default TutorialSelection;

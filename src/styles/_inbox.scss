@@ -1,13 +1,16 @@
-// @flow
 /*=============================================================================
  * Copyright (C) 2017 Stephen F. Norledge and Alces Flight Ltd.
  *
- * This file is part of Flight Tutorials.
+ * This file is part of Flight Compute Tutorials.
  *
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
 
-import * as example1 from './example1';
-
-example1.createRequiredDomNodes();
-example1.render();
+.flight-tutorials-header {
+    margin: 0;
+    font-size: 3em;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+}

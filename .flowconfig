@@ -6,9 +6,13 @@
 <PROJECT_ROOT>/node_modules/enzyme-matchers/.*.js
 <PROJECT_ROOT>/node_modules/jest-enzyme/.*.js
 <PROJECT_ROOT>/node_modules/eslint-plugin-jsx-a11y/.*.js
+<PROJECT_ROOT>/node_modules/react-timeago/lib/index.js.flow
+.*/flight-common/node_modules/react-timeago/lib/index.js.flow
+.*/flight-common/*.js
 
 [include]
 
 [libs]
 
 [options]
+module.name_mapper.extension='scss' -> '<PROJECT_ROOT>/flow/CSSFlowStub.js.flow'

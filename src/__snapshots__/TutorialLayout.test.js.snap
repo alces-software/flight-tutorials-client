@@ -2,38 +2,143 @@
 
 exports[`renders correctly 1`] = `
 <div>
-  <div>
-    dummy terminal
+  <div
+    onClick={[Function]}
+    style={
+      Object {
+        "float": "right",
+      }
+    }
+  >
+    X
   </div>
-  <div>
-    <h2>
-      My tutorial
+  <div
+    className="container"
+  >
+    <h2
+      className="flight-tutorials-header"
+    >
+      Flight Compute Tutorial
     </h2>
-    <div>
-      <p>
-        My tutorial description
-      </p>
-    </div>
+    <hr
+      className="star-primary"
+    />
   </div>
-  <div>
-    <div>
-      <h3>
-        My step 1
-      </h3>
-      <div>
-        <p>
-          My step 1 description
-        </p>
+  <div
+    className="container-fluid"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col-lg-4 col-lg-offset-1 col-md-4 col-sm-12 col-xs-12"
+      >
+        <div>
+          <h2>
+            My tutorial
+          </h2>
+          <div>
+            <p>
+              My tutorial description
+            </p>
+          </div>
+        </div>
+        <div
+          className="panel-group"
+          role="tablist"
+        >
+          <div
+            className="panel panel-success"
+            id={null}
+          >
+            <div
+              className="panel-heading"
+            >
+              <h4
+                className="panel-title"
+                role="presentation"
+              >
+                <a
+                  aria-controls={undefined}
+                  aria-expanded={false}
+                  aria-selected={false}
+                  className="collapsed"
+                  href={undefined}
+                  onClick={[Function]}
+                  role="tab"
+                >
+                  Step 1 My step 1
+                </a>
+              </h4>
+            </div>
+            <div
+              aria-expanded={null}
+              aria-hidden={true}
+              className="panel-collapse collapse"
+              id={undefined}
+              role="tabpanel"
+            >
+              <div
+                className="panel-body"
+              >
+                <div>
+                  <p>
+                    My step 1 description
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="panel panel-primary"
+            id={null}
+          >
+            <div
+              className="panel-heading"
+            >
+              <h4
+                className="panel-title"
+                role="presentation"
+              >
+                <a
+                  aria-controls={undefined}
+                  aria-expanded={true}
+                  aria-selected={true}
+                  className={null}
+                  href={undefined}
+                  onClick={[Function]}
+                  role="tab"
+                >
+                  Step 2 My step 2
+                </a>
+              </h4>
+            </div>
+            <div
+              aria-expanded={null}
+              aria-hidden={false}
+              className="panel-collapse collapse in"
+              id={undefined}
+              role="tabpanel"
+            >
+              <div
+                className="panel-body"
+              >
+                <div>
+                  <p>
+                    My step 2 description
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div>
-      <h3>
-        My step 2
-      </h3>
-      <div>
-        <p>
-          My step 2 description
-        </p>
+      <div
+        className="col-lg-7 col-md-8 col-sm-12 col-xs-12"
+      >
+        <div>
+          dummy terminal
+        </div>
       </div>
     </div>
   </div>

@@ -1,13 +1,15 @@
-// @flow
 /*=============================================================================
- * Copyright (C) 2017 Stephen F. Norledge and Alces Flight Ltd.
+ * Copyright (C) 2016 Stephen F. Norledge and Alces Flight Ltd.
  *
  * This file is part of Flight Tutorials.
  *
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
 
-import * as example1 from './example1';
+$card-width: 560px;
+$card-height: 425px;
 
-example1.createRequiredDomNodes();
-example1.render();
+.TutorialCard {
+    width: $card-width;
+    height: $card-height;
+}

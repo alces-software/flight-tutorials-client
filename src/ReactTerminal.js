@@ -12,20 +12,9 @@ import ss from 'socket.io-stream';
 import mkDebug from 'debug';
 
 import InputProcessor from './utils/InputProcessor';
+import './styles/ReactTerminal.scss';
 
 const debug = mkDebug('FlightTutorials:ReactTerminal');
-
-const terminalStyle = {
-  background: 'black',
-  color: 'white',
-  fontFamily: 'Courier, monospace',
-  display: 'inline-block',
-};
-
-const wrapperStyle = {
-  width: '800px',
-  float: 'right',
-};
 
 export default class ReactTerminal extends Component {
   static defaultProps = {
@@ -155,23 +144,16 @@ export default class ReactTerminal extends Component {
     this.stream.end();
   }
 
-  // handleInputLine(logicalLine: string) {
-  //   debug('Logical input line "%s"', logicalLine);
-  //   if (this.props.onInputLine) {
-  //     this.props.onInputLine(logicalLine);
-  //   }
-  // }
-
   render() {
     return (
-      <div style={wrapperStyle}>
+      <div>
         <pre
           ref={(el) => { this.terminalEl = el; }}
-          style={terminalStyle}
+          className="flight-ReactTerminal"
           data-columns={this.props.columns}
           data-rows={this.props.rows}
         />
       </div>
     );
   }
-}
+  }

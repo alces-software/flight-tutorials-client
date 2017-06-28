@@ -8,9 +8,21 @@
  *===========================================================================*/
 
 import React from 'react';
+import { PanelGroup, Panel } from 'react-bootstrap';
+import Markdown from 'react-markdown';
 
 import type { StepMap } from './types';
-import TutorialStep from './TutorialStep';
+
+function getStyle(stepName, currentStep, completedSteps) {
+  if (stepName === currentStep) {
+    return 'primary';
+  }
+  if (completedSteps.includes(stepName)) {
+    return 'success';
+  }
+
+  return 'default';
+}
 
 const TutorialSteps = ({
   completedSteps,
@@ -18,21 +30,28 @@ const TutorialSteps = ({
   steps,
 } : {
   completedSteps: Array<string>,
-    currentStep: string,
-    steps: StepMap,
-}) => (
-  <div>
-    {
-      Object.keys(steps).map(stepName => (
-        <TutorialStep
-          key={stepName}
-          completed={completedSteps.includes(stepName)}
-          current={stepName === currentStep}
-          step={steps[stepName]}
-        />
-      ))
-    }
-  </div>
-);
+  currentStep: string,
+  steps: StepMap,
+}) => {
+  const panels = Object.keys(steps).map((stepName, idx) => {
+    const step = steps[stepName];
+    return (
+      <Panel
+        key={stepName}
+        bsStyle={getStyle(stepName, currentStep, completedSteps)}
+        eventKey={stepName}
+        header={`Step ${idx + 1} ${step.title}`}
+      >
+        <Markdown escapeHtml={false} source={step.description} />
+      </Panel>
+    );
+  });
+
+  return (
+    <PanelGroup activeKey={currentStep} accordion >
+      { panels }
+    </PanelGroup>
+  );
+};
 
 export default TutorialSteps;

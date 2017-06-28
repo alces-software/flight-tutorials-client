@@ -6,8 +6,12 @@
  *
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
+import React from 'react';
 
-import * as example1 from './example1';
+import './styles/StarPrimary.scss';
 
-example1.createRequiredDomNodes();
-example1.render();
+const StarPrimary = () => (
+  <hr className="star-primary" />
+);
+
+export default StarPrimary;

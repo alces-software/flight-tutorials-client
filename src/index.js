@@ -12,16 +12,14 @@ import io from 'socket.io-client';
 
 import TutorialContainer from './TutorialContainer';
 import TutorialLayout from './TutorialLayout';
+import TutorialSelectionLayout from './TutorialSelectionLayout';
 import TutorialSelection from './TutorialSelection';
 import tutorials from './tutorials';
+import './styles/main.scss';
 
 const debug = mkDebug('FlightTutorials:index');
 
 export default class extends Component {
-  static defaultProps = {
-    showAllTutorialsButton: true,
-  }
-
   constructor(...args: any) {
     super(...args);
     this.socket = io(this.props.socketIOUrl, { path: this.props.socketIOPath });
@@ -32,7 +30,6 @@ export default class extends Component {
   };
 
   props: {
-    showAllTutorialsButton: boolean,
     socketIOUrl: string,
     socketIOPath: string,
   }
@@ -51,10 +48,12 @@ export default class extends Component {
   render() {
     if (this.state.selectedTutorial == null) {
       return (
-        <TutorialSelection
-          tutorials={tutorials}
-          onSelectTutorial={this.handleTutorialSelection}
-        />
+        <TutorialSelectionLayout>
+          <TutorialSelection
+            tutorials={tutorials}
+            onSelectTutorial={this.handleTutorialSelection}
+          />
+        </TutorialSelectionLayout>
       );
     }
 
@@ -64,16 +63,10 @@ export default class extends Component {
       <TutorialContainer tutorial={tutorial} socket={this.socket}>
         {({ completedSteps, currentStep, terminal }) => (
           <div>
-            {
-              this.props.showAllTutorialsButton ?
-                <button onClick={this.handleShowAllTutorials}>
-                  View all tutorials
-                </button> :
-                null
-            }
             <TutorialLayout
               completedSteps={completedSteps}
               currentStep={currentStep}
+              onShowAllTutorials={this.handleShowAllTutorials}
               terminal={terminal}
               tutorial={tutorial}
             />

@@ -1,3 +1,4 @@
+// @flow
 /*=============================================================================
  * Copyright (C) 2017 Stephen F. Norledge and Alces Flight Ltd.
  *
@@ -11,11 +12,17 @@ import Card from './Card';
 import Markdown from 'react-markdown';
 import Overlay from './TutorialCardOverlay';
 import './styles/TutorialCard.scss';
+import type { TutorialType } from './types';
+
+type PropTypes = {
+  onSelectTutorial: () => void,
+  tutorial: TutorialType,
+};
 
 const TutorialCard = ({
   onSelectTutorial,
   tutorial,
-}) => (
+}: PropTypes) => (
   <Card
     className="TutorialCard"
     onClick={onSelectTutorial}

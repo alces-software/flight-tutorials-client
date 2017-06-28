@@ -1,3 +1,4 @@
+// @flow
 /*=============================================================================
  * Copyright (C) 2017 Stephen F. Norledge and Alces Software Ltd.
  *
@@ -9,6 +10,21 @@ import React from 'react';
 import classNames from 'classnames';
 
 import CardTitle from './CardTitle';
+
+type PropTypes = {
+  children : React$Element<*>,
+  className? : string,
+  onClick : () => void,
+  footer? : React$Element<*>,
+  subtitle? : string | React$Element<*>,
+  subtitleSize? : 'medium' | 'large' | 'x-large',
+  title : string | React$Element<*>,
+  titleIcon? : React$Element<*>,
+  titleLogoOnRight : boolean,
+  titleLogoUrl? : string,
+  titlePopoverText? : string,
+  titleSize? : 'medium' | 'large' | 'x-large',
+};
 
 const Card = ({
   children,
@@ -23,7 +39,7 @@ const Card = ({
   titleLogoUrl,
   titlePopoverText,
   titleSize,
-}) => {
+}: PropTypes) => {
   const cardClassNames = classNames('card', className, {
     'card--logo-right': titleLogoOnRight,
   });

@@ -11,7 +11,7 @@ import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 type PropTypes = {
   children : React$Element<*>,
-  tooltip : null | string | React$Element<*>,
+  tooltip? : string | React$Element<*>,
   className? : string,
 };
 

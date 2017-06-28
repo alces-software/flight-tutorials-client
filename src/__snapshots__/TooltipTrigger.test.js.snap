@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with className 1`] = `
+<div
+  style={
+    Object {
+      "display": "inline-block",
+    }
+  }
+>
+  <div>
+    My children
+  </div>
+</div>
+`;
+
+exports[`renders correctly with empty tooltip 1`] = `
+<div
+  style={
+    Object {
+      "display": "inline-block",
+    }
+  }
+>
+  <div>
+    My children
+  </div>
+</div>
+`;
+
+exports[`renders correctly with tooltip 1`] = `
+<div
+  onBlur={[Function]}
+  onClick={null}
+  onFocus={[Function]}
+  onMouseOut={[Function]}
+  onMouseOver={[Function]}
+>
+  My children
+</div>
+`;
+
+exports[`renders correctly without className 1`] = `
+<div
+  style={
+    Object {
+      "display": "inline-block",
+    }
+  }
+>
+  <div>
+    My children
+  </div>
+</div>
+`;
+
+exports[`renders correctly without tooltip 1`] = `
+<div
+  style={
+    Object {
+      "display": "inline-block",
+    }
+  }
+>
+  <div>
+    My children
+  </div>
+</div>
+`;

@@ -25,8 +25,10 @@ export type StepMap = {
 };
 
 export type TutorialType = {
-  title: string,
   description: string,
   firstStep: string,
+  logoUrl?: string,
   steps: StepMap,
+  subtitle? : string,
+  title: string,
 };

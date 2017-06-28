@@ -1,0 +1,215 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly: default sized 1`] = `
+<div
+  className="card-title-block"
+>
+  <div
+    className="card-title-block-inner"
+  >
+    <div
+      className="card-title-logo-container"
+    >
+      <div
+        className="card-title-logo-helper"
+      />
+    </div>
+    <h1
+      className="card-title x-large"
+      title="My title"
+    >
+      My title
+    </h1>
+  </div>
+  <h4
+    className="card-subtitle x-large"
+  >
+    My subtitle
+  </h4>
+</div>
+`;
+
+exports[`renders correctly: differing title and subtitle sizes 1`] = `
+<div
+  className="card-title-block"
+>
+  <div
+    className="card-title-block-inner"
+  >
+    <div
+      className="card-title-logo-container"
+    >
+      <div
+        className="card-title-logo-helper"
+      />
+    </div>
+    <h1
+      className="card-title x-large"
+      title="My title"
+    >
+      My title
+    </h1>
+  </div>
+  <h6
+    className="card-subtitle medium"
+  >
+    My subtitle
+  </h6>
+</div>
+`;
+
+exports[`renders correctly: large title and subtitle 1`] = `
+<div
+  className="card-title-block"
+>
+  <div
+    className="card-title-block-inner"
+  >
+    <div
+      className="card-title-logo-container"
+    >
+      <div
+        className="card-title-logo-helper"
+      />
+    </div>
+    <h2
+      className="card-title large"
+      title="My title"
+    >
+      My title
+    </h2>
+  </div>
+  <h5
+    className="card-subtitle large"
+  >
+    My subtitle
+  </h5>
+</div>
+`;
+
+exports[`renders correctly: medium title and subtitle 1`] = `
+<div
+  className="card-title-block"
+>
+  <div
+    className="card-title-block-inner"
+  >
+    <div
+      className="card-title-logo-container"
+    >
+      <div
+        className="card-title-logo-helper"
+      />
+    </div>
+    <h4
+      className="card-title medium"
+      title="My title"
+    >
+      My title
+    </h4>
+  </div>
+  <h6
+    className="card-subtitle medium"
+  >
+    My subtitle
+  </h6>
+</div>
+`;
+
+exports[`renders correctly: with logo url 1`] = `
+<div
+  className="card-title-block"
+>
+  <div
+    className="card-title-block-inner"
+  >
+    <div
+      className="card-title-logo-container"
+    >
+      <div
+        className="card-title-logo-helper"
+      />
+      <img
+        alt="Logo for card"
+        className="card-title-logo"
+        onLoad={[Function]}
+        src="http://localhost/my/logo.png"
+        style={
+          Object {
+            "display": "none",
+          }
+        }
+      />
+    </div>
+    <h1
+      className="card-title x-large"
+      title="My title"
+    >
+      My title
+    </h1>
+  </div>
+  <h4
+    className="card-subtitle x-large"
+  >
+    My subtitle
+  </h4>
+</div>
+`;
+
+exports[`renders correctly: with title popover text 1`] = `
+<div
+  className="card-title-block"
+>
+  <div
+    className="card-title-block-inner"
+  >
+    <div
+      className="card-title-logo-container"
+    >
+      <div
+        className="card-title-logo-helper"
+      />
+    </div>
+    <h1
+      className="card-title x-large"
+      title="My title popover"
+    >
+      My title
+    </h1>
+  </div>
+  <h4
+    className="card-subtitle x-large"
+  >
+    My subtitle
+  </h4>
+</div>
+`;
+
+exports[`renders correctly: x-large title and subtitle 1`] = `
+<div
+  className="card-title-block"
+>
+  <div
+    className="card-title-block-inner"
+  >
+    <div
+      className="card-title-logo-container"
+    >
+      <div
+        className="card-title-logo-helper"
+      />
+    </div>
+    <h1
+      className="card-title x-large"
+      title="My title"
+    >
+      My title
+    </h1>
+  </div>
+  <h4
+    className="card-subtitle x-large"
+  >
+    My subtitle
+  </h4>
+</div>
+`;

@@ -1,3 +1,4 @@
+// @flow
 /*=============================================================================
  * Copyright (C) 2017 Stephen F. Norledge and Alces Software Ltd.
  *
@@ -36,6 +37,16 @@ const subtitleElemFromSize = (size) => {
   }
 };
 
+type PropTypes = {
+  icon? : React$Element<*>,
+  logoUrl? : string,
+  subtitle? : string | React$Element<*>,
+  subtitleSize? : 'medium' | 'large' | 'x-large',
+  title : string | React$Element<*>,
+  titlePopoverText? : string,
+  titleSize? : 'medium' | 'large' | 'x-large',
+};
+
 const defaultProps = {
   titleSize: 'x-large',
   subtitleSize: 'x-large',
@@ -49,7 +60,7 @@ const CardTitle = ({
   title,
   titlePopoverText,
   titleSize,
-}) => {
+}: PropTypes) => {
   const HT = titleElemFromSize(titleSize);
   const HST = subtitleElemFromSize(subtitleSize);
   const logoOrIcon = logoUrl ?

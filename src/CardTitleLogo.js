@@ -1,3 +1,4 @@
+// @flow
 /*=============================================================================
  * Copyright (C) 2017 Stephen F. Norledge and Alces Software Ltd.
  *
@@ -8,13 +9,16 @@
 import React from 'react';
 
 class CardTitleLogo extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+  props: {
+    logoUrl?: string,
+  }
 
-    this.state = {
-      showImage: false,
-    };
-    this.showImage = () => this.setState({ showImage: true });
+  state = {
+    showImage: false,
+  }
+
+  showImage = () => {
+    this.setState({ showImage: true });
   }
 
   render() {

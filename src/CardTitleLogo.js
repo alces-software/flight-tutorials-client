@@ -9,10 +9,6 @@
 import React from 'react';
 
 class CardTitleLogo extends React.Component {
-  // static defaultProps = {
-  //   logoUrl: undefined,
-  // }
-
   state = {
     showImage: false,
   }

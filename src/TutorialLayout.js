@@ -10,9 +10,10 @@
 import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 
+import CloseButton from './CloseButton';
 import TutorialInfo from './TutorialInfo';
 import TutorialSteps from './TutorialSteps';
-import StarPrimary from './StarPrimary';
+import StarRule from './StarRule';
 import type { TutorialType } from './types';
 
 type PropsType = {
@@ -31,12 +32,10 @@ const TutorialLayout = ({
   tutorial,
 } : PropsType) => (
   <div>
-    {/* eslint-disable jsx-a11y/no-static-element-interactions */}
-    <div style={{ float: 'right' }} onClick={onShowAllTutorials} >X</div>
-    {/* eslint-enable jsx-a11y/no-static-element-interactions */}
+    <CloseButton onClose={onShowAllTutorials} />
     <div className="container">
       <h2 className="flight-tutorials-header">Flight Compute Tutorial</h2>
-      <StarPrimary />
+      <StarRule variant="primary" />
     </div>
     <Grid fluid >
       <Row>

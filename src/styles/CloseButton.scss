@@ -1,0 +1,35 @@
+/*=============================================================================
+ * Copyright (C) 2017 Stephen F. Norledge and Alces Flight Ltd.
+ *
+ * This file is part of Flight Compute Tutorials.
+ *
+ * All rights reserved, see LICENSE.txt.
+ *===========================================================================*/
+
+.btn.btn-link.flight-CloseButton {
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    background-color: transparent;
+    top: 25px;
+    right: 25px;
+    cursor: pointer;
+    outline: none !important;
+
+    .lr {
+        height: 75px;
+        width: 1px;
+        margin-left: 35px;
+        background-color: #2C3E50;
+        transform: rotate(45deg);
+        z-index: 1051;
+
+        .rl {
+            height: 75px;
+            width: 1px;
+            background-color: #2C3E50;
+            transform: rotate(90deg);
+            z-index: 1052;
+        }
+    }
+}

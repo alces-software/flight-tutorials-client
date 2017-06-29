@@ -8,7 +8,7 @@
  *===========================================================================*/
 import React from 'react';
 
-import StarPrimary from './StarPrimary';
+import StarRule from './StarRule';
 
 type PropTypes = {
   children : React$Element<*>,  // A TutorialSelection element.
@@ -19,7 +19,7 @@ const TutorialSelectionLayout = ({
 }: PropTypes) => (
   <div className="container">
     <h2 className="flight-tutorials-header">Flight Compute Tutorial</h2>
-    <StarPrimary />
+    <StarRule variant="primary" />
     {children}
   </div>
 );

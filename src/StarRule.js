@@ -10,8 +10,12 @@ import React from 'react';
 
 import './styles/StarPrimary.scss';
 
-const StarPrimary = () => (
-  <hr className="star-primary" />
+type PropTypes = {
+  variant: 'primary' | 'light',
+};
+
+const StarRule = ({ variant }: PropTypes) => (
+  <hr className={`star-${variant}`} />
 );
 
-export default StarPrimary;
+export default StarRule;

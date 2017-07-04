@@ -9,6 +9,7 @@
 import React, { Component } from 'react';
 import mkDebug from 'debug';
 import io from 'socket.io-client';
+import 'url-search-params-polyfill';
 
 import './styles/main.scss';
 import TutorialContainer from './TutorialContainer';
@@ -27,7 +28,6 @@ export default class extends Component {
       this.setState({
         tutorials,
         tutorialLoading: false,
-        tutorials: tutorials,
       });
     }).catch(() => {
       this.setState({ tutorialLoading: false });

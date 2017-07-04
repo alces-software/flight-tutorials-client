@@ -73,7 +73,9 @@ export default class extends Component {
     }
     if (this.state.selectedTutorial == null) {
       return (
-        <TutorialSelectionLayout>
+        <TutorialSelectionLayout
+          singleTutorial={this.state.tutorials.length === 1}
+        >
           <TutorialSelection
             tutorials={this.state.tutorials}
             onSelectTutorial={this.handleTutorialSelection}

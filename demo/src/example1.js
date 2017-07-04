@@ -25,10 +25,14 @@ export const createRequiredDomNodes = () => {
   demo.appendChild(ex1);
 };
 
-export const render = () => {
+type RenderParams = {
+  socketIOUrl : string,
+};
+
+export const render = ({ socketIOUrl } : RenderParams) => {
   ReactDOM.render(
     <FlightTutorials
-      socketIOUrl="http://localhost:3001/pty"
+      socketIOUrl={socketIOUrl}
       socketIOPath="/tutorial/socket.io"
     />,
     document.querySelector('#example1')

@@ -15,7 +15,7 @@ import TutorialContainer from '../../src/TutorialContainer';
 import TutorialLayout from '../../src/TutorialLayout';
 import TutorialSelection from '../../src/TutorialSelection';
 
-const socket = io('http://localhost:3001/pty', { path: '/tutorial/socket.io' });
+let socket;
 
 let selectedTutorial = undefined;
 function handleTutorialSelection(idx) {
@@ -73,7 +73,12 @@ function unmountTutorialContainer() {
   ReactDOM.unmountComponentAtNode(document.querySelector('#tutorialContainer'));
 }
 
-export const render = () => {
+type RenderParams = {
+  socketIOUrl : string,
+};
+
+export const render = ({ socketIOUrl }: RenderParams) => {
+  socket = io(socketIOUrl, { path: '/tutorial/socket.io' });
   handleTutorialSelection(selectedTutorial);
 };
 

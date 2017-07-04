@@ -24,8 +24,10 @@ export default class ReactTerminal extends Component {
 
   componentDidMount() {
     this.terminalEl.tabIndex = 0;
+    this.terminalEl.focus();
     this.connectTerminal();
     this.createTerminalSession();
+
   }
 
   componentWillUnmount() {

@@ -36,6 +36,10 @@ export default class extends Component {
 
   socket: any;
 
+  componentWillUnmount() {
+    this.socket.disconnect();
+  }
+
   handleTutorialSelection = (idx: ?number) => {
     debug('Selecting tutorial at index %d', idx);
     this.setState({ selectedTutorial: idx });

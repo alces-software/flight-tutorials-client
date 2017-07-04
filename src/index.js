@@ -10,12 +10,13 @@ import React, { Component } from 'react';
 import mkDebug from 'debug';
 import io from 'socket.io-client';
 
+import './styles/main.scss';
 import TutorialContainer from './TutorialContainer';
 import TutorialLayout from './TutorialLayout';
-import TutorialSelectionLayout from './TutorialSelectionLayout';
 import TutorialSelection from './TutorialSelection';
-import tutorials from './tutorials';
-import './styles/main.scss';
+import TutorialSelectionLayout from './TutorialSelectionLayout';
+import loadTutorials from './utils/loadTutorials';
+import type { TutorialType } from './types';
 
 const debug = mkDebug('FlightTutorials:index');
 
@@ -23,10 +24,20 @@ export default class extends Component {
   constructor(...args: any) {
     super(...args);
     this.socket = io(this.props.socketIOUrl, { path: this.props.socketIOPath });
+    loadTutorials().then((tutorials) => {
+      this.setState({
+        tutorialLoading: false,
+        tutorials: tutorials,
+      });
+    }).catch((error) => {
+      this.setState({ tutorialLoading: false });
+    });
   }
 
   state = {
     selectedTutorial: undefined,
+    tutorials: undefined,
+    tutorialLoading: true,
   };
 
   componentWillUnmount() {
@@ -50,18 +61,28 @@ export default class extends Component {
   }
 
   render() {
+    if (this.state.tutorialLoading == null) {
+      return null;
+    }
+    if (this.state.tutorials == null) {
+      return (
+        <div>
+          <p>Unfortunately, we haven't been able to load any tutorials.</p>
+        </div>
+      );
+    }
     if (this.state.selectedTutorial == null) {
       return (
         <TutorialSelectionLayout>
           <TutorialSelection
-            tutorials={tutorials}
+            tutorials={this.state.tutorials}
             onSelectTutorial={this.handleTutorialSelection}
           />
         </TutorialSelectionLayout>
       );
     }
 
-    const tutorial = tutorials[this.state.selectedTutorial];
+    const tutorial = this.state.tutorials[this.state.selectedTutorial];
 
     return (
       <TutorialContainer tutorial={tutorial} socket={this.socket}>

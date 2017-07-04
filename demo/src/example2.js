@@ -10,12 +10,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import io from 'socket.io-client';
 
-import tutorials from '../../src/tutorials';
 import TutorialContainer from '../../src/TutorialContainer';
 import TutorialLayout from '../../src/TutorialLayout';
 import TutorialSelection from '../../src/TutorialSelection';
+import loadTutorials, { getTutorialsUrl } from '../../src/utils/loadTutorials';
 
 let socket;
+let tutorials;
+
+loadTutorials().then((ts) => {
+  tutorials = ts;
+});
 
 let selectedTutorial = undefined;
 function handleTutorialSelection(idx) {

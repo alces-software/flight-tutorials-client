@@ -136,7 +136,14 @@ export default class ReactTerminal extends Component {
   }
 
   createTerminalSession() {
-    const options = { columns: this.props.columns, rows: this.props.rows };
+    const options = {
+      columns: this.props.columns,
+      rows: this.props.rows,
+      env: {
+        TERM: 'vt100',
+        cw_SETTINGS_theme: 'dark',
+      }
+    };
     ss(this.props.socket).emit('new', this.stream, options);
   }
 
@@ -156,4 +163,4 @@ export default class ReactTerminal extends Component {
       </div>
     );
   }
-  }
+}

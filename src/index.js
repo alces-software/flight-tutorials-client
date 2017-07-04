@@ -29,16 +29,16 @@ export default class extends Component {
     selectedTutorial: undefined,
   };
 
+  componentWillUnmount() {
+    this.socket.disconnect();
+  }
+
   props: {
     socketIOUrl: string,
     socketIOPath: string,
   }
 
   socket: any;
-
-  componentWillUnmount() {
-    this.socket.disconnect();
-  }
 
   handleTutorialSelection = (idx: ?number) => {
     debug('Selecting tutorial at index %d', idx);

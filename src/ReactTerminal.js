@@ -27,7 +27,6 @@ export default class ReactTerminal extends Component {
     this.terminalEl.focus();
     this.connectTerminal();
     this.createTerminalSession();
-
   }
 
   componentWillUnmount() {
@@ -144,7 +143,7 @@ export default class ReactTerminal extends Component {
       env: {
         TERM: 'vt100',
         cw_SETTINGS_theme: 'dark',
-      }
+      },
     };
     ss(this.props.socket).emit('new', this.stream, options);
   }

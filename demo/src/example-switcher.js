@@ -18,12 +18,12 @@ function renderSelectedExample(example) {
     hideTitle(title2);
     example2.unmount();
     showTitle(title1);
-    example1.render();
+    example1.render({ socketIOUrl: getSocketIOUrl() });
   } else {
     hideTitle(title1);
     example1.unmount();
     showTitle(title2);
-    example2.render();
+    example2.render({ socketIOUrl: getSocketIOUrl() });
   }
 }
 
@@ -71,6 +71,19 @@ function showTitle(t) {
 
 function hideTitle(t) {
   t.style.display = 'none';
+}
+
+function getSocketIOUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const socketIOUrl = params.get('socketIOUrl');
+  if (socketIOUrl != null && socketIOUrl !== '') {
+    return socketIOUrl;
+  }
+  if (process.env.NODE_ENV === 'production') {
+    return '/pty';
+  } else {
+    return 'http://localhost:3001/pty';
+  }
 }
 
 addExampleSelection();

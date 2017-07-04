@@ -16,7 +16,6 @@ import TutorialLayout from './TutorialLayout';
 import TutorialSelection from './TutorialSelection';
 import TutorialSelectionLayout from './TutorialSelectionLayout';
 import loadTutorials from './utils/loadTutorials';
-import type { TutorialType } from './types';
 
 const debug = mkDebug('FlightTutorials:index');
 
@@ -26,10 +25,11 @@ export default class extends Component {
     this.socket = io(this.props.socketIOUrl, { path: this.props.socketIOPath });
     loadTutorials().then((tutorials) => {
       this.setState({
+        tutorials,
         tutorialLoading: false,
         tutorials: tutorials,
       });
-    }).catch((error) => {
+    }).catch(() => {
       this.setState({ tutorialLoading: false });
     });
   }
@@ -67,7 +67,7 @@ export default class extends Component {
     if (this.state.tutorials == null) {
       return (
         <div>
-          <p>Unfortunately, we haven't been able to load any tutorials.</p>
+          <p>Unfortunately, we haven&apos;t been able to load any tutorials.</p>
         </div>
       );
     }

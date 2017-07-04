@@ -33,9 +33,8 @@ export default function loadTutorials(url:string=getTutorialsUrl()) : TutorialsP
     .then((response) => {
       if (response.ok) {
         return response.json().then(j => j.tutorials);
-      } else {
-        return Promise.reject();
       }
+      return Promise.reject();
     })
     .catch((error) => {
       debug('Error loading tutorials %O', error);

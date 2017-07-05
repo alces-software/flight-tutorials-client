@@ -29,7 +29,7 @@ function afterTutorialsLoaded(done, callback) {
 
 const renderComponent = () => (
   <Component
-    socketIOUrl="http://localhost:3001/pty"
+    socketIOUrl="http://localhost:25288/pty"
     socketIOPath="/tutorial/socket.io"
   />
 );

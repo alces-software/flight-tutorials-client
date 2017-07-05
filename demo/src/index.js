@@ -18,7 +18,7 @@ function getSocketIOUrl() {
   if (process.env.NODE_ENV === 'production') {
     return '/pty';
   } else {
-    return 'http://localhost:3001/pty';
+    return 'http://localhost:25288/pty';
   }
 }
 

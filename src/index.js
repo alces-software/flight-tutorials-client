@@ -9,13 +9,16 @@
 import React, { Component } from 'react';
 import mkDebug from 'debug';
 import io from 'socket.io-client';
+import 'url-search-params-polyfill';
 
+import './styles/main.scss';
 import TutorialContainer from './TutorialContainer';
 import TutorialLayout from './TutorialLayout';
-import TutorialSelectionLayout from './TutorialSelectionLayout';
+import TutorialLoadErrorMessage from './TutorialLoadErrorMessage';
+import TutorialLoadingMessage from './TutorialLoadingMessage';
 import TutorialSelection from './TutorialSelection';
-import tutorials from './tutorials';
-import './styles/main.scss';
+import TutorialSelectionLayout from './TutorialSelectionLayout';
+import loadTutorials from './utils/loadTutorials';
 
 const debug = mkDebug('FlightTutorials:index');
 
@@ -23,10 +26,21 @@ export default class extends Component {
   constructor(...args: any) {
     super(...args);
     this.socket = io(this.props.socketIOUrl, { path: this.props.socketIOPath });
+    loadTutorials().then((tutorials) => {
+      this.setState({
+        tutorials,
+        tutorialLoading: false,
+      });
+    }).catch(() => {
+      // XXX
+      this.setState({ tutorialLoading: false });
+    });
   }
 
   state = {
     selectedTutorial: undefined,
+    tutorials: undefined,
+    tutorialLoading: true,
   };
 
   componentWillUnmount() {
@@ -50,18 +64,26 @@ export default class extends Component {
   }
 
   render() {
+    if (this.state.tutorialLoading) {
+      return <TutorialLoadingMessage />;
+    }
+    if (this.state.tutorials == null) {
+      return <TutorialLoadErrorMessage />;
+    }
     if (this.state.selectedTutorial == null) {
       return (
-        <TutorialSelectionLayout>
+        <TutorialSelectionLayout
+          singleTutorial={this.state.tutorials.length === 1}
+        >
           <TutorialSelection
-            tutorials={tutorials}
+            tutorials={this.state.tutorials}
             onSelectTutorial={this.handleTutorialSelection}
           />
         </TutorialSelectionLayout>
       );
     }
 
-    const tutorial = tutorials[this.state.selectedTutorial];
+    const tutorial = this.state.tutorials[this.state.selectedTutorial];
 
     return (
       <TutorialContainer tutorial={tutorial} socket={this.socket}>

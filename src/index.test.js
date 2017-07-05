@@ -11,11 +11,20 @@ import { render } from 'react-dom';
 import { shallow } from 'enzyme';
 
 import Component from './';
+import TutorialLoadErrorMessage from './TutorialLoadErrorMessage';
+import TutorialLoadingMessage from './TutorialLoadingMessage';
 
-function afterTutorialsLoaded(callback) {
+function afterTutorialsLoaded(done, callback) {
   // Call in a setTimeout so that the loadTutorials promise can complete.  As
   // we've mocked `fetch`, a 0 timeout will be sufficient.
-  setTimeout(callback, 0);
+  setTimeout(() => {
+    try {
+      callback();
+      done();
+    } catch (error) {
+      done.fail(error);
+    }
+  }, 0);
 }
 
 const renderComponent = () => (
@@ -26,6 +35,10 @@ const renderComponent = () => (
 );
 
 beforeEach(() => {
+  fetch.resetMocks();
+});
+
+function mockSuccessfulResponse() {
   const tutorial = {
     title: 'Tutorial 1',
     description: 'Tutorial 1 description.\n\nWith *markdown* **support**.',
@@ -39,19 +52,27 @@ beforeEach(() => {
     },
   };
 
-  fetch.resetMocks();
   fetch.mockResponse(
     JSON.stringify({ tutorials: [tutorial] }),
     { status: 200, statusText: 'OK' },
   );
-});
+}
+
+function mockFailedResponse() {
+  fetch.mockResponse(
+    'Not found',
+    { status: 404, statusText: 'Not Found' },
+  );
+}
 
 it('renders without crashing', () => {
+  mockSuccessfulResponse();
   const node = document.createElement('div');
   render(renderComponent(), node);
 });
 
 it('disconnects the socket when unmounted', (done) => {
+  mockSuccessfulResponse();
   const wrapper = shallow(renderComponent());
   const instance = wrapper.instance();
   // The flow type definition for `wrapper.instance()` returns a generic
@@ -61,19 +82,26 @@ it('disconnects the socket when unmounted', (done) => {
   // $FlowFixMe
   const spy = jest.spyOn(instance.socket, 'disconnect');
 
-  afterTutorialsLoaded(() => {
+  afterTutorialsLoaded(done, () => {
     wrapper.unmount();
 
     expect(spy).toHaveBeenCalled();
-    done();
   });
 });
 
+it('displays a loading message whilst the tutorials are being loaded', () => {
+  mockSuccessfulResponse();
+  const wrapper = shallow(renderComponent());
+
+  expect(wrapper).toContainReact(<TutorialLoadingMessage />);
+});
+
 it('displays tutorial container when tutorial is selected', (done) => {
+  mockSuccessfulResponse();
   const wrapper = shallow(renderComponent());
   const instance = wrapper.instance();
 
-  afterTutorialsLoaded(() => {
+  afterTutorialsLoaded(done, () => {
     // The flow type definition for `wrapper.instance()` returns a generic
     // React$Component type, not the specific TutorialContainer type.  When that
     // is fixed, we can remove this. See
@@ -83,16 +111,15 @@ it('displays tutorial container when tutorial is selected', (done) => {
 
     expect(wrapper.find('TutorialSelection')).not.toBePresent();
     expect(wrapper.find('TutorialContainer')).toBePresent();
-
-    done();
   });
 });
 
 it('displays tutorial selection when no tutorial is selected', (done) => {
+  mockSuccessfulResponse();
   const wrapper = shallow(renderComponent());
   const instance = wrapper.instance();
 
-  afterTutorialsLoaded(() => {
+  afterTutorialsLoaded(done, () => {
     // The flow type definition for `wrapper.instance()` returns a generic
     // React$Component type, not the specific TutorialContainer type.  When that
     // is fixed, we can remove this. See
@@ -104,7 +131,14 @@ it('displays tutorial selection when no tutorial is selected', (done) => {
 
     expect(wrapper.find('TutorialSelection')).toBePresent();
     expect(wrapper.find('TutorialContainer')).not.toBePresent();
+  });
+});
 
-    done();
+it('displays an error message if the tutorials cannot be loaded', (done) => {
+  mockFailedResponse();
+  const wrapper = shallow(renderComponent());
+
+  afterTutorialsLoaded(done, () => {
+    expect(wrapper).toContainReact(<TutorialLoadErrorMessage />);
   });
 });

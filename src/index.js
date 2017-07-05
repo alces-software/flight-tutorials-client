@@ -14,6 +14,8 @@ import 'url-search-params-polyfill';
 import './styles/main.scss';
 import TutorialContainer from './TutorialContainer';
 import TutorialLayout from './TutorialLayout';
+import TutorialLoadErrorMessage from './TutorialLoadErrorMessage';
+import TutorialLoadingMessage from './TutorialLoadingMessage';
 import TutorialSelection from './TutorialSelection';
 import TutorialSelectionLayout from './TutorialSelectionLayout';
 import loadTutorials from './utils/loadTutorials';
@@ -30,6 +32,7 @@ export default class extends Component {
         tutorialLoading: false,
       });
     }).catch(() => {
+      // XXX
       this.setState({ tutorialLoading: false });
     });
   }
@@ -61,15 +64,11 @@ export default class extends Component {
   }
 
   render() {
-    if (this.state.tutorialLoading == null) {
-      return null;
+    if (this.state.tutorialLoading) {
+      return <TutorialLoadingMessage />;
     }
     if (this.state.tutorials == null) {
-      return (
-        <div>
-          <p>Unfortunately, we haven&apos;t been able to load any tutorials.</p>
-        </div>
-      );
+      return <TutorialLoadErrorMessage />;
     }
     if (this.state.selectedTutorial == null) {
       return (

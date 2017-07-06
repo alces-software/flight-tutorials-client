@@ -16,13 +16,13 @@ import ReactTerminal from './ReactTerminal';
 const onInputLineSpy = jest.fn();
 
 function renderComponent() {
-  const socket = io('http://localhost:25288/pty', { path: '/tutorial/socket.io' });
+  const socket = io('http://localhost:25288/pty', { path: '/tutorials/socket.io' });
   return <ReactTerminal onInputLine={onInputLineSpy} socket={socket} />;
 }
 
 it('renders without crashing', () => {
   const node = document.createElement('div');
-  const socket = io('http://localhost:25288/pty', { path: '/tutorial/socket.io' });
+  const socket = io('http://localhost:25288/pty', { path: '/tutorials/socket.io' });
   render(<ReactTerminal onInputLine={onInputLineSpy} socket={socket} />, node);
 });
 

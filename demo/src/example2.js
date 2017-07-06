@@ -83,7 +83,7 @@ type RenderParams = {
 };
 
 export const render = ({ socketIOUrl }: RenderParams) => {
-  socket = io(socketIOUrl, { path: '/tutorial/socket.io' });
+  socket = io(socketIOUrl, { path: '/tutorials/socket.io' });
   handleTutorialSelection(selectedTutorial);
 };
 

@@ -13,7 +13,7 @@ var config = {
     }
   },
   webpack: {
-    publicPath: process.env.NODE_ENV === 'production' ? '/tutorial/static/' : '',
+    publicPath: process.env.NODE_ENV === 'production' ? '/tutorials/static/' : '',
     rules: {
       'sass-rule': {
         use: [

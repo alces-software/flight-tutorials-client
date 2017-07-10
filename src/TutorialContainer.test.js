@@ -52,14 +52,39 @@ it('renders without crashing', () => {
 
 it('calls child function with expected arguments', () => {
   const childFunctionSpy = jest.fn().mockReturnValue(null);
-  shallow(
+  const wrapper = shallow(
     <TutorialContainer tutorial={tutorial} children={childFunctionSpy} socket={mockSocket} />,
   );
+  const instance = wrapper.instance();
+
+  // The flow type definition for `wrapper.instance()` returns a generic
+  // React$Component type, not the specific TutorialContainer type.  When that
+  // is fixed, we can remove these. See
+  // https://github.com/flowtype/flow-typed/issues/925
+  // $FlowFixMe
+  const onSessionRestartAccepted = instance.handleRestartSession;
+  // $FlowFixMe
+  const onSessionRestartDeclined = instance.handleSessionRestartDeclined;
+  // $FlowFixMe
+  const sessionId = instance.state.sessionId;
+  // $FlowFixMe
+  const onInputLine = instance.handleInputLine;
+  // $FlowFixMe
+  const onSessionEnd = instance.handleSessionEnd;
 
   expect(childFunctionSpy).toHaveBeenCalledWith({
     completedSteps: [],
     currentStep: tutorial.firstStep,
-    terminal: <ReactTerminal onInputLine={expect.anything()} socket={mockSocket} />,
+    onSessionRestartAccepted,
+    onSessionRestartDeclined,
+    requestSessionRestart: false,
+    terminal: <ReactTerminal
+      key={sessionId}
+      onInputLine={onInputLine}
+      onSessionEnd={onSessionEnd}
+      socket={mockSocket}
+    />,
+    // terminal: expect.anything()
   });
 });
 

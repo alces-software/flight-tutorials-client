@@ -140,6 +140,7 @@ exports[`renders correctly 1`] = `
       <div
         className="col-lg-7 col-md-8 col-sm-12 col-xs-12"
       >
+        <div />
         <div>
           dummy terminal
         </div>

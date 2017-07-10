@@ -14,3 +14,8 @@
     text-transform: uppercase;
     font-weight: 700;
 }
+
+BODY.modal-open {
+    overflow: visible !important;
+    padding-right: 0 !important;
+}

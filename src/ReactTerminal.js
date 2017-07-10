@@ -36,6 +36,7 @@ export default class ReactTerminal extends Component {
   props: {
     columns: number,
     onInputLine: (string) => void,
+    onSessionEnd?: () => void,  // eslint-disable-line react/require-default-props
     rows: number,
     socket: any,
   }
@@ -128,6 +129,13 @@ export default class ReactTerminal extends Component {
 
     this.stream.on('data', (chunk) => {
       debug('Received chunk %o as string: %s', chunk, chunk.toString());
+    });
+
+    this.stream.on('end', () => {
+      debug('stream end');
+      if (this.props.onSessionEnd) {
+        this.props.onSessionEnd();
+      }
     });
 
     const userProvidedInput = this.stream.pipe(term).dom(this.terminalEl);

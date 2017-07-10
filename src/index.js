@@ -87,12 +87,22 @@ export default class extends Component {
 
     return (
       <TutorialContainer tutorial={tutorial} socket={this.socket}>
-        {({ completedSteps, currentStep, terminal }) => (
+        {({
+          completedSteps,
+          currentStep,
+          onSessionRestartAccepted,
+          onSessionRestartDeclined,
+          requestSessionRestart,
+          terminal,
+        }) => (
           <div>
             <TutorialLayout
               completedSteps={completedSteps}
               currentStep={currentStep}
+              onSessionRestartAccepted={onSessionRestartAccepted}
+              onSessionRestartDeclined={onSessionRestartDeclined}
               onShowAllTutorials={this.handleShowAllTutorials}
+              requestSessionRestart={requestSessionRestart}
               terminal={terminal}
               tutorial={tutorial}
             />

@@ -19,6 +19,9 @@ const debug = mkDebug('FlightTutorials:TutorialContainer');
 type ChildrenPropType = ({
   completedSteps : Array<string>,
   currentStep: string,
+  onSessionRestartAccepted: () => void,
+  onSessionRestartDeclined: () => void,
+  requestSessionRestart: boolean,
   terminal : React$Element<*>,  // A ReactTerminal element.
 }) => React$Element<*>;
 
@@ -28,12 +31,16 @@ export default class TutorialContainer extends Component {
     this.state = {
       currentStep: this.props.tutorial.firstStep,
       completedSteps: [],
+      requestSessionRestart: false,
+      sessionId: 0,
     };
   }
 
   state: {
     currentStep: string,
     completedSteps: Array<string>,
+    requestSessionRestart: boolean,
+    sessionId: number,
   };
 
   props: {
@@ -55,6 +62,22 @@ export default class TutorialContainer extends Component {
     }
   }
 
+  handleSessionEnd = () => {
+    this.setState({ requestSessionRestart: true });
+  }
+
+  handleRestartSession = () => {
+    this.setState(state => ({
+      ...state,
+      sessionId: state.sessionId + 1,
+      requestSessionRestart: false,
+    }));
+  }
+
+  handleSessionRestartDeclined = () => {
+    this.setState({ requestSessionRestart: false });
+  }
+
   currentStep() : StepType {
     return this.props.tutorial.steps[this.state.currentStep];
   }
@@ -63,7 +86,9 @@ export default class TutorialContainer extends Component {
   render() {
     const terminal = (
       <ReactTerminal
+        key={this.state.sessionId}
         onInputLine={this.handleInputLine}
+        onSessionEnd={this.handleSessionEnd}
         socket={this.props.socket}
       />
     );
@@ -71,6 +96,9 @@ export default class TutorialContainer extends Component {
     return this.props.children({
       completedSteps: this.state.completedSteps,
       currentStep: this.state.currentStep,
+      onSessionRestartAccepted: this.handleRestartSession,
+      onSessionRestartDeclined: this.handleSessionRestartDeclined,
+      requestSessionRestart: this.state.requestSessionRestart,
       terminal,
     });
   }

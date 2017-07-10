@@ -8,7 +8,9 @@
  *===========================================================================*/
 
 import React from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col, Button } from 'react-bootstrap';
+
+import StandardModal from 'flight-common/lib/components/StandardModal';
 
 import CloseButton from './CloseButton';
 import TutorialInfo from './TutorialInfo';
@@ -19,15 +21,21 @@ import type { TutorialType } from './types';
 type PropsType = {
   completedSteps : Array<string>,
   currentStep: string,
+  onSessionRestartAccepted: () => void,
+  onSessionRestartDeclined: () => void,
   onShowAllTutorials: () => void,
   terminal : React$Element<*>,  // A ReactTerminal element.
   tutorial: TutorialType,
+  requestSessionRestart: boolean,
 }
 
 const TutorialLayout = ({
   completedSteps,
   currentStep,
+  onSessionRestartAccepted,
+  onSessionRestartDeclined,
   onShowAllTutorials,
+  requestSessionRestart,
   terminal,
   tutorial,
 } : PropsType) => (
@@ -48,6 +56,22 @@ const TutorialLayout = ({
           />
         </Col>
         <Col xs={12} sm={12} md={8} lg={7} >
+          <StandardModal
+            buttons={
+              <Button
+                bsStyle="success"
+                onClick={onSessionRestartAccepted}
+              >
+                Restart
+              </Button>
+            }
+            show={requestSessionRestart}
+            onHide={onSessionRestartDeclined}
+            title="Your terminal session has been terminated"
+          >
+            Your terminal session has been terminated. Would you like to
+            restart it?
+          </StandardModal>
           {terminal}
         </Col>
       </Row>

@@ -13,7 +13,7 @@ import io from 'socket.io-client';
 import TutorialContainer from '../../src/TutorialContainer';
 import TutorialLayout from '../../src/TutorialLayout';
 import TutorialSelection from '../../src/TutorialSelection';
-import loadTutorials, { getTutorialsUrl } from '../../src/utils/loadTutorials';
+import loadTutorials from '../../src/utils/loadTutorials';
 
 let socket;
 let tutorials;
@@ -54,12 +54,22 @@ function renderTutorialContainer() {
       tutorial={tutorial}
       socket={socket}
     >
-      {({ completedSteps, currentStep, terminal }) => (
+      {({
+        completedSteps,
+        currentStep,
+        onSessionRestartAccepted,
+        onSessionRestartDeclined,
+        requestSessionRestart,
+        terminal,
+      }) => (
         <div>
           <TutorialLayout
             completedSteps={completedSteps}
             currentStep={currentStep}
+            onSessionRestartAccepted={onSessionRestartAccepted}
+            onSessionRestartDeclined={onSessionRestartDeclined}
             onShowAllTutorials={() => handleTutorialSelection(undefined)}
+            requestSessionRestart={requestSessionRestart}
             terminal={terminal}
             tutorial={tutorial}
           />

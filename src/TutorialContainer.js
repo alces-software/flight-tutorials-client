@@ -65,10 +65,12 @@ export default class TutorialContainer extends Component {
   }
 
   handleSessionEnd = () => {
+    debug('Session eneded. Requesting restart');
     this.setState({ requestSessionRestart: true });
   }
 
   handleSessionRestartAccepted = () => {
+    debug('Restarting session');
     this.setState(state => ({
       ...state,
       sessionId: state.sessionId + 1,
@@ -77,6 +79,7 @@ export default class TutorialContainer extends Component {
   }
 
   handleSessionRestartRequestClosed = () => {
+    debug('Closing session restart request.');
     this.setState({ requestSessionRestart: false });
     this.terminal.focus();
   }

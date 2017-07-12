@@ -23,6 +23,7 @@ export default class ReactTerminal extends Component {
   };
 
   componentDidMount() {
+    debug('Mounted');
     this.terminalEl.tabIndex = 0;
     this.terminalEl.focus();
     this.connectTerminal();
@@ -30,6 +31,7 @@ export default class ReactTerminal extends Component {
   }
 
   componentWillUnmount() {
+    debug('Unmounting');
     this.endTerminalSession();
   }
 
@@ -161,6 +163,7 @@ export default class ReactTerminal extends Component {
   }
 
   focus() {
+    debug('Focusing terminal, %o', this.terminalEl);
     this.terminalEl.focus();
   }
 

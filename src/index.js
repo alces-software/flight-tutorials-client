@@ -91,7 +91,7 @@ export default class extends Component {
           completedSteps,
           currentStep,
           onSessionRestartAccepted,
-          onSessionRestartDeclined,
+          onSessionRestartRequestClosed,
           requestSessionRestart,
           terminal,
         }) => (
@@ -100,7 +100,7 @@ export default class extends Component {
               completedSteps={completedSteps}
               currentStep={currentStep}
               onSessionRestartAccepted={onSessionRestartAccepted}
-              onSessionRestartDeclined={onSessionRestartDeclined}
+              onSessionRestartRequestClosed={onSessionRestartRequestClosed}
               onShowAllTutorials={this.handleShowAllTutorials}
               requestSessionRestart={requestSessionRestart}
               terminal={terminal}

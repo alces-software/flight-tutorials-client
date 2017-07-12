@@ -62,9 +62,9 @@ it('calls child function with expected arguments', () => {
   // is fixed, we can remove these. See
   // https://github.com/flowtype/flow-typed/issues/925
   // $FlowFixMe
-  const onSessionRestartAccepted = instance.handleRestartSession;
+  const onSessionRestartAccepted = instance.handleSessionRestartAccepted;
   // $FlowFixMe
-  const onSessionRestartDeclined = instance.handleSessionRestartDeclined;
+  const onSessionRestartRequestClosed = instance.handleSessionRestartRequestClosed;
   // $FlowFixMe
   const sessionId = instance.state.sessionId;
   // $FlowFixMe
@@ -76,7 +76,7 @@ it('calls child function with expected arguments', () => {
     completedSteps: [],
     currentStep: tutorial.firstStep,
     onSessionRestartAccepted,
-    onSessionRestartDeclined,
+    onSessionRestartRequestClosed,
     requestSessionRestart: false,
     terminal: <ReactTerminal
       key={sessionId}

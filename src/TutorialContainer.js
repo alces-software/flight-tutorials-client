@@ -20,7 +20,7 @@ type ChildrenPropType = ({
   completedSteps : Array<string>,
   currentStep: string,
   onSessionRestartAccepted: () => void,
-  onSessionRestartDeclined: () => void,
+  onSessionRestartRequestClosed: () => void,
   requestSessionRestart: boolean,
   terminal : React$Element<*>,  // A ReactTerminal element.
 }) => React$Element<*>;
@@ -66,7 +66,7 @@ export default class TutorialContainer extends Component {
     this.setState({ requestSessionRestart: true });
   }
 
-  handleRestartSession = () => {
+  handleSessionRestartAccepted = () => {
     this.setState(state => ({
       ...state,
       sessionId: state.sessionId + 1,
@@ -74,7 +74,7 @@ export default class TutorialContainer extends Component {
     }));
   }
 
-  handleSessionRestartDeclined = () => {
+  handleSessionRestartRequestClosed = () => {
     this.setState({ requestSessionRestart: false });
   }
 
@@ -96,8 +96,8 @@ export default class TutorialContainer extends Component {
     return this.props.children({
       completedSteps: this.state.completedSteps,
       currentStep: this.state.currentStep,
-      onSessionRestartAccepted: this.handleRestartSession,
-      onSessionRestartDeclined: this.handleSessionRestartDeclined,
+      onSessionRestartAccepted: this.handleSessionRestartAccepted,
+      onSessionRestartRequestClosed: this.handleSessionRestartRequestClosed,
       requestSessionRestart: this.state.requestSessionRestart,
       terminal,
     });

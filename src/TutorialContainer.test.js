@@ -80,6 +80,7 @@ it('calls child function with expected arguments', () => {
     requestSessionRestart: false,
     terminal: <ReactTerminal
       key={sessionId}
+      ref={expect.any(Function)}
       onInputLine={onInputLine}
       onSessionEnd={onSessionEnd}
       socket={mockSocket}

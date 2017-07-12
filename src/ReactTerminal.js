@@ -160,6 +160,10 @@ export default class ReactTerminal extends Component {
     this.stream.end();
   }
 
+  focus() {
+    this.terminalEl.focus();
+  }
+
   render() {
     return (
       <div>

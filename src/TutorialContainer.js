@@ -49,6 +49,8 @@ export default class TutorialContainer extends Component {
     tutorial: TutorialType,
   };
 
+  terminal: ReactTerminal;
+
   handleInputLine = (line: string) => {
     const match = findMatch(this.currentStep().matches, line);
     if (match == null) { return; }
@@ -76,6 +78,7 @@ export default class TutorialContainer extends Component {
 
   handleSessionRestartRequestClosed = () => {
     this.setState({ requestSessionRestart: false });
+    this.terminal.focus();
   }
 
   currentStep() : StepType {
@@ -87,6 +90,7 @@ export default class TutorialContainer extends Component {
     const terminal = (
       <ReactTerminal
         key={this.state.sessionId}
+        ref={(term) => { this.terminal = term; }}
         onInputLine={this.handleInputLine}
         onSessionEnd={this.handleSessionEnd}
         socket={this.props.socket}

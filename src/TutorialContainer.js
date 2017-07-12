@@ -81,7 +81,6 @@ export default class TutorialContainer extends Component {
   handleSessionRestartRequestClosed = () => {
     debug('Closing session restart request.');
     this.setState({ requestSessionRestart: false });
-    this.terminal.focus();
   }
 
   currentStep() : StepType {

@@ -20,7 +20,7 @@ type ChildrenPropType = ({
   completedSteps : Array<string>,
   currentStep: string,
   onSessionRestartAccepted: () => void,
-  onSessionRestartDeclined: () => void,
+  onSessionRestartRequestClosed: () => void,
   requestSessionRestart: boolean,
   terminal : React$Element<*>,  // A ReactTerminal element.
 }) => React$Element<*>;
@@ -49,6 +49,8 @@ export default class TutorialContainer extends Component {
     tutorial: TutorialType,
   };
 
+  terminal: ReactTerminal;
+
   handleInputLine = (line: string) => {
     const match = findMatch(this.currentStep().matches, line);
     if (match == null) { return; }
@@ -63,10 +65,12 @@ export default class TutorialContainer extends Component {
   }
 
   handleSessionEnd = () => {
+    debug('Session eneded. Requesting restart');
     this.setState({ requestSessionRestart: true });
   }
 
-  handleRestartSession = () => {
+  handleSessionRestartAccepted = () => {
+    debug('Restarting session');
     this.setState(state => ({
       ...state,
       sessionId: state.sessionId + 1,
@@ -74,7 +78,8 @@ export default class TutorialContainer extends Component {
     }));
   }
 
-  handleSessionRestartDeclined = () => {
+  handleSessionRestartRequestClosed = () => {
+    debug('Closing session restart request.');
     this.setState({ requestSessionRestart: false });
   }
 
@@ -87,6 +92,7 @@ export default class TutorialContainer extends Component {
     const terminal = (
       <ReactTerminal
         key={this.state.sessionId}
+        ref={(term) => { this.terminal = term; }}
         onInputLine={this.handleInputLine}
         onSessionEnd={this.handleSessionEnd}
         socket={this.props.socket}
@@ -96,8 +102,8 @@ export default class TutorialContainer extends Component {
     return this.props.children({
       completedSteps: this.state.completedSteps,
       currentStep: this.state.currentStep,
-      onSessionRestartAccepted: this.handleRestartSession,
-      onSessionRestartDeclined: this.handleSessionRestartDeclined,
+      onSessionRestartAccepted: this.handleSessionRestartAccepted,
+      onSessionRestartRequestClosed: this.handleSessionRestartRequestClosed,
       requestSessionRestart: this.state.requestSessionRestart,
       terminal,
     });

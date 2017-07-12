@@ -22,7 +22,7 @@ type PropsType = {
   completedSteps : Array<string>,
   currentStep: string,
   onSessionRestartAccepted: () => void,
-  onSessionRestartDeclined: () => void,
+  onSessionRestartRequestClosed: () => void,
   onShowAllTutorials: () => void,
   terminal : React$Element<*>,  // A ReactTerminal element.
   tutorial: TutorialType,
@@ -33,7 +33,7 @@ const TutorialLayout = ({
   completedSteps,
   currentStep,
   onSessionRestartAccepted,
-  onSessionRestartDeclined,
+  onSessionRestartRequestClosed,
   onShowAllTutorials,
   requestSessionRestart,
   terminal,
@@ -66,7 +66,7 @@ const TutorialLayout = ({
               </Button>
             }
             show={requestSessionRestart}
-            onHide={onSessionRestartDeclined}
+            onHide={onSessionRestartRequestClosed}
             title="Your terminal session has been terminated"
           >
             Your terminal session has been terminated. Would you like to

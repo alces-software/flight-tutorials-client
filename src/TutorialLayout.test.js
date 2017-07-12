@@ -44,7 +44,7 @@ const renderTutorialLayout = () => (
     completedSteps={completedSteps}
     currentStep={currentStep}
     onSessionRestartAccepted={() => {}}
-    onSessionRestartDeclined={() => {}}
+    onSessionRestartRequestClosed={() => {}}
     onShowAllTutorials={() => {}}
     terminal={dummyTerminal}
     tutorial={tutorial}

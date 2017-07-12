@@ -23,13 +23,22 @@ export default class ReactTerminal extends Component {
   };
 
   componentDidMount() {
-    this.terminalEl.tabIndex = 0;
-    this.terminalEl.focus();
+    debug('Mounted');
     this.connectTerminal();
     this.createTerminalSession();
+    // FSR when restarting a terminal session, that is umounting one
+    // ReactTerminal instance and mouting a new ReactTerminal instance, we
+    // need a setTimeout of 150ms before we are able to focus the terminal.
+    //
+    // I have no idea why this would be the case.  But the worst that could
+    // happen here is that the user has to click on the terminal before it
+    // receives any input.
+    this.focus();
+    setTimeout(() => this.focus(), 150);
   }
 
   componentWillUnmount() {
+    debug('Unmounting');
     this.endTerminalSession();
   }
 
@@ -160,6 +169,11 @@ export default class ReactTerminal extends Component {
     this.stream.end();
   }
 
+  focus() {
+    debug('Focusing terminal, %o', this.terminalEl);
+    this.terminalEl.focus();
+  }
+
   render() {
     return (
       <div>
@@ -168,6 +182,7 @@ export default class ReactTerminal extends Component {
           className="flight-ReactTerminal"
           data-columns={this.props.columns}
           data-rows={this.props.rows}
+          tabIndex={0}  // eslint-disable-line jsx-a11y/no-noninteractive-tabindex
         />
       </div>
     );

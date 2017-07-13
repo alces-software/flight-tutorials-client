@@ -21,9 +21,12 @@ import type { TutorialType } from './types';
 type PropsType = {
   completedSteps : Array<string>,
   currentStep: string,
+  expandStep: (string) => void,
+  expandedStep: string,
   onSessionRestartAccepted: () => void,
   onSessionRestartRequestClosed: () => void,
   onShowAllTutorials: () => void,
+  onSkipCurrentStep: (Event) => void,
   terminal : React$Element<*>,  // A ReactTerminal element.
   tutorial: TutorialType,
   requestSessionRestart: boolean,
@@ -32,9 +35,12 @@ type PropsType = {
 const TutorialLayout = ({
   completedSteps,
   currentStep,
+  expandStep,
+  expandedStep,
   onSessionRestartAccepted,
   onSessionRestartRequestClosed,
   onShowAllTutorials,
+  onSkipCurrentStep,
   requestSessionRestart,
   terminal,
   tutorial,
@@ -52,6 +58,9 @@ const TutorialLayout = ({
           <TutorialSteps
             completedSteps={completedSteps}
             currentStep={currentStep}
+            expandStep={expandStep}
+            expandedStep={expandedStep}
+            onSkipCurrentStep={onSkipCurrentStep}
             steps={tutorial.steps}
           />
         </Col>

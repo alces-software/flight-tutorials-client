@@ -58,9 +58,8 @@ exports[`renders correctly 1`] = `
             <div
               className="panel-heading"
             >
-              <h4
-                className="panel-title"
-                role="presentation"
+              <div
+                className="TutorialStep-title panel-title"
               >
                 <a
                   aria-controls={undefined}
@@ -71,9 +70,14 @@ exports[`renders correctly 1`] = `
                   onClick={[Function]}
                   role="tab"
                 >
-                  Step 1 My step 1
+                  <span>
+                    Step 
+                    1
+                     
+                    My step 1
+                  </span>
                 </a>
-              </h4>
+              </div>
             </div>
             <div
               aria-expanded={null}
@@ -100,9 +104,8 @@ exports[`renders correctly 1`] = `
             <div
               className="panel-heading"
             >
-              <h4
-                className="panel-title"
-                role="presentation"
+              <div
+                className="TutorialStep-title panel-title"
               >
                 <a
                   aria-controls={undefined}
@@ -113,9 +116,14 @@ exports[`renders correctly 1`] = `
                   onClick={[Function]}
                   role="tab"
                 >
-                  Step 2 My step 2
+                  <span>
+                    Step 
+                    2
+                     
+                    My step 2
+                  </span>
                 </a>
-              </h4>
+              </div>
             </div>
             <div
               aria-expanded={null}

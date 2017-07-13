@@ -90,8 +90,11 @@ export default class extends Component {
         {({
           completedSteps,
           currentStep,
+          expandStep,
+          expandedStep,
           onSessionRestartAccepted,
           onSessionRestartRequestClosed,
+          onSkipCurrentStep,
           requestSessionRestart,
           terminal,
         }) => (
@@ -99,9 +102,12 @@ export default class extends Component {
             <TutorialLayout
               completedSteps={completedSteps}
               currentStep={currentStep}
+              expandStep={expandStep}
+              expandedStep={expandedStep}
               onSessionRestartAccepted={onSessionRestartAccepted}
               onSessionRestartRequestClosed={onSessionRestartRequestClosed}
               onShowAllTutorials={this.handleShowAllTutorials}
+              onSkipCurrentStep={onSkipCurrentStep}
               requestSessionRestart={requestSessionRestart}
               terminal={terminal}
               tutorial={tutorial}

@@ -19,7 +19,12 @@ const steps = {
   step1: {
     title: 'My step 1',
     description: 'My step 1 description',
-    matches: [],
+    matches: [{
+      inputLine: 'echo step2',
+      anchored: true,
+      regexp: false,
+      nextStep: 'step2',
+    }],
   },
   step2: {
     title: 'My step 2',
@@ -43,9 +48,12 @@ const renderTutorialLayout = () => (
   <TutorialLayout
     completedSteps={completedSteps}
     currentStep={currentStep}
+    expandStep={() => {}}
+    expandedStep={currentStep}
     onSessionRestartAccepted={() => {}}
     onSessionRestartRequestClosed={() => {}}
     onShowAllTutorials={() => {}}
+    onSkipCurrentStep={() => {}}
     terminal={dummyTerminal}
     tutorial={tutorial}
     requestSessionRestart={false}
@@ -73,11 +81,7 @@ it('includes an overview of the tutorial', () => {
 it('includes the tutorial steps', () => {
   const wrapper = shallow(renderTutorialLayout());
 
-  expect(wrapper).toContainReact(<TutorialSteps
-    completedSteps={completedSteps}
-    currentStep={currentStep}
-    steps={steps}
-  />);
+  expect(wrapper.find(TutorialSteps)).toBePresent();
 });
 
 it('includes the terminal', () => {

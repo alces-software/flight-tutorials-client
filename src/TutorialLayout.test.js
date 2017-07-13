@@ -48,6 +48,8 @@ const renderTutorialLayout = () => (
   <TutorialLayout
     completedSteps={completedSteps}
     currentStep={currentStep}
+    expandStep={() => {}}
+    expandedStep={currentStep}
     onSessionRestartAccepted={() => {}}
     onSessionRestartRequestClosed={() => {}}
     onShowAllTutorials={() => {}}

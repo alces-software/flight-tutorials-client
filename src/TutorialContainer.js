@@ -19,9 +19,11 @@ const debug = mkDebug('FlightTutorials:TutorialContainer');
 type ChildrenPropType = ({
   completedSteps : Array<string>,
   currentStep: string,
+  expandStep: (string) => void,
+  expandedStep: string,
   onSessionRestartAccepted: () => void,
   onSessionRestartRequestClosed: () => void,
-  onSkipCurrentStep: () => void,
+  onSkipCurrentStep: (Event) => void,
   requestSessionRestart: boolean,
   terminal : React$Element<*>,  // A ReactTerminal element.
 }) => React$Element<*>;
@@ -30,8 +32,9 @@ export default class TutorialContainer extends Component {
   constructor(...args: any) {
     super(...args);
     this.state = {
-      currentStep: this.props.tutorial.firstStep,
       completedSteps: [],
+      currentStep: this.props.tutorial.firstStep,
+      expandedStep: this.props.tutorial.firstStep,
       requestSessionRestart: false,
       sessionId: 0,
     };
@@ -40,6 +43,7 @@ export default class TutorialContainer extends Component {
   state: {
     currentStep: string,
     completedSteps: Array<string>,
+    expandedStep: string,
     requestSessionRestart: boolean,
     sessionId: number,
   };
@@ -61,7 +65,8 @@ export default class TutorialContainer extends Component {
     }
   }
 
-  handleSkipCurrentStep = () => {
+  handleSkipCurrentStep = (event: Event) => {
+    event.stopPropagation();
     // We're skipping the current step.  Let's go to the first match with a
     // `nextStep` property.
     const match = this.currentStep().matches.find(m => m.nextStep != null);
@@ -70,11 +75,20 @@ export default class TutorialContainer extends Component {
     }
   };
 
+  handleExpandStep = (stepName: string) => {
+    debug('Requested to expand step %s', stepName);
+    const { currentStep, completedSteps } = this.state;
+    if (currentStep === stepName || completedSteps.includes(stepName)) {
+      this.setState({ expandedStep: stepName });
+    }
+  }
+
   progressToStep(nextStep: string) : void {
     debug('Transitioning to step %s', nextStep);
     this.setState(prevState => ({
       completedSteps: [...prevState.completedSteps, prevState.currentStep],
       currentStep: nextStep,
+      expandedStep: nextStep,
     }));
   }
 
@@ -116,6 +130,8 @@ export default class TutorialContainer extends Component {
     return this.props.children({
       completedSteps: this.state.completedSteps,
       currentStep: this.state.currentStep,
+      expandStep: this.handleExpandStep,
+      expandedStep: this.state.expandedStep,
       onSessionRestartAccepted: this.handleSessionRestartAccepted,
       onSessionRestartRequestClosed: this.handleSessionRestartRequestClosed,
       onSkipCurrentStep: this.handleSkipCurrentStep,

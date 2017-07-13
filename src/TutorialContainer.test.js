@@ -62,6 +62,8 @@ it('calls child function with expected arguments', () => {
   // is fixed, we can remove these. See
   // https://github.com/flowtype/flow-typed/issues/925
   // $FlowFixMe
+  const expandStep = instance.handleExpandStep;
+  // $FlowFixMe
   const onSessionRestartAccepted = instance.handleSessionRestartAccepted;
   // $FlowFixMe
   const onSessionRestartRequestClosed = instance.handleSessionRestartRequestClosed;
@@ -77,6 +79,8 @@ it('calls child function with expected arguments', () => {
   expect(childFunctionSpy).toHaveBeenCalledWith({
     completedSteps: [],
     currentStep: tutorial.firstStep,
+    expandedStep: tutorial.firstStep,
+    expandStep,
     onSessionRestartAccepted,
     onSessionRestartRequestClosed,
     onSkipCurrentStep,

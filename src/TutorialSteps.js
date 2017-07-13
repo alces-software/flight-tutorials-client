@@ -33,12 +33,16 @@ function canSkip(step, stepName, currentStep) {
 const TutorialSteps = ({
   completedSteps,
   currentStep,
+  expandStep,
+  expandedStep,
   onSkipCurrentStep,
   steps,
 } : {
   completedSteps: Array<string>,
   currentStep: string,
-  onSkipCurrentStep: () => void,
+  expandStep: (string) => void,
+  expandedStep: string,
+  onSkipCurrentStep: (Event) => void,
   steps: StepMap,
 }) => {
   const panels = Object.keys(steps).map((stepName, idx) => {
@@ -69,7 +73,7 @@ const TutorialSteps = ({
   });
 
   return (
-    <PanelGroup activeKey={currentStep} accordion >
+    <PanelGroup activeKey={expandedStep} onSelect={expandStep} accordion >
       { panels }
     </PanelGroup>
   );

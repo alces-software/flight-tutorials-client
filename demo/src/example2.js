@@ -57,6 +57,8 @@ function renderTutorialContainer() {
       {({
         completedSteps,
         currentStep,
+        expandStep,
+        expandedStep,
         onSessionRestartAccepted,
         onSessionRestartRequestClosed,
         onSkipCurrentStep,
@@ -67,6 +69,8 @@ function renderTutorialContainer() {
           <TutorialLayout
             completedSteps={completedSteps}
             currentStep={currentStep}
+            expandStep={expandStep}
+            expandedStep={expandedStep}
             onSessionRestartAccepted={onSessionRestartAccepted}
             onSessionRestartRequestClosed={onSessionRestartRequestClosed}
             onShowAllTutorials={() => handleTutorialSelection(undefined)}

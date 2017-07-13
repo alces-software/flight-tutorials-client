@@ -8,10 +8,11 @@
  *===========================================================================*/
 
 import React from 'react';
-import { PanelGroup, Panel } from 'react-bootstrap';
+import { Button, PanelGroup, Panel } from 'react-bootstrap';
 import Markdown from 'react-markdown';
 
 import type { StepMap } from './types';
+import './styles/TutorialSteps.scss';
 
 function getStyle(stepName, currentStep, completedSteps) {
   if (stepName === currentStep) {
@@ -24,23 +25,43 @@ function getStyle(stepName, currentStep, completedSteps) {
   return 'default';
 }
 
+function canSkip(step, stepName, currentStep) {
+  if (stepName !== currentStep) { return false; }
+  return step.matches.some(m => m.nextStep != null);
+}
+
 const TutorialSteps = ({
   completedSteps,
   currentStep,
+  onSkipCurrentStep,
   steps,
 } : {
   completedSteps: Array<string>,
   currentStep: string,
+  onSkipCurrentStep: () => void,
   steps: StepMap,
 }) => {
   const panels = Object.keys(steps).map((stepName, idx) => {
     const step = steps[stepName];
+    const header = (
+      <div className="TutorialStep-title">
+        <span>Step {idx + 1} {step.title}</span>
+        {
+          canSkip(step, stepName, currentStep) ?
+            <span className="pull-right">
+              <Button onClick={onSkipCurrentStep}>Skip</Button>
+            </span> :
+            null
+        }
+      </div>
+    );
+
     return (
       <Panel
         key={stepName}
         bsStyle={getStyle(stepName, currentStep, completedSteps)}
         eventKey={stepName}
-        header={`Step ${idx + 1} ${step.title}`}
+        header={header}
       >
         <Markdown escapeHtml={false} source={step.description} />
       </Panel>

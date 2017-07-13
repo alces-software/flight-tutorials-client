@@ -66,6 +66,8 @@ it('calls child function with expected arguments', () => {
   // $FlowFixMe
   const onSessionRestartRequestClosed = instance.handleSessionRestartRequestClosed;
   // $FlowFixMe
+  const onSkipCurrentStep = instance.handleSkipCurrentStep;
+  // $FlowFixMe
   const sessionId = instance.state.sessionId;
   // $FlowFixMe
   const onInputLine = instance.handleInputLine;
@@ -77,6 +79,7 @@ it('calls child function with expected arguments', () => {
     currentStep: tutorial.firstStep,
     onSessionRestartAccepted,
     onSessionRestartRequestClosed,
+    onSkipCurrentStep,
     requestSessionRestart: false,
     terminal: <ReactTerminal
       key={sessionId}

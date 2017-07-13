@@ -24,6 +24,7 @@ type PropsType = {
   onSessionRestartAccepted: () => void,
   onSessionRestartRequestClosed: () => void,
   onShowAllTutorials: () => void,
+  onSkipCurrentStep: () => void,
   terminal : React$Element<*>,  // A ReactTerminal element.
   tutorial: TutorialType,
   requestSessionRestart: boolean,
@@ -35,6 +36,7 @@ const TutorialLayout = ({
   onSessionRestartAccepted,
   onSessionRestartRequestClosed,
   onShowAllTutorials,
+  onSkipCurrentStep,
   requestSessionRestart,
   terminal,
   tutorial,
@@ -52,6 +54,7 @@ const TutorialLayout = ({
           <TutorialSteps
             completedSteps={completedSteps}
             currentStep={currentStep}
+            onSkipCurrentStep={onSkipCurrentStep}
             steps={tutorial.steps}
           />
         </Col>

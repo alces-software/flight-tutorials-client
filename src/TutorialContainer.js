@@ -21,6 +21,7 @@ type ChildrenPropType = ({
   currentStep: string,
   onSessionRestartAccepted: () => void,
   onSessionRestartRequestClosed: () => void,
+  onSkipCurrentStep: () => void,
   requestSessionRestart: boolean,
   terminal : React$Element<*>,  // A ReactTerminal element.
 }) => React$Element<*>;
@@ -56,12 +57,25 @@ export default class TutorialContainer extends Component {
     if (match == null) { return; }
 
     if (match.nextStep != null) {
-      debug('Transitioning to step %s', match.nextStep);
-      this.setState(prevState => ({
-        completedSteps: [...prevState.completedSteps, prevState.currentStep],
-        currentStep: match.nextStep,
-      }));
+      this.progressToStep(match.nextStep);
     }
+  }
+
+  handleSkipCurrentStep = () => {
+    // We're skipping the current step.  Let's go to the first match with a
+    // `nextStep` property.
+    const match = this.currentStep().matches.find(m => m.nextStep != null);
+    if (match != null && match.nextStep != null) {
+      this.progressToStep(match.nextStep);
+    }
+  };
+
+  progressToStep(nextStep: string) : void {
+    debug('Transitioning to step %s', nextStep);
+    this.setState(prevState => ({
+      completedSteps: [...prevState.completedSteps, prevState.currentStep],
+      currentStep: nextStep,
+    }));
   }
 
   handleSessionEnd = () => {
@@ -104,6 +118,7 @@ export default class TutorialContainer extends Component {
       currentStep: this.state.currentStep,
       onSessionRestartAccepted: this.handleSessionRestartAccepted,
       onSessionRestartRequestClosed: this.handleSessionRestartRequestClosed,
+      onSkipCurrentStep: this.handleSkipCurrentStep,
       requestSessionRestart: this.state.requestSessionRestart,
       terminal,
     });

@@ -17,12 +17,22 @@ const steps = {
   step1: {
     title: 'My step 1',
     description: 'My step 1 description',
-    matches: [],
+    matches: [{
+      inputLine: 'echo step2',
+      anchored: true,
+      regexp: false,
+      nextStep: 'step2',
+    }],
   },
   step2: {
     title: 'My step 2',
     description: 'My step 2 description',
-    matches: [],
+    matches: [{
+      inputLine: 'echo step3',
+      anchored: true,
+      regexp: false,
+      nextStep: 'step3',
+    }],
   },
   step3: {
     title: 'My step 3',
@@ -34,7 +44,7 @@ const steps = {
 it('renders without crashing', () => {
   const node = document.createElement('div');
   render(
-    <TutorialSteps completedSteps={[]} currentStep="step1" steps={steps} />,
+    <TutorialSteps completedSteps={[]} currentStep="step1" onSkipCurrentStep={() => {}} steps={steps} />,
     node,
   );
 });
@@ -46,7 +56,7 @@ it('renders without crashing', () => {
 ].forEach((props) => {
   it(`renders correctly when currentStep === ${props.currentStep}`, () => {
     const tree = renderer.create(
-      <TutorialSteps {...props} steps={steps} />,
+      <TutorialSteps {...props} onSkipCurrentStep={() => {}} steps={steps} />,
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -54,7 +64,7 @@ it('renders without crashing', () => {
 
 describe('Panel headers', () => {
   const wrapper = shallow(
-    <TutorialSteps completedSteps={['step1']} currentStep={'step2'} steps={steps} />,
+    <TutorialSteps completedSteps={['step1']} currentStep={'step2'} onSkipCurrentStep={() => {}} steps={steps} />,
   );
 
   const panels = wrapper.find('Panel');
@@ -74,7 +84,7 @@ describe('Panel headers', () => {
 
 it('renders the steps in order', () => {
   const wrapper = shallow(
-    <TutorialSteps completedSteps={[]} currentStep="step1" steps={steps} />,
+    <TutorialSteps completedSteps={[]} currentStep="step1" onSkipCurrentStep={() => {}} steps={steps} />,
   );
 
   const renderedSteps = wrapper.find('Panel');

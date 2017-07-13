@@ -59,6 +59,7 @@ function renderTutorialContainer() {
         currentStep,
         onSessionRestartAccepted,
         onSessionRestartRequestClosed,
+        onSkipCurrentStep,
         requestSessionRestart,
         terminal,
       }) => (
@@ -69,6 +70,7 @@ function renderTutorialContainer() {
             onSessionRestartAccepted={onSessionRestartAccepted}
             onSessionRestartRequestClosed={onSessionRestartRequestClosed}
             onShowAllTutorials={() => handleTutorialSelection(undefined)}
+            onSkipCurrentStep={onSkipCurrentStep}
             requestSessionRestart={requestSessionRestart}
             terminal={terminal}
             tutorial={tutorial}

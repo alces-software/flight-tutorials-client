@@ -12,9 +12,8 @@ exports[`renders correctly when currentStep === step1 1`] = `
     <div
       className="panel-heading"
     >
-      <h4
-        className="panel-title"
-        role="presentation"
+      <div
+        className="TutorialStep-title panel-title"
       >
         <a
           aria-controls={undefined}
@@ -25,9 +24,26 @@ exports[`renders correctly when currentStep === step1 1`] = `
           onClick={[Function]}
           role="tab"
         >
-          Step 1 My step 1
+          <span>
+            Step 
+            1
+             
+            My step 1
+          </span>
+          <span
+            className="pull-right"
+          >
+            <button
+              className="btn btn-default"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Skip
+            </button>
+          </span>
         </a>
-      </h4>
+      </div>
     </div>
     <div
       aria-expanded={null}
@@ -54,9 +70,8 @@ exports[`renders correctly when currentStep === step1 1`] = `
     <div
       className="panel-heading"
     >
-      <h4
-        className="panel-title"
-        role="presentation"
+      <div
+        className="TutorialStep-title panel-title"
       >
         <a
           aria-controls={undefined}
@@ -67,9 +82,14 @@ exports[`renders correctly when currentStep === step1 1`] = `
           onClick={[Function]}
           role="tab"
         >
-          Step 2 My step 2
+          <span>
+            Step 
+            2
+             
+            My step 2
+          </span>
         </a>
-      </h4>
+      </div>
     </div>
     <div
       aria-expanded={null}
@@ -96,9 +116,8 @@ exports[`renders correctly when currentStep === step1 1`] = `
     <div
       className="panel-heading"
     >
-      <h4
-        className="panel-title"
-        role="presentation"
+      <div
+        className="TutorialStep-title panel-title"
       >
         <a
           aria-controls={undefined}
@@ -109,9 +128,14 @@ exports[`renders correctly when currentStep === step1 1`] = `
           onClick={[Function]}
           role="tab"
         >
-          Step 3 My step 3
+          <span>
+            Step 
+            3
+             
+            My step 3
+          </span>
         </a>
-      </h4>
+      </div>
     </div>
     <div
       aria-expanded={null}
@@ -146,9 +170,8 @@ exports[`renders correctly when currentStep === step2 1`] = `
     <div
       className="panel-heading"
     >
-      <h4
-        className="panel-title"
-        role="presentation"
+      <div
+        className="TutorialStep-title panel-title"
       >
         <a
           aria-controls={undefined}
@@ -159,9 +182,14 @@ exports[`renders correctly when currentStep === step2 1`] = `
           onClick={[Function]}
           role="tab"
         >
-          Step 1 My step 1
+          <span>
+            Step 
+            1
+             
+            My step 1
+          </span>
         </a>
-      </h4>
+      </div>
     </div>
     <div
       aria-expanded={null}
@@ -188,9 +216,8 @@ exports[`renders correctly when currentStep === step2 1`] = `
     <div
       className="panel-heading"
     >
-      <h4
-        className="panel-title"
-        role="presentation"
+      <div
+        className="TutorialStep-title panel-title"
       >
         <a
           aria-controls={undefined}
@@ -201,9 +228,26 @@ exports[`renders correctly when currentStep === step2 1`] = `
           onClick={[Function]}
           role="tab"
         >
-          Step 2 My step 2
+          <span>
+            Step 
+            2
+             
+            My step 2
+          </span>
+          <span
+            className="pull-right"
+          >
+            <button
+              className="btn btn-default"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              Skip
+            </button>
+          </span>
         </a>
-      </h4>
+      </div>
     </div>
     <div
       aria-expanded={null}
@@ -230,9 +274,8 @@ exports[`renders correctly when currentStep === step2 1`] = `
     <div
       className="panel-heading"
     >
-      <h4
-        className="panel-title"
-        role="presentation"
+      <div
+        className="TutorialStep-title panel-title"
       >
         <a
           aria-controls={undefined}
@@ -243,9 +286,14 @@ exports[`renders correctly when currentStep === step2 1`] = `
           onClick={[Function]}
           role="tab"
         >
-          Step 3 My step 3
+          <span>
+            Step 
+            3
+             
+            My step 3
+          </span>
         </a>
-      </h4>
+      </div>
     </div>
     <div
       aria-expanded={null}
@@ -280,9 +328,8 @@ exports[`renders correctly when currentStep === step3 1`] = `
     <div
       className="panel-heading"
     >
-      <h4
-        className="panel-title"
-        role="presentation"
+      <div
+        className="TutorialStep-title panel-title"
       >
         <a
           aria-controls={undefined}
@@ -293,9 +340,14 @@ exports[`renders correctly when currentStep === step3 1`] = `
           onClick={[Function]}
           role="tab"
         >
-          Step 1 My step 1
+          <span>
+            Step 
+            1
+             
+            My step 1
+          </span>
         </a>
-      </h4>
+      </div>
     </div>
     <div
       aria-expanded={null}
@@ -322,9 +374,8 @@ exports[`renders correctly when currentStep === step3 1`] = `
     <div
       className="panel-heading"
     >
-      <h4
-        className="panel-title"
-        role="presentation"
+      <div
+        className="TutorialStep-title panel-title"
       >
         <a
           aria-controls={undefined}
@@ -335,9 +386,14 @@ exports[`renders correctly when currentStep === step3 1`] = `
           onClick={[Function]}
           role="tab"
         >
-          Step 2 My step 2
+          <span>
+            Step 
+            2
+             
+            My step 2
+          </span>
         </a>
-      </h4>
+      </div>
     </div>
     <div
       aria-expanded={null}
@@ -364,9 +420,8 @@ exports[`renders correctly when currentStep === step3 1`] = `
     <div
       className="panel-heading"
     >
-      <h4
-        className="panel-title"
-        role="presentation"
+      <div
+        className="TutorialStep-title panel-title"
       >
         <a
           aria-controls={undefined}
@@ -377,9 +432,14 @@ exports[`renders correctly when currentStep === step3 1`] = `
           onClick={[Function]}
           role="tab"
         >
-          Step 3 My step 3
+          <span>
+            Step 
+            3
+             
+            My step 3
+          </span>
         </a>
-      </h4>
+      </div>
     </div>
     <div
       aria-expanded={null}

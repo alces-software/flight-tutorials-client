@@ -52,7 +52,7 @@ exports[`renders correctly 1`] = `
           role="tablist"
         >
           <div
-            className="panel panel-success"
+            className="TutorialStep TutorialStep--completed panel panel-success"
             id={null}
           >
             <div
@@ -98,7 +98,7 @@ exports[`renders correctly 1`] = `
             </div>
           </div>
           <div
-            className="panel panel-primary"
+            className="TutorialStep TutorialStep--current panel panel-primary"
             id={null}
           >
             <div

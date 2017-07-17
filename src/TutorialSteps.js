@@ -10,9 +10,17 @@
 import React from 'react';
 import { Button, PanelGroup, Panel } from 'react-bootstrap';
 import Markdown from 'react-markdown';
+import cx from 'classnames';
 
 import type { StepMap } from './types';
 import './styles/TutorialSteps.scss';
+
+function getClassName(stepName, currentStep, completedSteps) {
+  return cx('TutorialStep', {
+    'TutorialStep--current': currentStep === stepName,
+    'TutorialStep--completed': completedSteps.includes(stepName),
+  });
+}
 
 function getStyle(stepName, currentStep, completedSteps) {
   if (stepName === currentStep) {
@@ -64,6 +72,7 @@ const TutorialSteps = ({
       <Panel
         key={stepName}
         bsStyle={getStyle(stepName, currentStep, completedSteps)}
+        className={getClassName(stepName, currentStep, completedSteps)}
         eventKey={stepName}
         header={header}
       >

@@ -6,7 +6,7 @@ exports[`renders correctly when currentStep === step1 1`] = `
   role="tablist"
 >
   <div
-    className="panel panel-primary"
+    className="TutorialStep TutorialStep--current panel panel-primary"
     id={null}
   >
     <div
@@ -64,7 +64,7 @@ exports[`renders correctly when currentStep === step1 1`] = `
     </div>
   </div>
   <div
-    className="panel panel-default"
+    className="TutorialStep panel panel-default"
     id={null}
   >
     <div
@@ -110,7 +110,7 @@ exports[`renders correctly when currentStep === step1 1`] = `
     </div>
   </div>
   <div
-    className="panel panel-default"
+    className="TutorialStep panel panel-default"
     id={null}
   >
     <div
@@ -164,7 +164,7 @@ exports[`renders correctly when currentStep === step2 1`] = `
   role="tablist"
 >
   <div
-    className="panel panel-success"
+    className="TutorialStep TutorialStep--completed panel panel-success"
     id={null}
   >
     <div
@@ -210,7 +210,7 @@ exports[`renders correctly when currentStep === step2 1`] = `
     </div>
   </div>
   <div
-    className="panel panel-primary"
+    className="TutorialStep TutorialStep--current panel panel-primary"
     id={null}
   >
     <div
@@ -268,7 +268,7 @@ exports[`renders correctly when currentStep === step2 1`] = `
     </div>
   </div>
   <div
-    className="panel panel-default"
+    className="TutorialStep panel panel-default"
     id={null}
   >
     <div
@@ -322,7 +322,7 @@ exports[`renders correctly when currentStep === step3 1`] = `
   role="tablist"
 >
   <div
-    className="panel panel-success"
+    className="TutorialStep TutorialStep--completed panel panel-success"
     id={null}
   >
     <div
@@ -368,7 +368,7 @@ exports[`renders correctly when currentStep === step3 1`] = `
     </div>
   </div>
   <div
-    className="panel panel-success"
+    className="TutorialStep TutorialStep--completed panel panel-success"
     id={null}
   >
     <div
@@ -414,7 +414,7 @@ exports[`renders correctly when currentStep === step3 1`] = `
     </div>
   </div>
   <div
-    className="panel panel-primary"
+    className="TutorialStep TutorialStep--current panel panel-primary"
     id={null}
   >
     <div

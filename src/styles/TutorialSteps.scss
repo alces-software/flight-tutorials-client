@@ -11,6 +11,11 @@
         text-decoration: none;
         color: inherit;
         cursor: inherit;
+
+        .TutorialStep--completed & , .TutorialStep--current & {
+            cursor: pointer;
+            text-decoration: underline;
+        }
     }
     .btn {
         margin-top: -4px;

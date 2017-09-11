@@ -11,9 +11,27 @@ import React from 'react';
 import { Button, PanelGroup, Panel } from 'react-bootstrap';
 import Markdown from 'react-markdown';
 import cx from 'classnames';
+import styled from 'styled-components';
 
 import type { StepMap } from './types';
-import './styles/TutorialSteps.scss';
+
+// XXX Remove mix of classnames and styled-components.
+const Title = styled.div`
+  a:hover {
+      text-decoration: none;
+      color: inherit;
+      cursor: inherit;
+
+      .TutorialStep--completed & , .TutorialStep--current & {
+          cursor: pointer;
+          text-decoration: underline;
+      }
+  }
+`;
+
+const SkipButton = styled(Button)`
+  margin-top: -4px;
+`;
 
 function getClassName(stepName, currentStep, completedSteps) {
   return cx('TutorialStep', {
@@ -56,16 +74,16 @@ const TutorialSteps = ({
   const panels = Object.keys(steps).map((stepName, idx) => {
     const step = steps[stepName];
     const header = (
-      <div className="TutorialStep-title">
+      <Title>
         <span>Step {idx + 1} {step.title}</span>
         {
           canSkip(step, stepName, currentStep) ?
             <span className="pull-right">
-              <Button onClick={onSkipCurrentStep}>Skip</Button>
+              <SkipButton onClick={onSkipCurrentStep}>Skip</SkipButton>
             </span> :
             null
         }
-      </div>
+      </Title>
     );
 
     return (

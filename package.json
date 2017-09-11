@@ -11,7 +11,7 @@
     "umd"
   ],
   "scripts": {
-    "build": "nwb build-react-component",
+    "build": "nwb build-react-component --copy-files",
     "clean": "nwb clean-module && nwb clean-demo",
     "flow": "flow",
     "start": "nwb serve-react-demo",
@@ -31,8 +31,10 @@
     "react-bootstrap": "^0.31.0",
     "react-fontawesome": "^1.6.1",
     "react-markdown": "^2.5.0",
+    "reactstrap": "^4.8.0",
     "socket.io-client": "^2.0.3",
     "socket.io-stream": "^0.9.1",
+    "styled-components": "^2.1.2",
     "terminal.js": "^1.0.9",
     "url-search-params-polyfill": "^2.0.0"
   },

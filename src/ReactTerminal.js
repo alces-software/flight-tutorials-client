@@ -10,9 +10,18 @@ import React, { Component } from 'react';
 import Terminal from 'terminal.js';
 import ss from 'socket.io-stream';
 import mkDebug from 'debug';
+import styled from 'styled-components';
 
 import InputProcessor from './utils/InputProcessor';
-import './styles/ReactTerminal.scss';
+
+const Wrapper = styled.div`
+  PRE {
+    background: black;
+    color: white;
+    font-family: Courier, monospace;
+    display: inline-block;
+  }
+`;
 
 const debug = mkDebug('FlightTutorials:ReactTerminal');
 
@@ -131,6 +140,7 @@ export default class ReactTerminal extends Component {
     //     the some output provided by the shell.
     //
     debug('Connecting terminal');
+    console.log('this.terminalEl:', this.terminalEl);  // eslint-disable-line no-console
 
     this.stream = ss.createStream({ decodeStrings: false, encoding: 'utf-8' });
     const term = new Terminal(this.terminalEl.dataset);
@@ -176,15 +186,14 @@ export default class ReactTerminal extends Component {
 
   render() {
     return (
-      <div>
+      <Wrapper>
         <pre
           ref={(el) => { this.terminalEl = el; }}
-          className="flight-ReactTerminal"
           data-columns={this.props.columns}
           data-rows={this.props.rows}
           tabIndex={0}  // eslint-disable-line jsx-a11y/no-noninteractive-tabindex
         />
-      </div>
+      </Wrapper>
     );
   }
 }

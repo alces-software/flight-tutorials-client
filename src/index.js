@@ -11,7 +11,7 @@ import mkDebug from 'debug';
 import io from 'socket.io-client';
 import 'url-search-params-polyfill';
 
-import './styles/main.scss';
+// import './styles/main.scss';
 import TutorialContainer from './TutorialContainer';
 import TutorialLayout from './TutorialLayout';
 import TutorialLoadErrorMessage from './TutorialLoadErrorMessage';

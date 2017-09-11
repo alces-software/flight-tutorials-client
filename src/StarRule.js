@@ -8,7 +8,7 @@
  *===========================================================================*/
 import React from 'react';
 
-import './styles/StarPrimary.scss';
+// import './styles/StarPrimary.scss';
 
 type PropTypes = {
   variant: 'primary' | 'light',

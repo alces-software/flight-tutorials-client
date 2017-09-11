@@ -8,9 +8,16 @@
  *===========================================================================*/
 import React from 'react';
 import cx from 'classnames';
+import styled from 'styled-components';
 
 import StarRule from './StarRule';
-import './styles/TutorialSelectionLayout.scss';
+
+// XXX Remove mixed use of classnames and styled-components.
+const Wrapper = styled.div`
+  .single-tutorial {
+    width: 592px;
+  }
+`;
 
 type PropTypes = {
   children : React$Element<*>,  // A TutorialSelection element.
@@ -26,13 +33,13 @@ const TutorialSelectionLayout = ({
   });
 
   return (
-    <div className="TutorialSelectionLayout">
+    <Wrapper>
       <h2 className="flight-tutorials-header">Flight Compute Tutorial</h2>
       <StarRule variant="primary" />
       <div className={className}>
         {children}
       </div>
-    </div>
+    </Wrapper>
   );
 };
 

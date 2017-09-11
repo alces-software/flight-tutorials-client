@@ -9,6 +9,11 @@
 
 import * as example1 from './example1';
 
+// XXX Clients need to include these styles or equivalents.
+import '../../../flight-reactware/styles/bootstrap-theme.css';
+import '../../../flight-reactware/styles/fonts.css';
+import '../../../flight-reactware/styles/flight.css';
+
 function getSocketIOUrl() {
   const params = new URLSearchParams(window.location.search);
   const socketIOUrl = params.get('socketIOUrl');

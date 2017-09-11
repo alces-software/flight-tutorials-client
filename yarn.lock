@@ -6201,21 +6201,6 @@ react-bootstrap@^0.30.6:
     uncontrollable "^4.0.1"
     warning "^3.0.0"
 
-react-bootstrap@^0.31.0:
-  version "0.31.0"
-  resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-0.31.0.tgz#bbca804c0404d9c640102b2b656ae4cd5bea35c8"
-  dependencies:
-    babel-runtime "^6.11.6"
-    classnames "^2.2.5"
-    dom-helpers "^3.2.0"
-    invariant "^2.2.1"
-    keycode "^2.1.2"
-    prop-types "^15.5.6"
-    react-overlays "^0.7.0"
-    react-prop-types "^0.4.0"
-    uncontrollable "^4.1.0"
-    warning "^3.0.0"
-
 react-cookie-banner@0.0.17:
   version "0.0.17"
   resolved "https://registry.yarnpkg.com/react-cookie-banner/-/react-cookie-banner-0.0.17.tgz#f482f944621702977275f72ac430bc45ff5c732b"
@@ -6259,16 +6244,6 @@ react-overlays@^0.6.12:
   dependencies:
     classnames "^2.2.5"
     dom-helpers "^3.2.0"
-    react-prop-types "^0.4.0"
-    warning "^3.0.0"
-
-react-overlays@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/react-overlays/-/react-overlays-0.7.0.tgz#531898ff566c7e5c7226ead2863b8cf9fbb5a981"
-  dependencies:
-    classnames "^2.2.5"
-    dom-helpers "^3.2.0"
-    prop-types "^15.5.8"
     react-prop-types "^0.4.0"
     warning "^3.0.0"
 
@@ -7465,7 +7440,7 @@ ultron@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/ultron/-/ultron-1.1.0.tgz#b07a2e6a541a815fc6a34ccd4533baec307ca864"
 
-uncontrollable@^4.0.1, uncontrollable@^4.1.0:
+uncontrollable@^4.0.1:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/uncontrollable/-/uncontrollable-4.1.0.tgz#e0358291252e1865222d90939b19f2f49f81c1a9"
   dependencies:

@@ -8,7 +8,7 @@
  *===========================================================================*/
 
 import React from 'react';
-import { Button, PanelGroup, Panel } from 'react-bootstrap';
+import { Button, Card, CardBlock, CardHeader, Collapse } from 'reactstrap';
 import Markdown from 'react-markdown';
 import cx from 'classnames';
 import styled from 'styled-components';
@@ -40,20 +40,24 @@ function getClassName(stepName, currentStep, completedSteps) {
   });
 }
 
-function getStyle(stepName, currentStep, completedSteps) {
+function getColour(stepName, currentStep, completedSteps) {
   if (stepName === currentStep) {
-    return 'primary';
+    return 'card-info';
   }
   if (completedSteps.includes(stepName)) {
-    return 'success';
+    return 'card-success';
   }
 
-  return 'default';
+  return 'card-default';
 }
 
 function canSkip(step, stepName, currentStep) {
   if (stepName !== currentStep) { return false; }
   return step.matches.some(m => m.nextStep != null);
+}
+
+function isOpen(stepName, expandStep) {
+  return stepName === expandStep;
 }
 
 const TutorialSteps = ({
@@ -87,22 +91,28 @@ const TutorialSteps = ({
     );
 
     return (
-      <Panel
+      <Card
         key={stepName}
-        bsStyle={getStyle(stepName, currentStep, completedSteps)}
         className={getClassName(stepName, currentStep, completedSteps)}
-        eventKey={stepName}
-        header={header}
       >
-        <Markdown escapeHtml={false} source={step.description} />
-      </Panel>
+        <CardHeader
+          className={getColour(stepName, currentStep, completedSteps)}
+        >
+          {header}
+        </CardHeader>
+        <Collapse isOpen={isOpen(stepName, expandedStep)}>
+          <CardBlock>
+            <Markdown escapeHtml={false} source={step.description} />
+          </CardBlock>
+        </Collapse>
+      </Card>
     );
   });
 
   return (
-    <PanelGroup activeKey={expandedStep} onSelect={expandStep} accordion >
-      { panels }
-    </PanelGroup>
+    <div>
+      {panels}
+    </div>
   );
 };
 

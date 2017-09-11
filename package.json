@@ -28,7 +28,6 @@
     "classnames": "^2.2.5",
     "debug": "^2.6.8",
     "flight-common": "git+https://github.com/alces-software/flight-common.git#react-15-react-router-4",
-    "react-bootstrap": "^0.31.0",
     "react-fontawesome": "^1.6.1",
     "react-markdown": "^2.5.0",
     "reactstrap": "^4.8.0",

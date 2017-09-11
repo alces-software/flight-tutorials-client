@@ -7,7 +7,7 @@
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button } from 'reactstrap';
 
 import TooltipTrigger from './TooltipTrigger';
 import Icon from './Icon';
@@ -19,7 +19,7 @@ type PropTypes = {
 const TutorialCardOverlay = ({ onSelectTutorial }: PropTypes) => (
   <div className="flight-cardOverlay">
     <Button
-      bsStyle="link"
+      color="link"
       onClick={onSelectTutorial}
     >
       <TooltipTrigger tooltip="Start tutorial" >

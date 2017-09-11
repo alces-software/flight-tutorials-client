@@ -8,7 +8,7 @@
  *===========================================================================*/
 
 import React from 'react';
-import { Grid, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'reactstrap';
 
 import StandardModal from 'flight-common/lib/components/StandardModal';
 
@@ -51,9 +51,9 @@ const TutorialLayout = ({
       <h2 className="flight-tutorials-header">Flight Compute Tutorial</h2>
       <StarRule variant="primary" />
     </div>
-    <Grid fluid >
+    <Container fluid >
       <Row>
-        <Col xs={12} sm={12} md={4} lg={4} lgOffset={1} >
+        <Col xs={12} sm={12} md={4} lg={{ size: 4, offset: 1 }} >
           <TutorialInfo tutorial={tutorial} />
           <TutorialSteps
             completedSteps={completedSteps}
@@ -68,7 +68,7 @@ const TutorialLayout = ({
           <StandardModal
             buttons={
               <Button
-                bsStyle="success"
+                color="success"
                 onClick={onSessionRestartAccepted}
               >
                 Restart
@@ -84,7 +84,7 @@ const TutorialLayout = ({
           {terminal}
         </Col>
       </Row>
-    </Grid>
+    </Container>
   </div>
 );
 

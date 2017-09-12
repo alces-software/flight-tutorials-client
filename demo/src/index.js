@@ -10,8 +10,11 @@
 import * as example1 from './example1';
 
 // XXX Clients need to include these styles or equivalents.
+// $FlowFixMe
 import '../../../flight-reactware/styles/bootstrap-theme.css';
+// $FlowFixMe
 import '../../../flight-reactware/styles/fonts.css';
+// $FlowFixMe
 import '../../../flight-reactware/styles/flight.css';
 
 function getSocketIOUrl() {

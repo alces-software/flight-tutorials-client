@@ -56,8 +56,8 @@ function canSkip(step, stepName, currentStep) {
   return step.matches.some(m => m.nextStep != null);
 }
 
-function isOpen(stepName, expandStep) {
-  return stepName === expandStep;
+function isOpen(stepName, expandedStep) {
+  return stepName === expandedStep;
 }
 
 const TutorialSteps = ({
@@ -79,7 +79,7 @@ const TutorialSteps = ({
     const step = steps[stepName];
     const header = (
       <Title>
-        <span>Step {idx + 1} {step.title}</span>
+        <a onClick={() => expandStep(stepName)}>Step {idx + 1} {step.title}</a>
         {
           canSkip(step, stepName, currentStep) ?
             <span className="pull-right">

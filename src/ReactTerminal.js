@@ -140,7 +140,6 @@ export default class ReactTerminal extends Component {
     //     the some output provided by the shell.
     //
     debug('Connecting terminal');
-    console.log('this.terminalEl:', this.terminalEl);  // eslint-disable-line no-console
 
     this.stream = ss.createStream({ decodeStrings: false, encoding: 'utf-8' });
     const term = new Terminal(this.terminalEl.dataset);

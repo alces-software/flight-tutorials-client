@@ -79,7 +79,13 @@ const TutorialSteps = ({
     const step = steps[stepName];
     const header = (
       <Title>
-        <a onClick={() => expandStep(stepName)}>Step {idx + 1} {step.title}</a>
+        <a
+          onClick={() => expandStep(stepName)}
+          role="menuitem"
+          tabIndex={0}
+        >
+          Step {idx + 1} {step.title}
+        </a>
         {
           canSkip(step, stepName, currentStep) ?
             <span className="pull-right">

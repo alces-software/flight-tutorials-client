@@ -9,6 +9,7 @@
 import React from 'react';
 import { Tooltip } from 'reactstrap';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { OverlayTrigger } from 'flight-reactware';
 
 type PropTypes = {

@@ -40,4 +40,4 @@ const StarRule = styled.hr`
   }
 `;
 
-export default StarRule;
+export default (props: PropTypes) => <StarRule {...props} />;

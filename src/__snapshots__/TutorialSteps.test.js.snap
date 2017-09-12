@@ -13,6 +13,8 @@ exports[`renders correctly when currentStep === step1 1`] = `
       >
         <a
           onClick={[Function]}
+          role="menuitem"
+          tabIndex={0}
         >
           Step 
           1
@@ -58,6 +60,8 @@ exports[`renders correctly when currentStep === step1 1`] = `
       >
         <a
           onClick={[Function]}
+          role="menuitem"
+          tabIndex={0}
         >
           Step 
           2
@@ -92,6 +96,8 @@ exports[`renders correctly when currentStep === step1 1`] = `
       >
         <a
           onClick={[Function]}
+          role="menuitem"
+          tabIndex={0}
         >
           Step 
           3
@@ -131,6 +137,8 @@ exports[`renders correctly when currentStep === step2 1`] = `
       >
         <a
           onClick={[Function]}
+          role="menuitem"
+          tabIndex={0}
         >
           Step 
           1
@@ -165,6 +173,8 @@ exports[`renders correctly when currentStep === step2 1`] = `
       >
         <a
           onClick={[Function]}
+          role="menuitem"
+          tabIndex={0}
         >
           Step 
           2
@@ -210,6 +220,8 @@ exports[`renders correctly when currentStep === step2 1`] = `
       >
         <a
           onClick={[Function]}
+          role="menuitem"
+          tabIndex={0}
         >
           Step 
           3
@@ -249,6 +261,8 @@ exports[`renders correctly when currentStep === step3 1`] = `
       >
         <a
           onClick={[Function]}
+          role="menuitem"
+          tabIndex={0}
         >
           Step 
           1
@@ -283,6 +297,8 @@ exports[`renders correctly when currentStep === step3 1`] = `
       >
         <a
           onClick={[Function]}
+          role="menuitem"
+          tabIndex={0}
         >
           Step 
           2
@@ -317,6 +333,8 @@ exports[`renders correctly when currentStep === step3 1`] = `
       >
         <a
           onClick={[Function]}
+          role="menuitem"
+          tabIndex={0}
         >
           Step 
           3

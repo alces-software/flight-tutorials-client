@@ -58,6 +58,8 @@ exports[`renders correctly 1`] = `
               >
                 <a
                   onClick={[Function]}
+                  role="menuitem"
+                  tabIndex={0}
                 >
                   Step 
                   1
@@ -92,6 +94,8 @@ exports[`renders correctly 1`] = `
               >
                 <a
                   onClick={[Function]}
+                  role="menuitem"
+                  tabIndex={0}
                 >
                   Step 
                   2

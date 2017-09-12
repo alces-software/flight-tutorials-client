@@ -8,7 +8,7 @@ exports[`renders correctly 1`] = `
     className="card-wrapper"
   >
     <div
-      className="card TutorialCard card--logo-right"
+      className="card sc-bdVaJa jxfMsb card--logo-right"
       onClick={[Function]}
     >
       <div
@@ -48,19 +48,20 @@ exports[`renders correctly 1`] = `
         >
           <button
             className="btn btn-link"
-            disabled={false}
             onClick={[Function]}
             type="button"
           >
-            <span
-              aria-hidden={true}
-              className="fa fa-search-plus fa-2x flight-icon flight-icon-search-plus"
-              onBlur={[Function]}
-              onClick={null}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            />
+            <span>
+              <span
+                aria-hidden={true}
+                className="fa fa-search-plus fa-2x flight-icon flight-icon-search-plus"
+                id="OverlayTriggerId-3"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
+              />
+            </span>
           </button>
         </div>
       </div>
@@ -70,7 +71,7 @@ exports[`renders correctly 1`] = `
     className="card-wrapper"
   >
     <div
-      className="card TutorialCard card--logo-right"
+      className="card sc-bdVaJa jxfMsb card--logo-right"
       onClick={[Function]}
     >
       <div
@@ -110,19 +111,20 @@ exports[`renders correctly 1`] = `
         >
           <button
             className="btn btn-link"
-            disabled={false}
             onClick={[Function]}
             type="button"
           >
-            <span
-              aria-hidden={true}
-              className="fa fa-search-plus fa-2x flight-icon flight-icon-search-plus"
-              onBlur={[Function]}
-              onClick={null}
-              onFocus={[Function]}
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            />
+            <span>
+              <span
+                aria-hidden={true}
+                className="fa fa-search-plus fa-2x flight-icon flight-icon-search-plus"
+                id="OverlayTriggerId-4"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onMouseOut={[Function]}
+                onMouseOver={[Function]}
+              />
+            </span>
           </button>
         </div>
       </div>

@@ -29,15 +29,17 @@ exports[`renders correctly with empty tooltip 1`] = `
 `;
 
 exports[`renders correctly with tooltip 1`] = `
-<div
-  onBlur={[Function]}
-  onClick={null}
-  onFocus={[Function]}
-  onMouseOut={[Function]}
-  onMouseOver={[Function]}
->
-  My children
-</div>
+<span>
+  <div
+    id="OverlayTriggerId-1"
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onMouseOut={[Function]}
+    onMouseOver={[Function]}
+  >
+    My children
+  </div>
+</span>
 `;
 
 exports[`renders correctly without className 1`] = `

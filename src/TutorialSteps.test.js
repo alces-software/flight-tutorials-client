@@ -87,18 +87,18 @@ describe('Panel headers', () => {
     />,
   );
 
-  const panels = wrapper.find('Panel');
+  const headers = wrapper.find('CardHeader');
 
   it('completed steps are styled correctly', () => {
-    expect(panels.at(0)).toHaveProp('bsStyle', 'success');
+    expect(headers.at(0)).toHaveClassName('card-success');
   });
 
   it('current step styled correctly', () => {
-    expect(panels.at(1)).toHaveProp('bsStyle', 'primary');
+    expect(headers.at(1)).toHaveClassName('card-info');
   });
 
   it('pending steps are styled correctly', () => {
-    expect(panels.at(2)).toHaveProp('bsStyle', 'default');
+    expect(headers.at(2)).toHaveClassName('card-default');
   });
 });
 
@@ -114,9 +114,9 @@ it('renders the steps in order', () => {
     />,
   );
 
-  const renderedSteps = wrapper.find('Panel');
+  const renderedSteps = wrapper.find('a');
 
-  expect(renderedSteps.at(0)).toHaveProp('eventKey', 'step1');
-  expect(renderedSteps.at(1)).toHaveProp('eventKey', 'step2');
-  expect(renderedSteps.at(2)).toHaveProp('eventKey', 'step3');
+  expect(renderedSteps.at(0)).toIncludeText(steps.step1.title);
+  expect(renderedSteps.at(1)).toIncludeText(steps.step2.title);
+  expect(renderedSteps.at(2)).toIncludeText(steps.step3.title);
 });

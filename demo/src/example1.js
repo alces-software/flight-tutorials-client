@@ -33,7 +33,7 @@ export const render = ({ socketIOUrl } : RenderParams) => {
   ReactDOM.render(
     <FlightTutorials
       socketIOUrl={socketIOUrl}
-      socketIOPath="/tutorials/socket.io"
+      socketIOPath="/terminal/socket.io"
     />,
     document.querySelector('#example1')
   )

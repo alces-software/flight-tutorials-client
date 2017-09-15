@@ -26,14 +26,15 @@ export const createRequiredDomNodes = () => {
 };
 
 type RenderParams = {
+  socketIOPath : string,
   socketIOUrl : string,
 };
 
-export const render = ({ socketIOUrl } : RenderParams) => {
+export const render = ({ socketIOPath, socketIOUrl } : RenderParams) => {
   ReactDOM.render(
     <FlightTutorials
       socketIOUrl={socketIOUrl}
-      socketIOPath="/terminal/socket.io"
+      socketIOPath={socketIOPath}
     />,
     document.querySelector('#example1')
   )

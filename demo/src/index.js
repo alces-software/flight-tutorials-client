@@ -30,5 +30,17 @@ function getSocketIOUrl() {
   }
 }
 
+function getSocketIOPath() {
+  const params = new URLSearchParams(window.location.search);
+  const socketIOPath = params.get('socketIOPath');
+  if (socketIOPath != null && socketIOPath !== '') {
+    return socketIOPath;
+  }
+  return '/tutorials/socket.io';
+}
+
 example1.createRequiredDomNodes();
-example1.render({ socketIOUrl: getSocketIOUrl() });
+example1.render({
+  socketIOPath: getSocketIOPath(),
+  socketIOUrl: getSocketIOUrl()
+});

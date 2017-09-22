@@ -12,6 +12,7 @@ import io from 'socket.io-client';
 import 'url-search-params-polyfill';
 
 import TerminalContainer from './TerminalContainer';
+import TerminalLayout from './TerminalLayout';
 import TutorialContainer from './TutorialContainer';
 import TutorialLayout from './TutorialLayout';
 import TutorialLoadErrorMessage from './TutorialLoadErrorMessage';
@@ -108,14 +109,18 @@ export default class extends Component {
                   currentStep={currentStep}
                   expandStep={expandStep}
                   expandedStep={expandedStep}
-                  onSessionRestartAccepted={onSessionRestartAccepted}
-                  onSessionRestartRequestClosed={onSessionRestartRequestClosed}
                   onShowAllTutorials={this.handleShowAllTutorials}
                   onSkipCurrentStep={onSkipCurrentStep}
-                  requestSessionRestart={requestSessionRestart}
-                  terminal={terminal}
                   tutorial={tutorial}
-                />
+                >
+                  <TerminalLayout
+                    onSessionRestartAccepted={onSessionRestartAccepted}
+                    onSessionRestartRequestClosed={onSessionRestartRequestClosed}
+                    requestSessionRestart={requestSessionRestart}
+                  >
+                    {terminal}
+                  </TerminalLayout>
+                </TutorialLayout>
               </div>
             )}
           </TerminalContainer>

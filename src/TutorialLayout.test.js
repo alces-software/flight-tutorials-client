@@ -50,14 +50,12 @@ const renderTutorialLayout = () => (
     currentStep={currentStep}
     expandStep={() => {}}
     expandedStep={currentStep}
-    onSessionRestartAccepted={() => {}}
-    onSessionRestartRequestClosed={() => {}}
     onShowAllTutorials={() => {}}
     onSkipCurrentStep={() => {}}
-    terminal={dummyTerminal}
     tutorial={tutorial}
-    requestSessionRestart={false}
-  />
+  >
+    {dummyTerminal}
+  </TutorialLayout>
 );
 
 it('renders without crashing', () => {

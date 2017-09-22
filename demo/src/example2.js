@@ -11,6 +11,8 @@ import ReactDOM from 'react-dom';
 import io from 'socket.io-client';
 
 import {
+  TerminalContainer,
+  TerminalLayout,
   TutorialContainer,
   TutorialLayout,
   TutorialSelection,
@@ -53,36 +55,43 @@ function renderTutorialContainer() {
   }
   const tutorial = tutorials[selectedTutorial];
   ReactDOM.render((
-    <TutorialContainer
-      tutorial={tutorial}
-      socket={socket}
-    >
+    <TutorialContainer tutorial={tutorial}>
       {({
         completedSteps,
         currentStep,
         expandStep,
         expandedStep,
-        onSessionRestartAccepted,
-        onSessionRestartRequestClosed,
+        onInputLine,
         onSkipCurrentStep,
-        requestSessionRestart,
-        terminal,
       }) => (
-        <div>
-          <TutorialLayout
-            completedSteps={completedSteps}
-            currentStep={currentStep}
-            expandStep={expandStep}
-            expandedStep={expandedStep}
-            onSessionRestartAccepted={onSessionRestartAccepted}
-            onSessionRestartRequestClosed={onSessionRestartRequestClosed}
-            onShowAllTutorials={() => handleTutorialSelection(undefined)}
-            onSkipCurrentStep={onSkipCurrentStep}
-            requestSessionRestart={requestSessionRestart}
-            terminal={terminal}
-            tutorial={tutorial}
-          />
-        </div>
+        <TerminalContainer onInputLine={onInputLine} socket={socket}>
+          {({
+            onSessionRestartAccepted,
+            onSessionRestartRequestClosed,
+            requestSessionRestart,
+            terminal,
+          }) => (
+            <div>
+              <TutorialLayout
+                completedSteps={completedSteps}
+                currentStep={currentStep}
+                expandStep={expandStep}
+                expandedStep={expandedStep}
+                onShowAllTutorials={() => handleTutorialSelection(undefined)}
+                onSkipCurrentStep={onSkipCurrentStep}
+                tutorial={tutorial}
+              >
+                <TerminalLayout
+                  onSessionRestartAccepted={onSessionRestartAccepted}
+                  onSessionRestartRequestClosed={onSessionRestartRequestClosed}
+                  requestSessionRestart={requestSessionRestart}
+                >
+                  {terminal}
+                </TerminalLayout>
+              </TutorialLayout>
+            </div>
+          )}
+        </TerminalContainer>
       )}
     </TutorialContainer>),
     document.querySelector('#tutorialSelection')

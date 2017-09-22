@@ -37,7 +37,7 @@ export default class TerminalContainer extends Component {
 
   props: {
     children: ChildrenPropType,
-    onInputLine: (string) => void,
+    onInputLine?: (string) => void,
     socket: any,
   };
 

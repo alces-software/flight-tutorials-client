@@ -10,7 +10,7 @@
 import React from 'react';
 import { Container, Row, Col, Button } from 'reactstrap';
 
-import StandardModal from 'flight-common/lib/components/StandardModal';
+import { StandardModal } from 'flight-reactware';
 
 import CloseButton from './CloseButton';
 import TutorialInfo from './TutorialInfo';
@@ -74,9 +74,9 @@ const TutorialLayout = ({
                 Restart
               </Button>
             }
-            show={requestSessionRestart}
-            onHide={onSessionRestartRequestClosed}
+            isOpen={requestSessionRestart}
             title="Your terminal session has been terminated"
+            toggle={onSessionRestartRequestClosed}
           >
             Your terminal session has been terminated. Would you like to
             restart it?

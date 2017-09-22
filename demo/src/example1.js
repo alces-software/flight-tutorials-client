@@ -9,7 +9,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import FlightTutorials from '../../src'
+import { FlightTutorials } from '../../src'
 
 export const createRequiredDomNodes = () => {
   // Create some DOM nodes to mount our react components into.  In a real

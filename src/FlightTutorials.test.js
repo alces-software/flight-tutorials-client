@@ -10,7 +10,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { shallow } from 'enzyme';
 
-import Component from './';
+import Component from './FlightTutorials';
 import TutorialLoadErrorMessage from './TutorialLoadErrorMessage';
 import TutorialLoadingMessage from './TutorialLoadingMessage';
 

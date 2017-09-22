@@ -10,10 +10,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import io from 'socket.io-client';
 
-import TutorialContainer from '../../src/TutorialContainer';
-import TutorialLayout from '../../src/TutorialLayout';
-import TutorialSelection from '../../src/TutorialSelection';
-import loadTutorials from '../../src/utils/loadTutorials';
+import {
+  TutorialContainer,
+  TutorialLayout,
+  TutorialSelection,
+  loadTutorials,
+} from '../../src';
 
 let socket;
 let tutorials;

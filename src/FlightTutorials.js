@@ -11,6 +11,7 @@ import mkDebug from 'debug';
 import io from 'socket.io-client';
 import 'url-search-params-polyfill';
 
+import TerminalContainer from './TerminalContainer';
 import TutorialContainer from './TutorialContainer';
 import TutorialLayout from './TutorialLayout';
 import TutorialLoadErrorMessage from './TutorialLoadErrorMessage';
@@ -85,33 +86,39 @@ export default class extends Component {
     const tutorial = this.state.tutorials[this.state.selectedTutorial];
 
     return (
-      <TutorialContainer tutorial={tutorial} socket={this.socket}>
+      <TutorialContainer tutorial={tutorial}>
         {({
           completedSteps,
           currentStep,
           expandStep,
           expandedStep,
-          onSessionRestartAccepted,
-          onSessionRestartRequestClosed,
+          onInputLine,
           onSkipCurrentStep,
-          requestSessionRestart,
-          terminal,
         }) => (
-          <div>
-            <TutorialLayout
-              completedSteps={completedSteps}
-              currentStep={currentStep}
-              expandStep={expandStep}
-              expandedStep={expandedStep}
-              onSessionRestartAccepted={onSessionRestartAccepted}
-              onSessionRestartRequestClosed={onSessionRestartRequestClosed}
-              onShowAllTutorials={this.handleShowAllTutorials}
-              onSkipCurrentStep={onSkipCurrentStep}
-              requestSessionRestart={requestSessionRestart}
-              terminal={terminal}
-              tutorial={tutorial}
-            />
-          </div>
+          <TerminalContainer onInputLine={onInputLine} socket={this.socket}>
+            {({
+              onSessionRestartAccepted,
+              onSessionRestartRequestClosed,
+              requestSessionRestart,
+              terminal,
+            }) => (
+              <div>
+                <TutorialLayout
+                  completedSteps={completedSteps}
+                  currentStep={currentStep}
+                  expandStep={expandStep}
+                  expandedStep={expandedStep}
+                  onSessionRestartAccepted={onSessionRestartAccepted}
+                  onSessionRestartRequestClosed={onSessionRestartRequestClosed}
+                  onShowAllTutorials={this.handleShowAllTutorials}
+                  onSkipCurrentStep={onSkipCurrentStep}
+                  requestSessionRestart={requestSessionRestart}
+                  terminal={terminal}
+                  tutorial={tutorial}
+                />
+              </div>
+            )}
+          </TerminalContainer>
         )}
       </TutorialContainer>
     );

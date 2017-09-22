@@ -13,7 +13,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { shallow } from 'enzyme';
 
-import TutorialContainer from './TutorialContainer';
+import TerminalContainer from './TerminalContainer';
 import ReactTerminal from './ReactTerminal';
 
 const tutorial = {
@@ -45,75 +45,84 @@ const mockSocket = {};
 it('renders without crashing', () => {
   const node = document.createElement('div');
   render(
-    <TutorialContainer tutorial={tutorial} children={() => <div />} socket={mockSocket} />,
+    <TerminalContainer
+      children={() => <div />}
+      onInputLine={() => {}}
+      socket={mockSocket}
+    />,
     node,
   );
 });
 
 it('calls child function with expected arguments', () => {
   const childFunctionSpy = jest.fn().mockReturnValue(<div />);
+  const onInputLine = () => {};
   const wrapper = shallow(
-    <TutorialContainer tutorial={tutorial} children={childFunctionSpy} socket={mockSocket} />,
+    <TerminalContainer
+      children={childFunctionSpy}
+      onInputLine={onInputLine}
+      socket={mockSocket}
+    />,
   );
   const instance = wrapper.instance();
 
   // The flow type definition for `wrapper.instance()` returns a generic
-  // React$Component type, not the specific TutorialContainer type.  When that
+  // React$Component type, not the specific TerminalContainer type.  When that
   // is fixed, we can remove these. See
   // https://github.com/flowtype/flow-typed/issues/925
   // $FlowFixMe
-  const expandStep = instance.handleExpandStep;
+  const onSessionRestartAccepted = instance.handleSessionRestartAccepted;
   // $FlowFixMe
-  const onSkipCurrentStep = instance.handleSkipCurrentStep;
+  const onSessionRestartRequestClosed = instance.handleSessionRestartRequestClosed;
   // $FlowFixMe
-  const onInputLine = instance.handleInputLine;
+  const sessionId = instance.state.sessionId;
+  // $FlowFixMe
+  const onSessionEnd = instance.handleSessionEnd;
 
   expect(childFunctionSpy).toHaveBeenCalledWith({
-    completedSteps: [],
-    currentStep: tutorial.firstStep,
-    expandedStep: tutorial.firstStep,
-    expandStep,
-    onInputLine,
-    onSkipCurrentStep,
+    onSessionRestartAccepted,
+    onSessionRestartRequestClosed,
+    requestSessionRestart: false,
+    terminal: <ReactTerminal
+      key={sessionId}
+      onInputLine={onInputLine}
+      onSessionEnd={onSessionEnd}
+      socket={mockSocket}
+    />,
+    // terminal: expect.anything()
   });
 });
 
 it('updates state when given matching input', () => {
   const wrapper = shallow(
-    <TutorialContainer tutorial={tutorial} children={() => <div />} socket={mockSocket} />,
+    <TerminalContainer
+      children={() => <div />}
+      onInputLine={() => {}}
+      socket={mockSocket}
+    />,
   );
   const instance = wrapper.instance();
 
-  expect(wrapper).toHaveState('completedSteps', []);
-  expect(wrapper).toHaveState('currentStep', tutorial.firstStep);
+  expect(wrapper).toHaveState('requestSessionRestart', false);
+  expect(wrapper).toHaveState('sessionId', 0);
 
   // The flow type definition for `wrapper.instance()` returns a generic
-  // React$Component type, not the specific TutorialContainer type.  When that
+  // React$Component type, not the specific TerminalContainer type.  When that
   // is fixed, we can remove this. See
   // https://github.com/flowtype/flow-typed/issues/925
   // $FlowFixMe
-  instance.handleInputLine(tutorial.steps.step1.matches[0].inputLine);
+  instance.handleSessionEnd();
 
-  expect(wrapper).toHaveState('completedSteps', [tutorial.firstStep]);
-  expect(wrapper).toHaveState('currentStep', 'step2');
-});
-
-it('does not update state when given non-matching input', () => {
-  const wrapper = shallow(
-    <TutorialContainer tutorial={tutorial} children={() => <div />} socket={mockSocket} />,
-  );
-  const instance = wrapper.instance();
-
-  expect(wrapper).toHaveState('completedSteps', []);
-  expect(wrapper).toHaveState('currentStep', tutorial.firstStep);
+  expect(wrapper).toHaveState('requestSessionRestart', true);
+  expect(wrapper).toHaveState('sessionId', 0);
 
   // The flow type definition for `wrapper.instance()` returns a generic
-  // React$Component type, not the specific TutorialContainer type.  When that
+  // React$Component type, not the specific TerminalContainer type.  When that
   // is fixed, we can remove this. See
   // https://github.com/flowtype/flow-typed/issues/925
   // $FlowFixMe
-  instance.handleInputLine('you shall not match');
+  instance.handleSessionRestartAccepted();
 
-  expect(wrapper).toHaveState('completedSteps', []);
-  expect(wrapper).toHaveState('currentStep', tutorial.firstStep);
+  expect(wrapper).toHaveState('requestSessionRestart', false);
+  expect(wrapper).toHaveState('sessionId', 1);
 });

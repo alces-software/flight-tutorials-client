@@ -28,6 +28,7 @@ const debug = mkDebug('FlightTutorials:ReactTerminal');
 export default class ReactTerminal extends Component {
   static defaultProps = {
     columns: 80,
+    onInputLine: (line) => {},  // eslint-disable-line no-unused-vars
     rows: 50,
   };
 

@@ -8,9 +8,7 @@
  *===========================================================================*/
 
 import React from 'react';
-import { Container, Row, Col, Button } from 'reactstrap';
-
-import { StandardModal } from 'flight-reactware';
+import { Container, Row, Col } from 'reactstrap';
 
 import CloseButton from './CloseButton';
 import TutorialInfo from './TutorialInfo';

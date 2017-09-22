@@ -7,7 +7,7 @@
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
 
-import React, { Component } from 'react';
+import React from 'react';
 import mkDebug from 'debug';
 
 import findMatch from './utils/findMatch';
@@ -24,7 +24,7 @@ type ChildrenPropType = ({
   onSkipCurrentStep: (Event) => void,
 }) => React$Element<*>;
 
-export default class TutorialContainer extends Component {
+export default class TutorialContainer extends React.Component {
   constructor(...args: any) {
     super(...args);
     this.state = {

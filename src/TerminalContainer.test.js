@@ -16,29 +16,6 @@ import { shallow } from 'enzyme';
 import TerminalContainer from './TerminalContainer';
 import ReactTerminal from './ReactTerminal';
 
-const tutorial = {
-  title: 'Tutorial 1',
-  description: 'Tutorial 1 description',
-  firstStep: 'step1',
-  steps: {
-    step1: {
-      title: 'Tutorial 1 step 1',
-      description: 'Tutorial 1 step 1 description',
-      matches: [{
-        inputLine: '$ echo "step1 completed"',
-        anchored: false,
-        regexp: false,
-        nextStep: 'step2',
-      }],
-    },
-    step2: {
-      title: 'Tutorial 1 step 2',
-      description: 'Tutorial 1 step 2 description',
-      matches: [],
-    },
-  },
-};
-
 // XXX Find a better way of mocking the socket than this.
 const mockSocket = {};
 

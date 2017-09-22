@@ -22,6 +22,10 @@ type ChildrenPropType = ({
 }) => React$Element<*>;
 
 export default class TerminalContainer extends Component {
+  static defaultProps = {
+    onInputLine: (line) => {},  // eslint-disable-line no-unused-vars
+  }
+
   constructor(...args: any) {
     super(...args);
     this.state = {

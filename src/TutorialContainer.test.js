@@ -14,7 +14,6 @@ import { render } from 'react-dom';
 import { shallow } from 'enzyme';
 
 import TutorialContainer from './TutorialContainer';
-import ReactTerminal from './ReactTerminal';
 
 const tutorial = {
   title: 'Tutorial 1',

@@ -8,11 +8,19 @@
  *===========================================================================*/
 import React from 'react';
 import Markdown from 'react-markdown';
+import styled from 'styled-components';
 
 import Card from './Card';
 import Overlay from './TutorialCardOverlay';
-import './styles/TutorialCard.scss';
 import type { TutorialType } from './types';
+
+const cardWidth = '560px';
+const cardHeight = '425px';
+
+const StyledCard = styled(Card)`
+  width: ${cardWidth};
+  height: ${cardHeight};
+`;
 
 type PropTypes = {
   onSelectTutorial: () => void,
@@ -23,8 +31,7 @@ const TutorialCard = ({
   onSelectTutorial,
   tutorial,
 }: PropTypes) => (
-  <Card
-    className="TutorialCard"
+  <StyledCard
     onClick={onSelectTutorial}
     subtitle={tutorial.subtitle}
     subtitleSize="medium"
@@ -35,7 +42,7 @@ const TutorialCard = ({
   >
     <Markdown source={tutorial.description} />
     <Overlay onSelectTutorial={onSelectTutorial} />
-  </Card>
+  </StyledCard>
 );
 
 export default TutorialCard;

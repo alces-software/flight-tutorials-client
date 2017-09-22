@@ -11,7 +11,7 @@
     "umd"
   ],
   "scripts": {
-    "build": "nwb build-react-component",
+    "build": "nwb build-react-component --copy-files",
     "clean": "nwb clean-module && nwb clean-demo",
     "flow": "flow",
     "start": "nwb serve-react-demo",
@@ -27,12 +27,13 @@
     "bootstrap-sass": "^3.3.7",
     "classnames": "^2.2.5",
     "debug": "^2.6.8",
-    "flight-common": "git+https://github.com/alces-software/flight-common.git#react-15-react-router-4",
-    "react-bootstrap": "^0.31.0",
+    "flight-reactware": "https://s3-eu-west-1.amazonaws.com/alces-flight/FlightReactware/0.1.6/flight-reactware.tgz",
     "react-fontawesome": "^1.6.1",
     "react-markdown": "^2.5.0",
+    "reactstrap": "^4.8.0",
     "socket.io-client": "^2.0.3",
     "socket.io-stream": "^0.9.1",
+    "styled-components": "^2.1.2",
     "terminal.js": "^1.0.9",
     "url-search-params-polyfill": "^2.0.0"
   },
@@ -80,8 +81,11 @@
     ],
     "testURL": "http://localhost",
     "transform": {
-      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
-      "^.+\\.(scss|css$)": "<rootDir>/config/jest/cssTransform.js"
+      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest"
+    },
+    "moduleNameMapper": {
+      "^.+\\.(scss|css$)": "<rootDir>/config/jest/cssTransform.js",
+      "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/config/jest/fileTransform.js"
     }
   },
   "babel": {

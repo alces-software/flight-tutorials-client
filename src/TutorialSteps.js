@@ -8,12 +8,30 @@
  *===========================================================================*/
 
 import React from 'react';
-import { Button, PanelGroup, Panel } from 'react-bootstrap';
+import { Button, Card, CardBlock, CardHeader, Collapse } from 'reactstrap';
 import Markdown from 'react-markdown';
 import cx from 'classnames';
+import styled from 'styled-components';
 
 import type { StepMap } from './types';
-import './styles/TutorialSteps.scss';
+
+// XXX Remove mix of classnames and styled-components.
+const Title = styled.div`
+  a:hover {
+      text-decoration: none;
+      color: inherit;
+      cursor: inherit;
+
+      .TutorialStep--completed & , .TutorialStep--current & {
+          cursor: pointer;
+          text-decoration: underline;
+      }
+  }
+`;
+
+const SkipButton = styled(Button)`
+  margin-top: -4px;
+`;
 
 function getClassName(stepName, currentStep, completedSteps) {
   return cx('TutorialStep', {
@@ -22,20 +40,24 @@ function getClassName(stepName, currentStep, completedSteps) {
   });
 }
 
-function getStyle(stepName, currentStep, completedSteps) {
+function getColour(stepName, currentStep, completedSteps) {
   if (stepName === currentStep) {
-    return 'primary';
+    return 'card-info';
   }
   if (completedSteps.includes(stepName)) {
-    return 'success';
+    return 'card-success';
   }
 
-  return 'default';
+  return 'card-default';
 }
 
 function canSkip(step, stepName, currentStep) {
   if (stepName !== currentStep) { return false; }
   return step.matches.some(m => m.nextStep != null);
+}
+
+function isOpen(stepName, expandedStep) {
+  return stepName === expandedStep;
 }
 
 const TutorialSteps = ({
@@ -56,35 +78,47 @@ const TutorialSteps = ({
   const panels = Object.keys(steps).map((stepName, idx) => {
     const step = steps[stepName];
     const header = (
-      <div className="TutorialStep-title">
-        <span>Step {idx + 1} {step.title}</span>
+      <Title>
+        <a
+          onClick={() => expandStep(stepName)}
+          role="menuitem"
+          tabIndex={0}
+        >
+          Step {idx + 1} {step.title}
+        </a>
         {
           canSkip(step, stepName, currentStep) ?
             <span className="pull-right">
-              <Button onClick={onSkipCurrentStep}>Skip</Button>
+              <SkipButton onClick={onSkipCurrentStep}>Skip</SkipButton>
             </span> :
             null
         }
-      </div>
+      </Title>
     );
 
     return (
-      <Panel
+      <Card
         key={stepName}
-        bsStyle={getStyle(stepName, currentStep, completedSteps)}
         className={getClassName(stepName, currentStep, completedSteps)}
-        eventKey={stepName}
-        header={header}
       >
-        <Markdown escapeHtml={false} source={step.description} />
-      </Panel>
+        <CardHeader
+          className={getColour(stepName, currentStep, completedSteps)}
+        >
+          {header}
+        </CardHeader>
+        <Collapse isOpen={isOpen(stepName, expandedStep)}>
+          <CardBlock>
+            <Markdown escapeHtml={false} source={step.description} />
+          </CardBlock>
+        </Collapse>
+      </Card>
     );
   });
 
   return (
-    <PanelGroup activeKey={expandedStep} onSelect={expandStep} accordion >
-      { panels }
-    </PanelGroup>
+    <div>
+      {panels}
+    </div>
   );
 };
 

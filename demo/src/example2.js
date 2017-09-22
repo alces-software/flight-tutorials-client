@@ -95,11 +95,12 @@ function unmountTutorialContainer() {
 }
 
 type RenderParams = {
+  socketIOPath : string,
   socketIOUrl : string,
 };
 
-export const render = ({ socketIOUrl }: RenderParams) => {
-  socket = io(socketIOUrl, { path: '/tutorials/socket.io' });
+export const render = ({ socketIOPath, socketIOUrl }: RenderParams) => {
+  socket = io(socketIOUrl, { path: socketIOPath });
   handleTutorialSelection(selectedTutorial);
 };
 

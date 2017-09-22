@@ -7,7 +7,9 @@
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
 import React from 'react';
-import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Tooltip } from 'reactstrap';
+
+import { OverlayTrigger } from 'flight-reactware';
 
 type PropTypes = {
   children : React$Element<*>,
@@ -24,15 +26,19 @@ const TooltipTrigger = ({ children, tooltip, className }: PropTypes) => {
   if (tooltip == null || tooltip === '') {
     return <div style={{ display: 'inline-block' }}>{children}</div>;
   }
+  const overlay = (
+    <Tooltip
+      className={className}
+      placement="top"
+      target="this-will-be-replaced-by-overlay-trigger"
+    >
+      {tooltip}
+    </Tooltip>
+  );
   return (
     <OverlayTrigger
-      overlay={<Tooltip
-        id="tooltip-trigger"
-        className={className}
-      >
-        {tooltip}
-      </Tooltip>}
-      placement="top"
+      overlay={overlay}
+      trigger={['hover', 'focus']}
     >
       {children}
     </OverlayTrigger>

@@ -28,18 +28,6 @@ exports[`renders correctly with empty tooltip 1`] = `
 </div>
 `;
 
-exports[`renders correctly with tooltip 1`] = `
-<div
-  onBlur={[Function]}
-  onClick={null}
-  onFocus={[Function]}
-  onMouseOut={[Function]}
-  onMouseOver={[Function]}
->
-  My children
-</div>
-`;
-
 exports[`renders correctly without className 1`] = `
 <div
   style={

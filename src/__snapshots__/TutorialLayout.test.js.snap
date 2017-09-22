@@ -3,16 +3,15 @@
 exports[`renders correctly 1`] = `
 <div>
   <button
-    className="flight-CloseButton btn btn-link"
-    disabled={false}
+    className="sc-bdVaJa dscFez btn btn-link"
     onClick={[Function]}
     type="button"
   >
     <div
-      className="lr"
+      className="sc-bwzfXH dbvURX"
     >
       <div
-        className="rl"
+        className="sc-htpNat gafMnB"
       />
     </div>
   </button>
@@ -25,7 +24,7 @@ exports[`renders correctly 1`] = `
       Flight Compute Tutorial
     </h2>
     <hr
-      className="star-primary"
+      className="sc-EHOje YqRqH"
     />
   </div>
   <div
@@ -35,7 +34,7 @@ exports[`renders correctly 1`] = `
       className="row"
     >
       <div
-        className="col-lg-4 col-lg-offset-1 col-md-4 col-sm-12 col-xs-12"
+        className="col-12 col-sm-12 col-md-4 col-lg-4 offset-lg-1"
       >
         <div>
           <h2>
@@ -47,47 +46,34 @@ exports[`renders correctly 1`] = `
             </p>
           </div>
         </div>
-        <div
-          className="panel-group"
-          role="tablist"
-        >
+        <div>
           <div
-            className="TutorialStep TutorialStep--completed panel panel-success"
-            id={null}
+            className="TutorialStep TutorialStep--completed card"
           >
             <div
-              className="panel-heading"
+              className="card-success card-header"
             >
               <div
-                className="TutorialStep-title panel-title"
+                className="sc-bxivhb ppkEw"
               >
                 <a
-                  aria-controls={undefined}
-                  aria-expanded={false}
-                  aria-selected={false}
-                  className="collapsed"
-                  href={undefined}
                   onClick={[Function]}
-                  role="tab"
+                  role="menuitem"
+                  tabIndex={0}
                 >
-                  <span>
-                    Step 
-                    1
-                     
-                    My step 1
-                  </span>
+                  Step 
+                  1
+                   
+                  My step 1
                 </a>
               </div>
             </div>
             <div
-              aria-expanded={null}
-              aria-hidden={true}
-              className="panel-collapse collapse"
-              id={undefined}
-              role="tabpanel"
+              className="collapse"
+              style={Object {}}
             >
               <div
-                className="panel-body"
+                className="card-block"
               >
                 <div>
                   <p>
@@ -98,42 +84,32 @@ exports[`renders correctly 1`] = `
             </div>
           </div>
           <div
-            className="TutorialStep TutorialStep--current panel panel-primary"
-            id={null}
+            className="TutorialStep TutorialStep--current card"
           >
             <div
-              className="panel-heading"
+              className="card-info card-header"
             >
               <div
-                className="TutorialStep-title panel-title"
+                className="sc-bxivhb ppkEw"
               >
                 <a
-                  aria-controls={undefined}
-                  aria-expanded={true}
-                  aria-selected={true}
-                  className={null}
-                  href={undefined}
                   onClick={[Function]}
-                  role="tab"
+                  role="menuitem"
+                  tabIndex={0}
                 >
-                  <span>
-                    Step 
-                    2
-                     
-                    My step 2
-                  </span>
+                  Step 
+                  2
+                   
+                  My step 2
                 </a>
               </div>
             </div>
             <div
-              aria-expanded={null}
-              aria-hidden={false}
-              className="panel-collapse collapse in"
-              id={undefined}
-              role="tabpanel"
+              className="collapse show"
+              style={Object {}}
             >
               <div
-                className="panel-body"
+                className="card-block"
               >
                 <div>
                   <p>
@@ -146,7 +122,7 @@ exports[`renders correctly 1`] = `
         </div>
       </div>
       <div
-        className="col-lg-7 col-md-8 col-sm-12 col-xs-12"
+        className="col-12 col-sm-12 col-md-8 col-lg-7"
       >
         <div />
         <div>

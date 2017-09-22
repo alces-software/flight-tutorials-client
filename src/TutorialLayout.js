@@ -8,9 +8,9 @@
  *===========================================================================*/
 
 import React from 'react';
-import { Grid, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'reactstrap';
 
-import StandardModal from 'flight-common/lib/components/StandardModal';
+import { StandardModal } from 'flight-reactware';
 
 import CloseButton from './CloseButton';
 import TutorialInfo from './TutorialInfo';
@@ -51,9 +51,9 @@ const TutorialLayout = ({
       <h2 className="flight-tutorials-header">Flight Compute Tutorial</h2>
       <StarRule variant="primary" />
     </div>
-    <Grid fluid >
+    <Container fluid >
       <Row>
-        <Col xs={12} sm={12} md={4} lg={4} lgOffset={1} >
+        <Col xs={12} sm={12} md={4} lg={{ size: 4, offset: 1 }} >
           <TutorialInfo tutorial={tutorial} />
           <TutorialSteps
             completedSteps={completedSteps}
@@ -68,15 +68,15 @@ const TutorialLayout = ({
           <StandardModal
             buttons={
               <Button
-                bsStyle="success"
+                color="success"
                 onClick={onSessionRestartAccepted}
               >
                 Restart
               </Button>
             }
-            show={requestSessionRestart}
-            onHide={onSessionRestartRequestClosed}
+            isOpen={requestSessionRestart}
             title="Your terminal session has been terminated"
+            toggle={onSessionRestartRequestClosed}
           >
             Your terminal session has been terminated. Would you like to
             restart it?
@@ -84,7 +84,7 @@ const TutorialLayout = ({
           {terminal}
         </Col>
       </Row>
-    </Grid>
+    </Container>
   </div>
 );
 

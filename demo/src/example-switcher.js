@@ -18,12 +18,18 @@ function renderSelectedExample(example) {
     hideTitle(title2);
     example2.unmount();
     showTitle(title1);
-    example1.render({ socketIOUrl: getSocketIOUrl() });
+    example1.render({
+      socketIOPath: getSocketIOPath(),
+      socketIOUrl: getSocketIOUrl()
+    });
   } else {
     hideTitle(title1);
     example1.unmount();
     showTitle(title2);
-    example2.render({ socketIOUrl: getSocketIOUrl() });
+    example2.render({
+      socketIOPath: getSocketIOPath(),
+      socketIOUrl: getSocketIOUrl()
+    });
   }
 }
 
@@ -84,6 +90,15 @@ function getSocketIOUrl() {
   } else {
     return 'http://localhost:25288/pty';
   }
+}
+
+function getSocketIOPath() {
+  const params = new URLSearchParams(window.location.search);
+  const socketIOPath = params.get('socketIOPath');
+  if (socketIOPath != null && socketIOPath !== '') {
+    return socketIOPath;
+  }
+  return '/tutorials/socket.io';
 }
 
 addExampleSelection();

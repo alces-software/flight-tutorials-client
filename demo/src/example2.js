@@ -18,10 +18,11 @@ import {
 } from '../../src';
 
 let socket;
-let tutorials;
+let tutorials = [];
 
 loadTutorials().then((ts) => {
   tutorials = ts;
+  handleTutorialSelection(selectedTutorial);
 });
 
 let selectedTutorial = undefined;

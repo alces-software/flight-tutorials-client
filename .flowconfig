@@ -8,6 +8,7 @@
 <PROJECT_ROOT>/node_modules/eslint-plugin-jsx-a11y/.*.js
 <PROJECT_ROOT>/node_modules/react-timeago/lib/index.js.flow
 <PROJECT_ROOT>/node_modules/styled-components/.*.js
+<PROJECT_ROOT>/node_modules/polished/.*.js
 .*/flight-reactware/.*
 
 [include]

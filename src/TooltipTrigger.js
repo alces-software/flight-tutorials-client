@@ -9,10 +9,7 @@
 import React from 'react';
 import { Tooltip } from 'reactstrap';
 
-/* eslint-disable import/no-extraneous-dependencies */
-// $FlowFixMe
 import { OverlayTrigger } from 'flight-reactware';
-/* eslint-enable import/no-extraneous-dependencies */
 
 type PropTypes = {
   children : React$Element<*>,

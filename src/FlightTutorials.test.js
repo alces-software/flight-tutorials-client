@@ -71,24 +71,6 @@ it('renders without crashing', () => {
   render(renderComponent(), node);
 });
 
-it('disconnects the socket when unmounted', (done) => {
-  mockSuccessfulResponse();
-  const wrapper = shallow(renderComponent());
-  const instance = wrapper.instance();
-  // The flow type definition for `wrapper.instance()` returns a generic
-  // React$Component type, not the specific TutorialContainer type.  When that
-  // is fixed, we can remove this. See
-  // https://github.com/flowtype/flow-typed/issues/925
-  // $FlowFixMe
-  const spy = jest.spyOn(instance.socket, 'disconnect');
-
-  afterTutorialsLoaded(done, () => {
-    wrapper.unmount();
-
-    expect(spy).toHaveBeenCalled();
-  });
-});
-
 it('displays a loading message whilst the tutorials are being loaded', () => {
   mockSuccessfulResponse();
   const wrapper = shallow(renderComponent());

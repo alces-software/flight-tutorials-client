@@ -8,9 +8,9 @@
  *===========================================================================*/
 import React, { Component } from 'react';
 import mkDebug from 'debug';
-import io from 'socket.io-client';
 import 'url-search-params-polyfill';
 
+import SocketContainer from './SocketContainer';
 import TerminalContainer from './TerminalContainer';
 import TerminalLayout from './TerminalLayout';
 import TutorialContainer from './TutorialContainer';
@@ -26,7 +26,6 @@ const debug = mkDebug('FlightTutorials:index');
 export default class extends Component {
   constructor(...args: any) {
     super(...args);
-    this.socket = io(this.props.socketIOUrl, { path: this.props.socketIOPath });
     loadTutorials().then((tutorials) => {
       this.setState({
         tutorials,
@@ -44,16 +43,10 @@ export default class extends Component {
     tutorialLoading: true,
   };
 
-  componentWillUnmount() {
-    this.socket.disconnect();
-  }
-
   props: {
     socketIOUrl: string,
     socketIOPath: string,
   }
-
-  socket: any;
 
   handleTutorialSelection = (idx: ?number) => {
     debug('Selecting tutorial at index %d', idx);
@@ -96,34 +89,43 @@ export default class extends Component {
           onInputLine,
           onSkipCurrentStep,
         }) => (
-          <TerminalContainer onInputLine={onInputLine} socket={this.socket}>
+          <SocketContainer
+            socketIOUrl={this.props.socketIOUrl}
+            socketIOPath={this.props.socketIOPath}
+          >
             {({
-              onSessionRestartAccepted,
-              onSessionRestartRequestClosed,
-              requestSessionRestart,
-              terminal,
+              socket,
             }) => (
-              <div>
-                <TutorialLayout
-                  completedSteps={completedSteps}
-                  currentStep={currentStep}
-                  expandStep={expandStep}
-                  expandedStep={expandedStep}
-                  onShowAllTutorials={this.handleShowAllTutorials}
-                  onSkipCurrentStep={onSkipCurrentStep}
-                  tutorial={tutorial}
-                >
-                  <TerminalLayout
-                    onSessionRestartAccepted={onSessionRestartAccepted}
-                    onSessionRestartRequestClosed={onSessionRestartRequestClosed}
-                    requestSessionRestart={requestSessionRestart}
-                  >
-                    {terminal}
-                  </TerminalLayout>
-                </TutorialLayout>
-              </div>
+              <TerminalContainer onInputLine={onInputLine} socket={socket}>
+                {({
+                  onSessionRestartAccepted,
+                  onSessionRestartRequestClosed,
+                  requestSessionRestart,
+                  terminal,
+                }) => (
+                  <div>
+                    <TutorialLayout
+                      completedSteps={completedSteps}
+                      currentStep={currentStep}
+                      expandStep={expandStep}
+                      expandedStep={expandedStep}
+                      onShowAllTutorials={this.handleShowAllTutorials}
+                      onSkipCurrentStep={onSkipCurrentStep}
+                      tutorial={tutorial}
+                    >
+                      <TerminalLayout
+                        onSessionRestartAccepted={onSessionRestartAccepted}
+                        onSessionRestartRequestClosed={onSessionRestartRequestClosed}
+                        requestSessionRestart={requestSessionRestart}
+                      >
+                        {terminal}
+                      </TerminalLayout>
+                    </TutorialLayout>
+                  </div>
+                )}
+              </TerminalContainer>
             )}
-          </TerminalContainer>
+          </SocketContainer>
         )}
       </TutorialContainer>
     );

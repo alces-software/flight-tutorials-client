@@ -8,9 +8,9 @@
  *===========================================================================*/
 import React from 'react';
 import ReactDOM from 'react-dom';
-import io from 'socket.io-client';
 
 import {
+  SocketContainer,
   TerminalContainer,
   TerminalLayout,
   TutorialContainer,
@@ -19,7 +19,8 @@ import {
   loadTutorials,
 } from '../../src';
 
-let socket;
+let socketIOUrl;
+let socketIOPath;
 let tutorials = [];
 
 loadTutorials().then((ts) => {
@@ -64,34 +65,43 @@ function renderTutorialContainer() {
         onInputLine,
         onSkipCurrentStep,
       }) => (
-        <TerminalContainer onInputLine={onInputLine} socket={socket}>
+        <SocketContainer
+          socketIOUrl={socketIOUrl}
+          socketIOPath={socketIOPath}
+        >
           {({
-            onSessionRestartAccepted,
-            onSessionRestartRequestClosed,
-            requestSessionRestart,
-            terminal,
+            socket,
           }) => (
-            <div>
-              <TutorialLayout
-                completedSteps={completedSteps}
-                currentStep={currentStep}
-                expandStep={expandStep}
-                expandedStep={expandedStep}
-                onShowAllTutorials={() => handleTutorialSelection(undefined)}
-                onSkipCurrentStep={onSkipCurrentStep}
-                tutorial={tutorial}
-              >
-                <TerminalLayout
-                  onSessionRestartAccepted={onSessionRestartAccepted}
-                  onSessionRestartRequestClosed={onSessionRestartRequestClosed}
-                  requestSessionRestart={requestSessionRestart}
-                >
-                  {terminal}
-                </TerminalLayout>
-              </TutorialLayout>
-            </div>
+            <TerminalContainer onInputLine={onInputLine} socket={socket}>
+              {({
+                onSessionRestartAccepted,
+                onSessionRestartRequestClosed,
+                requestSessionRestart,
+                terminal,
+              }) => (
+                <div>
+                  <TutorialLayout
+                    completedSteps={completedSteps}
+                    currentStep={currentStep}
+                    expandStep={expandStep}
+                    expandedStep={expandedStep}
+                    onShowAllTutorials={() => handleTutorialSelection(undefined)}
+                    onSkipCurrentStep={onSkipCurrentStep}
+                    tutorial={tutorial}
+                  >
+                    <TerminalLayout
+                      onSessionRestartAccepted={onSessionRestartAccepted}
+                      onSessionRestartRequestClosed={onSessionRestartRequestClosed}
+                      requestSessionRestart={requestSessionRestart}
+                    >
+                      {terminal}
+                    </TerminalLayout>
+                  </TutorialLayout>
+                </div>
+              )}
+            </TerminalContainer>
           )}
-        </TerminalContainer>
+        </SocketContainer>
       )}
     </TutorialContainer>),
     document.querySelector('#tutorialSelection')
@@ -111,8 +121,9 @@ type RenderParams = {
   socketIOUrl : string,
 };
 
-export const render = ({ socketIOPath, socketIOUrl }: RenderParams) => {
-  socket = io(socketIOUrl, { path: socketIOPath });
+export const render = (props: RenderParams) => {
+  socketIOPath = props.socketIOPath;
+  socketIOUrl = props.socketIOUrl;
   handleTutorialSelection(selectedTutorial);
 };
 

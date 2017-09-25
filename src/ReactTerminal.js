@@ -28,6 +28,7 @@ const debug = mkDebug('FlightTutorials:ReactTerminal');
 export default class ReactTerminal extends Component {
   static defaultProps = {
     columns: 80,
+    onInputLine: (line) => {},  // eslint-disable-line no-unused-vars
     rows: 50,
   };
 
@@ -53,7 +54,7 @@ export default class ReactTerminal extends Component {
 
   props: {
     columns: number,
-    onInputLine: (string) => void,
+    onInputLine?: (string) => void,
     onSessionEnd?: () => void,  // eslint-disable-line react/require-default-props
     rows: number,
     socket: any,
@@ -143,7 +144,10 @@ export default class ReactTerminal extends Component {
 
     this.stream = ss.createStream({ decodeStrings: false, encoding: 'utf-8' });
     const term = new Terminal(this.terminalEl.dataset);
-    const inputProcessor = new InputProcessor(term, this.props.onInputLine);
+    let inputProcessor;
+    if (this.props.onInputLine) {
+      inputProcessor = new InputProcessor(term, this.props.onInputLine);
+    }
 
     this.stream.on('data', (chunk) => {
       debug('Received chunk %o as string: %s', chunk, chunk.toString());
@@ -158,8 +162,10 @@ export default class ReactTerminal extends Component {
 
     const userProvidedInput = this.stream.pipe(term).dom(this.terminalEl);
     userProvidedInput.pipe(this.stream);
-    userProvidedInput.on('data', inputProcessor.handleUserProvidedData);
-    term.state.on('lineremove', inputProcessor.handleLineRemove);
+    if (inputProcessor) {
+      userProvidedInput.on('data', inputProcessor.handleUserProvidedData);
+      term.state.on('lineremove', inputProcessor.handleLineRemove);
+    }
   }
 
   createTerminalSession() {
@@ -180,7 +186,9 @@ export default class ReactTerminal extends Component {
 
   focus() {
     debug('Focusing terminal, %o', this.terminalEl);
-    this.terminalEl.focus();
+    if (this.terminalEl != null) {
+      this.terminalEl.focus();
+    }
   }
 
   render() {

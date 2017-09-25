@@ -8,9 +8,7 @@
  *===========================================================================*/
 
 import React from 'react';
-import { Container, Row, Col, Button } from 'reactstrap';
-
-import { StandardModal } from 'flight-reactware';
+import { Container, Row, Col } from 'reactstrap';
 
 import CloseButton from './CloseButton';
 import TutorialInfo from './TutorialInfo';
@@ -19,30 +17,24 @@ import StarRule from './StarRule';
 import type { TutorialType } from './types';
 
 type PropsType = {
+  children : React$Element<*>,  // A TerminalLayout element.
   completedSteps : Array<string>,
   currentStep: string,
   expandStep: (string) => void,
   expandedStep: string,
-  onSessionRestartAccepted: () => void,
-  onSessionRestartRequestClosed: () => void,
   onShowAllTutorials: () => void,
   onSkipCurrentStep: (Event) => void,
-  terminal : React$Element<*>,  // A ReactTerminal element.
   tutorial: TutorialType,
-  requestSessionRestart: boolean,
 }
 
 const TutorialLayout = ({
+  children,
   completedSteps,
   currentStep,
   expandStep,
   expandedStep,
-  onSessionRestartAccepted,
-  onSessionRestartRequestClosed,
   onShowAllTutorials,
   onSkipCurrentStep,
-  requestSessionRestart,
-  terminal,
   tutorial,
 } : PropsType) => (
   <div>
@@ -65,23 +57,7 @@ const TutorialLayout = ({
           />
         </Col>
         <Col xs={12} sm={12} md={8} lg={7} >
-          <StandardModal
-            buttons={
-              <Button
-                color="success"
-                onClick={onSessionRestartAccepted}
-              >
-                Restart
-              </Button>
-            }
-            isOpen={requestSessionRestart}
-            title="Your terminal session has been terminated"
-            toggle={onSessionRestartRequestClosed}
-          >
-            Your terminal session has been terminated. Would you like to
-            restart it?
-          </StandardModal>
-          {terminal}
+          {children}
         </Col>
       </Row>
     </Container>

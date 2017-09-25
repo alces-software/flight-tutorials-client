@@ -14,7 +14,6 @@ import { render } from 'react-dom';
 import { shallow } from 'enzyme';
 
 import TutorialContainer from './TutorialContainer';
-import ReactTerminal from './ReactTerminal';
 
 const tutorial = {
   title: 'Tutorial 1',
@@ -64,35 +63,17 @@ it('calls child function with expected arguments', () => {
   // $FlowFixMe
   const expandStep = instance.handleExpandStep;
   // $FlowFixMe
-  const onSessionRestartAccepted = instance.handleSessionRestartAccepted;
-  // $FlowFixMe
-  const onSessionRestartRequestClosed = instance.handleSessionRestartRequestClosed;
-  // $FlowFixMe
   const onSkipCurrentStep = instance.handleSkipCurrentStep;
   // $FlowFixMe
-  const sessionId = instance.state.sessionId;
-  // $FlowFixMe
   const onInputLine = instance.handleInputLine;
-  // $FlowFixMe
-  const onSessionEnd = instance.handleSessionEnd;
 
   expect(childFunctionSpy).toHaveBeenCalledWith({
     completedSteps: [],
     currentStep: tutorial.firstStep,
     expandedStep: tutorial.firstStep,
     expandStep,
-    onSessionRestartAccepted,
-    onSessionRestartRequestClosed,
+    onInputLine,
     onSkipCurrentStep,
-    requestSessionRestart: false,
-    terminal: <ReactTerminal
-      key={sessionId}
-      ref={expect.any(Function)}
-      onInputLine={onInputLine}
-      onSessionEnd={onSessionEnd}
-      socket={mockSocket}
-    />,
-    // terminal: expect.anything()
   });
 });
 

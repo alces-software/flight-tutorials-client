@@ -41,7 +41,9 @@ export default class TerminalContainer extends Component {
 
   props: {
     children: ChildrenPropType,
+    columns?: number,  // eslint-disable-line react/require-default-props
     onInputLine?: (string) => void,
+    rows?: number,  // eslint-disable-line react/require-default-props
     socket: any,
   };
 
@@ -68,8 +70,10 @@ export default class TerminalContainer extends Component {
     const terminal = (
       <ReactTerminal
         key={this.state.sessionId}
+        columns={this.props.columns}
         onInputLine={this.props.onInputLine}
         onSessionEnd={this.handleSessionEnd}
+        rows={this.props.rows}
         socket={this.props.socket}
       />
     );

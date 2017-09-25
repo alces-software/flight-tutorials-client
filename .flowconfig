@@ -10,6 +10,9 @@
 <PROJECT_ROOT>/node_modules/styled-components/.*.js
 <PROJECT_ROOT>/node_modules/polished/.*.js
 .*/flight-reactware/.*
+<PROJECT_ROOT>/lib/.*
+<PROJECT_ROOT>/es/.*
+<PROJECT_ROOT>/demo/dist/.*
 
 [include]
 

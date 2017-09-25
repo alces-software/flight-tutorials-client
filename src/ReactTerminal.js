@@ -186,7 +186,9 @@ export default class ReactTerminal extends Component {
 
   focus() {
     debug('Focusing terminal, %o', this.terminalEl);
-    this.terminalEl.focus();
+    if (this.terminalEl != null) {
+      this.terminalEl.focus();
+    }
   }
 
   render() {

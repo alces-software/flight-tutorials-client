@@ -9,9 +9,15 @@
 
 import React from 'react';
 import io from 'socket.io-client';
+import mkDebug from 'debug';
+import { DelaySpinner } from 'flight-reactware';
+
+const debug = mkDebug('FlightTutorials:SocketContainer');
 
 type ChildrenPropType = ({
+  onCloseSocketError: () => void,
   socket: any,
+  socketError: boolean,
 }) => React$Element<*>;
 
 // Manages a socket.io-client socket.
@@ -23,8 +29,27 @@ export default class SocketContainer extends React.Component {
 
   constructor(...args: any) {
     super(...args);
+    this.state = {
+      status: 'connecting',
+    };
     this.socket = io(this.props.socketIOUrl, { path: this.props.socketIOPath });
+    this.socket.on('connect', () => {
+      debug('Socket connected');
+      this.setState({ status: 'connected' });
+    });
+    this.socket.on('connect_error', (error) => {
+      debug('Socket connection error: %o', error);
+      this.setState({ status: 'failed' });
+    });
+    this.socket.on('error', (error) => {
+      debug('Socket error: %o', error);
+      this.setState({ status: 'failed' });
+    });
   }
+
+  state: {
+    status: 'connecting' | 'connected' | 'failed' | 'idle',
+  };
 
   componentWillUnmount() {
     this.socket.disconnect();
@@ -38,9 +63,23 @@ export default class SocketContainer extends React.Component {
 
   socket: any;
 
+  handleClearSocketError = () => {
+    debug('Clearing socket error');
+    // XXX We should do more than just hide the error message. We should try
+    // and reconnect with exponential backoff or something.
+    this.setState({ status: 'idle' });
+  }
+
   render() {
+    const status = this.state.status;
+    if (status === 'connecting') {
+      return <DelaySpinner />;
+    }
+
     return this.props.children({
+      onCloseSocketError: this.handleClearSocketError,
       socket: this.socket,
+      socketError: status === 'failed',
     });
   }
 }

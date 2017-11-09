@@ -10,20 +10,33 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 
-import { StandardModal } from 'flight-reactware';
+import { ContextLink, StandardModal } from 'flight-reactware';
+
+const CommunitySiteLink = () => (
+  <ContextLink
+    link={ContextLink.makeLink('Community', '/')}
+    site={process.env.REACT_APP_SITE || ''}
+  >
+    Community Support Portal
+  </ContextLink>
+);
 
 type PropsType = {
   children : React$Element<*>,  // A ReactTerminal element.
+  onCloseSocketError: () => void,
   onSessionRestartAccepted: () => void,
   onSessionRestartRequestClosed: () => void,
   requestSessionRestart: boolean,
+  socketError: boolean,
 }
 
 const TerminalLayout = ({
   children,
+  onCloseSocketError,
   onSessionRestartAccepted,
   onSessionRestartRequestClosed,
   requestSessionRestart,
+  socketError,
 } : PropsType) => (
   <div>
     <StandardModal
@@ -41,6 +54,16 @@ const TerminalLayout = ({
     >
       Your terminal session has been terminated. Would you like to
       restart it?
+    </StandardModal>
+    <StandardModal
+      isOpen={socketError}
+      size="lg"
+      title="Unable to connect terminal session"
+      toggle={onCloseSocketError}
+    >
+      Unfortunately, there was an unexpected error when attempting to connect
+      the terminal.  You might try refreshing the page, or you could visit
+      our{' '} <CommunitySiteLink/> {' '}for further help.
     </StandardModal>
     {children}
   </div>

@@ -94,7 +94,9 @@ export default class extends Component {
             socketIOPath={this.props.socketIOPath}
           >
             {({
+              onCloseSocketError,
               socket,
+              socketError,
             }) => (
               <TerminalContainer onInputLine={onInputLine} socket={socket}>
                 {({
@@ -114,9 +116,11 @@ export default class extends Component {
                       tutorial={tutorial}
                     >
                       <TerminalLayout
+                        onCloseSocketError={onCloseSocketError}
                         onSessionRestartAccepted={onSessionRestartAccepted}
                         onSessionRestartRequestClosed={onSessionRestartRequestClosed}
                         requestSessionRestart={requestSessionRestart}
+                        socketError={socketError}
                       >
                         {terminal}
                       </TerminalLayout>

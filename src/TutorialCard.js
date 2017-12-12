@@ -9,40 +9,54 @@
 import React from 'react';
 import Markdown from 'react-markdown';
 import styled from 'styled-components';
+import {
+  Card,
+  CardBlock,
+  CardText,
+} from 'reactstrap';
+import { CardTitleBlock } from 'flight-reactware';
 
-import Card from './Card';
-import Overlay from './TutorialCardOverlay';
+import Overlay, { ReactwareCardOverlay } from './TutorialCardOverlay';
 import type { TutorialType } from './types';
 
 const cardWidth = '560px';
 const cardHeight = '425px';
-
-const StyledCard = styled(Card)`
-  width: ${cardWidth};
-  height: ${cardHeight};
-`;
 
 type PropTypes = {
   onSelectTutorial: () => void,
   tutorial: TutorialType,
 };
 
-const TutorialCard = ({
+const TutorialCard = styled(({
+  className,
   onSelectTutorial,
   tutorial,
 }: PropTypes) => (
-  <StyledCard
+  <Card
+    className={className}
     onClick={onSelectTutorial}
-    subtitle={tutorial.subtitle}
-    subtitleSize="medium"
-    title={tutorial.title}
-    titleLogoOnRight
-    titleLogoUrl={tutorial.logoUrl}
-    titleSize="large"
   >
-    <Markdown source={tutorial.description} />
+    <CardBlock>
+      <CardTitleBlock
+        logoOnRight
+        logoSrc={tutorial.logoUrl}
+        subtitle={tutorial.subtitle}
+        subtitleSize="medium"
+        title={tutorial.title}
+        titleSize="large"
+      />
+      <CardText>
+        <Markdown source={tutorial.description} />
+      </CardText>
+    </CardBlock>
     <Overlay onSelectTutorial={onSelectTutorial} />
-  </StyledCard>
-);
+  </Card>
+))`
+  width: ${cardWidth};
+  height: ${cardHeight};
+  &:hover ${ReactwareCardOverlay} {
+    opacity: 1;
+  }
+`;
 
 export default TutorialCard;

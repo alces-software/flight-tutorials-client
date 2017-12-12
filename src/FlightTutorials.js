@@ -14,16 +14,24 @@ import SocketContainer from './SocketContainer';
 import TerminalContainer from './TerminalContainer';
 import TerminalLayout from './TerminalLayout';
 import TutorialContainer from './TutorialContainer';
-import TutorialLayout from './TutorialLayout';
-import TutorialLoadErrorMessage from './TutorialLoadErrorMessage';
-import TutorialLoadingMessage from './TutorialLoadingMessage';
-import TutorialSelection from './TutorialSelection';
-import TutorialSelectionLayout from './TutorialSelectionLayout';
+import DefaultTutorialLayout from './TutorialLayout';
+import DefaultTutorialLoadErrorMessage from './TutorialLoadErrorMessage';
+import DefaultTutorialLoadingMessage from './TutorialLoadingMessage';
+import DefaultTutorialSelection from './TutorialSelection';
+import DefaultTutorialSelectionLayout from './TutorialSelectionLayout';
 import loadTutorials from './utils/loadTutorials';
 
 const debug = mkDebug('FlightTutorials:index');
 
 export default class extends Component {
+  static defaultProps = {
+    TutorialLayout: DefaultTutorialLayout,
+    TutorialLoadingMessage: DefaultTutorialLoadingMessage,
+    TutorialLoadErrorMessage: DefaultTutorialLoadErrorMessage,
+    TutorialSelectionLayout: DefaultTutorialSelectionLayout,
+    TutorialSelection: DefaultTutorialSelection,
+  };
+
   constructor(...args: any) {
     super(...args);
     loadTutorials().then((tutorials) => {
@@ -44,8 +52,15 @@ export default class extends Component {
   };
 
   props: {
+    columns?: number,
+    rows?: number,
     socketIOUrl: string,
     socketIOPath: string,
+    TutorialLayout: React$Element<*>,
+    TutorialLoadingMessage: React$Element<*>,
+    TutorialLoadErrorMessage: React$Element<*>,
+    TutorialSelectionLayout: React$Element<*>,
+    TutorialSelection: React$Element<*>,
   }
 
   handleTutorialSelection = (idx: ?number) => {
@@ -59,21 +74,21 @@ export default class extends Component {
 
   render() {
     if (this.state.tutorialLoading) {
-      return <TutorialLoadingMessage />;
+      return <this.props.TutorialLoadingMessage />;
     }
     if (this.state.tutorials == null) {
-      return <TutorialLoadErrorMessage />;
+      return <this.props.TutorialLoadErrorMessage />;
     }
     if (this.state.selectedTutorial == null) {
       return (
-        <TutorialSelectionLayout
+        <this.props.TutorialSelectionLayout
           singleTutorial={this.state.tutorials.length === 1}
         >
-          <TutorialSelection
+          <this.props.TutorialSelection
             tutorials={this.state.tutorials}
             onSelectTutorial={this.handleTutorialSelection}
           />
-        </TutorialSelectionLayout>
+        </this.props.TutorialSelectionLayout>
       );
     }
 
@@ -98,7 +113,12 @@ export default class extends Component {
               socket,
               socketError,
             }) => (
-              <TerminalContainer onInputLine={onInputLine} socket={socket}>
+              <TerminalContainer
+                columns={this.props.columns}
+                rows={this.props.rows}
+                onInputLine={onInputLine}
+                socket={socket}
+              >
                 {({
                   onSessionRestartAccepted,
                   onSessionRestartRequestClosed,
@@ -106,7 +126,7 @@ export default class extends Component {
                   terminal,
                 }) => (
                   <div>
-                    <TutorialLayout
+                    <this.props.TutorialLayout
                       completedSteps={completedSteps}
                       currentStep={currentStep}
                       expandStep={expandStep}
@@ -124,7 +144,7 @@ export default class extends Component {
                       >
                         {terminal}
                       </TerminalLayout>
-                    </TutorialLayout>
+                    </this.props.TutorialLayout>
                   </div>
                 )}
               </TerminalContainer>

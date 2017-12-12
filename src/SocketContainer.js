@@ -24,7 +24,7 @@ type ChildrenPropType = ({
 //
 // Eventually, this is likely to manage reconnections, failure to connect and
 // other similar events.  For now it exists to avoid duplicating code between
-// flight-tutorials-client and Flight Tutorials.
+// flight-tutorials-client and Flight Launch.
 export default class SocketContainer extends React.Component {
 
   constructor(...args: any) {

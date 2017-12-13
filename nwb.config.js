@@ -5,12 +5,12 @@ var config = {
   type: 'react-component',
   npm: {
     esModules: true,
-    umd: {
-      global: 'FlightTutorials',
-      externals: {
-        react: 'React'
-      }
-    }
+    // umd: {
+    //   global: 'FlightTutorials',
+    //   externals: {
+    //     react: 'React'
+    //   }
+    // }
   },
   webpack: {
     publicPath: process.env.NODE_ENV === 'production' ? '/tutorials/static/' : '',

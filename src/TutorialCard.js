@@ -23,6 +23,7 @@ const cardWidth = '560px';
 const cardHeight = '425px';
 
 type PropTypes = {
+  className: string,
   onSelectTutorial: () => void,
   tutorial: TutorialType,
 };

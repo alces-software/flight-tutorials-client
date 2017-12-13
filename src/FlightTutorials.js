@@ -56,11 +56,16 @@ export default class extends Component {
     rows?: number,
     socketIOUrl: string,
     socketIOPath: string,
-    TutorialLayout: React$Element<*>,
-    TutorialLoadingMessage: React$Element<*>,
-    TutorialLoadErrorMessage: React$Element<*>,
-    TutorialSelectionLayout: React$Element<*>,
-    TutorialSelection: React$Element<*>,
+    // $FlowFixMe
+    TutorialLayout?: React$Element<*>,
+    // $FlowFixMe
+    TutorialLoadingMessage?: React$Element<*>,
+    // $FlowFixMe
+    TutorialLoadErrorMessage?: React$Element<*>,
+    // $FlowFixMe
+    TutorialSelectionLayout?: React$Element<*>,
+    // $FlowFixMe
+    TutorialSelection?: React$Element<*>,
   }
 
   handleTutorialSelection = (idx: ?number) => {

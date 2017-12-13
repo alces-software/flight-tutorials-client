@@ -70,7 +70,9 @@ function renderTutorialContainer() {
           socketIOPath={socketIOPath}
         >
           {({
+            onCloseSocketError,
             socket,
+            socketError,
           }) => (
             <TerminalContainer onInputLine={onInputLine} socket={socket}>
               {({
@@ -90,9 +92,11 @@ function renderTutorialContainer() {
                     tutorial={tutorial}
                   >
                     <TerminalLayout
+                      onCloseSocketError={onCloseSocketError}
                       onSessionRestartAccepted={onSessionRestartAccepted}
                       onSessionRestartRequestClosed={onSessionRestartRequestClosed}
                       requestSessionRestart={requestSessionRestart}
+                      socketError={socketError}
                     >
                       {terminal}
                     </TerminalLayout>

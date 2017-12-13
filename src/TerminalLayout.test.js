@@ -18,9 +18,11 @@ const dummyTerminal = <div>dummy terminal</div>;
 
 const renderTerminalLayout = () => (
   <TerminalLayout
+    onCloseSocketError={() => {}}
     onSessionRestartAccepted={() => {}}
     onSessionRestartRequestClosed={() => {}}
     requestSessionRestart={false}
+    socketError={false}
   >
     {dummyTerminal}
   </TerminalLayout>

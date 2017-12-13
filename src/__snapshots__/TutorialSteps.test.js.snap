@@ -3,13 +3,13 @@
 exports[`renders correctly when currentStep === step1 1`] = `
 <div>
   <div
-    className="TutorialStep TutorialStep--current card"
+    className="card"
   >
     <div
       className="card-info card-header"
     >
       <div
-        className="sc-bdVaJa jOlpRV"
+        className="sc-bdVaJa XEKZg"
       >
         <a
           onClick={[Function]}
@@ -50,13 +50,13 @@ exports[`renders correctly when currentStep === step1 1`] = `
     </div>
   </div>
   <div
-    className="TutorialStep card"
+    className="card"
   >
     <div
       className="card-default card-header"
     >
       <div
-        className="sc-bdVaJa jOlpRV"
+        className="sc-bdVaJa jONfBd"
       >
         <a
           onClick={[Function]}
@@ -86,13 +86,13 @@ exports[`renders correctly when currentStep === step1 1`] = `
     </div>
   </div>
   <div
-    className="TutorialStep card"
+    className="card"
   >
     <div
       className="card-default card-header"
     >
       <div
-        className="sc-bdVaJa jOlpRV"
+        className="sc-bdVaJa jONfBd"
       >
         <a
           onClick={[Function]}
@@ -127,13 +127,13 @@ exports[`renders correctly when currentStep === step1 1`] = `
 exports[`renders correctly when currentStep === step2 1`] = `
 <div>
   <div
-    className="TutorialStep TutorialStep--completed card"
+    className="card"
   >
     <div
       className="card-success card-header"
     >
       <div
-        className="sc-bdVaJa jOlpRV"
+        className="sc-bdVaJa XEKZg"
       >
         <a
           onClick={[Function]}
@@ -163,13 +163,13 @@ exports[`renders correctly when currentStep === step2 1`] = `
     </div>
   </div>
   <div
-    className="TutorialStep TutorialStep--current card"
+    className="card"
   >
     <div
       className="card-info card-header"
     >
       <div
-        className="sc-bdVaJa jOlpRV"
+        className="sc-bdVaJa XEKZg"
       >
         <a
           onClick={[Function]}
@@ -210,13 +210,13 @@ exports[`renders correctly when currentStep === step2 1`] = `
     </div>
   </div>
   <div
-    className="TutorialStep card"
+    className="card"
   >
     <div
       className="card-default card-header"
     >
       <div
-        className="sc-bdVaJa jOlpRV"
+        className="sc-bdVaJa jONfBd"
       >
         <a
           onClick={[Function]}
@@ -251,13 +251,13 @@ exports[`renders correctly when currentStep === step2 1`] = `
 exports[`renders correctly when currentStep === step3 1`] = `
 <div>
   <div
-    className="TutorialStep TutorialStep--completed card"
+    className="card"
   >
     <div
       className="card-success card-header"
     >
       <div
-        className="sc-bdVaJa jOlpRV"
+        className="sc-bdVaJa XEKZg"
       >
         <a
           onClick={[Function]}
@@ -287,13 +287,13 @@ exports[`renders correctly when currentStep === step3 1`] = `
     </div>
   </div>
   <div
-    className="TutorialStep TutorialStep--completed card"
+    className="card"
   >
     <div
       className="card-success card-header"
     >
       <div
-        className="sc-bdVaJa jOlpRV"
+        className="sc-bdVaJa XEKZg"
       >
         <a
           onClick={[Function]}
@@ -323,13 +323,13 @@ exports[`renders correctly when currentStep === step3 1`] = `
     </div>
   </div>
   <div
-    className="TutorialStep TutorialStep--current card"
+    className="card"
   >
     <div
       className="card-info card-header"
     >
       <div
-        className="sc-bdVaJa jOlpRV"
+        className="sc-bdVaJa XEKZg"
       >
         <a
           onClick={[Function]}

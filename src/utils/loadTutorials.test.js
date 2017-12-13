@@ -44,7 +44,7 @@ describe('getTutorialsUrl', () => {
     );
   });
 
-  it('allows specifying the tutorials via window.location.search', () => {
+  xit('allows specifying the tutorials via window.location.search', () => {
     setWindowLocationSearch('?tutorials=custom');
     const url = getTutorialsUrl();
 

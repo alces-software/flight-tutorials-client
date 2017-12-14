@@ -14,16 +14,24 @@ import SocketContainer from './SocketContainer';
 import TerminalContainer from './TerminalContainer';
 import TerminalLayout from './TerminalLayout';
 import TutorialContainer from './TutorialContainer';
-import TutorialLayout from './TutorialLayout';
-import TutorialLoadErrorMessage from './TutorialLoadErrorMessage';
-import TutorialLoadingMessage from './TutorialLoadingMessage';
-import TutorialSelection from './TutorialSelection';
-import TutorialSelectionLayout from './TutorialSelectionLayout';
+import DefaultTutorialLayout from './TutorialLayout';
+import DefaultTutorialLoadErrorMessage from './TutorialLoadErrorMessage';
+import DefaultTutorialLoadingMessage from './TutorialLoadingMessage';
+import DefaultTutorialSelection from './TutorialSelection';
+import DefaultTutorialSelectionLayout from './TutorialSelectionLayout';
 import loadTutorials from './utils/loadTutorials';
 
 const debug = mkDebug('FlightTutorials:index');
 
 export default class extends Component {
+  static defaultProps = {
+    TutorialLayout: DefaultTutorialLayout,
+    TutorialLoadingMessage: DefaultTutorialLoadingMessage,
+    TutorialLoadErrorMessage: DefaultTutorialLoadErrorMessage,
+    TutorialSelectionLayout: DefaultTutorialSelectionLayout,
+    TutorialSelection: DefaultTutorialSelection,
+  };
+
   constructor(...args: any) {
     super(...args);
     loadTutorials().then((tutorials) => {
@@ -44,8 +52,17 @@ export default class extends Component {
   };
 
   props: {
+    // eslint-disable-next-line react/require-default-props
+    columns?: number,
+    // eslint-disable-next-line react/require-default-props
+    rows?: number,
     socketIOUrl: string,
     socketIOPath: string,
+    TutorialLayout?: any,
+    TutorialLoadingMessage?: any,
+    TutorialLoadErrorMessage?: any,
+    TutorialSelectionLayout?: any,
+    TutorialSelection?: any,
   }
 
   handleTutorialSelection = (idx: ?number) => {
@@ -58,17 +75,29 @@ export default class extends Component {
   }
 
   render() {
+    const {
+      TutorialLayout,
+      TutorialLoadingMessage,
+      TutorialLoadErrorMessage,
+      TutorialSelectionLayout,
+      TutorialSelection,
+    } = this.props;
+
     if (this.state.tutorialLoading) {
+      // $FlowFixMe
       return <TutorialLoadingMessage />;
     }
     if (this.state.tutorials == null) {
+      // $FlowFixMe
       return <TutorialLoadErrorMessage />;
     }
     if (this.state.selectedTutorial == null) {
       return (
+        // $FlowFixMe
         <TutorialSelectionLayout
           singleTutorial={this.state.tutorials.length === 1}
         >
+          {/* // $FlowFixMe */}
           <TutorialSelection
             tutorials={this.state.tutorials}
             onSelectTutorial={this.handleTutorialSelection}
@@ -98,7 +127,12 @@ export default class extends Component {
               socket,
               socketError,
             }) => (
-              <TerminalContainer onInputLine={onInputLine} socket={socket}>
+              <TerminalContainer
+                columns={this.props.columns}
+                rows={this.props.rows}
+                onInputLine={onInputLine}
+                socket={socket}
+              >
                 {({
                   onSessionRestartAccepted,
                   onSessionRestartRequestClosed,
@@ -106,6 +140,7 @@ export default class extends Component {
                   terminal,
                 }) => (
                   <div>
+                    {/* // $FlowFixMe */}
                     <TutorialLayout
                       completedSteps={completedSteps}
                       currentStep={currentStep}

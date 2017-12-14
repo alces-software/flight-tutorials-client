@@ -48,13 +48,13 @@ exports[`renders correctly 1`] = `
         </div>
         <div>
           <div
-            className="TutorialStep TutorialStep--completed card"
+            className="card"
           >
             <div
               className="card-success card-header"
             >
               <div
-                className="sc-bxivhb ppkEw"
+                className="sc-bxivhb epCaZx"
               >
                 <a
                   onClick={[Function]}
@@ -84,13 +84,13 @@ exports[`renders correctly 1`] = `
             </div>
           </div>
           <div
-            className="TutorialStep TutorialStep--current card"
+            className="card"
           >
             <div
               className="card-info card-header"
             >
               <div
-                className="sc-bxivhb ppkEw"
+                className="sc-bxivhb epCaZx"
               >
                 <a
                   onClick={[Function]}

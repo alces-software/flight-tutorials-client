@@ -7,16 +7,12 @@
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
 import React from 'react';
-import cx from 'classnames';
 import styled from 'styled-components';
 
 import StarRule from './StarRule';
 
-// XXX Remove mixed use of classnames and styled-components.
 const Wrapper = styled.div`
-  .single-tutorial {
-    width: 592px;
-  }
+  ${props => props.singleTutorial && 'width: 592px;'}
 `;
 
 type PropTypes = {
@@ -27,20 +23,14 @@ type PropTypes = {
 const TutorialSelectionLayout = ({
   children,
   singleTutorial,
-}: PropTypes) => {
-  const className = cx('container', {
-    'single-tutorial': singleTutorial,
-  });
-
-  return (
-    <Wrapper>
-      <h2 className="flight-tutorials-header">Flight Compute Tutorial</h2>
-      <StarRule variant="primary" />
-      <div className={className}>
-        {children}
-      </div>
+}: PropTypes) => (
+  <div>
+    <h2 className="flight-tutorials-header">Flight Compute Tutorial</h2>
+    <StarRule variant="primary" />
+    <Wrapper singleTutorial={singleTutorial}>
+      {children}
     </Wrapper>
-  );
-};
+  </div>
+);
 
 export default TutorialSelectionLayout;

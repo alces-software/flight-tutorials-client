@@ -10,35 +10,30 @@
 import React from 'react';
 import { Button, Card, CardBlock, CardHeader, Collapse } from 'reactstrap';
 import Markdown from 'react-markdown';
-import cx from 'classnames';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import type { StepMap } from './types';
 
-// XXX Remove mix of classnames and styled-components.
 const Title = styled.div`
   a:hover {
       text-decoration: none;
-      color: inherit;
       cursor: inherit;
-
-      .TutorialStep--completed & , .TutorialStep--current & {
-          cursor: pointer;
-          text-decoration: underline;
-      }
   }
+
+  ${({ isCompleted, isCurrent }) => (isCompleted || isCurrent) && css`
+    a {
+      color: white;
+    }
+    a:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  `}
 `;
 
 const SkipButton = styled(Button)`
   margin-top: -4px;
 `;
-
-function getClassName(stepName, currentStep, completedSteps) {
-  return cx('TutorialStep', {
-    'TutorialStep--current': currentStep === stepName,
-    'TutorialStep--completed': completedSteps.includes(stepName),
-  });
-}
 
 function getColour(stepName, currentStep, completedSteps) {
   if (stepName === currentStep) {
@@ -77,8 +72,13 @@ const TutorialSteps = ({
 }) => {
   const panels = Object.keys(steps).map((stepName, idx) => {
     const step = steps[stepName];
-    const header = (
-      <Title>
+    const isCompleted = completedSteps.includes(stepName);
+    const isCurrent = currentStep === stepName;
+    const title = (
+      <Title
+        isCompleted={isCompleted}
+        isCurrent={isCurrent}
+      >
         <a
           onClick={() => expandStep(stepName)}
           role="menuitem"
@@ -97,14 +97,11 @@ const TutorialSteps = ({
     );
 
     return (
-      <Card
-        key={stepName}
-        className={getClassName(stepName, currentStep, completedSteps)}
-      >
+      <Card key={stepName}>
         <CardHeader
           className={getColour(stepName, currentStep, completedSteps)}
         >
-          {header}
+          {title}
         </CardHeader>
         <Collapse isOpen={isOpen(stepName, expandedStep)}>
           <CardBlock>

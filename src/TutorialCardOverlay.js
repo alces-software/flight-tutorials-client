@@ -8,25 +8,29 @@
  *===========================================================================*/
 import React from 'react';
 import { Button } from 'reactstrap';
+import FontAwesome from 'react-fontawesome';
+import { CardOverlay as ReactwareCardOverlay, TooltipTrigger } from 'flight-reactware';
 
-import TooltipTrigger from './TooltipTrigger';
-import Icon from './Icon';
+export { ReactwareCardOverlay };
 
 type PropTypes = {
   onSelectTutorial: () => void,
 };
 
 const TutorialCardOverlay = ({ onSelectTutorial }: PropTypes) => (
-  <div className="flight-cardOverlay">
+  <ReactwareCardOverlay>
     <Button
       color="link"
       onClick={onSelectTutorial}
     >
       <TooltipTrigger tooltip="Start tutorial" >
-        <Icon name="search-plus" size="2x" />
+        <FontAwesome
+          name="search-plus"
+          size="2x"
+        />
       </TooltipTrigger>
     </Button>
-  </div>
+  </ReactwareCardOverlay>
 );
 
 export default TutorialCardOverlay;

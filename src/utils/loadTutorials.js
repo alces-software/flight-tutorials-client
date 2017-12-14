@@ -14,17 +14,22 @@ const debug = mkDebug('FlightTutorials:loadTutorials');
 
 function getTutorialsPath() {
   const params = new URLSearchParams(window.location.search);
-  const tutorialsUrl = params.get('tutorials');
-  if (tutorialsUrl != null && tutorialsUrl !== '') {
-    return tutorialsUrl;
+  const path = params.get('tutorials');
+  if (path != null && path !== '') {
+    return path;
   }
   return 'default';
 }
 
+// XXX Perhaps, we should have the client determine if it wants to cache this
+// value or not.
+let tutorialsPath;
 export function getTutorialsUrl() {
-  const path = getTutorialsPath();
+  if (tutorialsPath == null) {
+    tutorialsPath = getTutorialsPath();
+  }
   const urlPrefix = 'https://s3-eu-west-1.amazonaws.com/alces-flight/FlightTutorials/tutorials/';
-  return `${urlPrefix}${path}.json`;
+  return `${urlPrefix}${tutorialsPath}.json`;
 }
 
 type TutorialsPromise = Promise<Array<TutorialType>>;

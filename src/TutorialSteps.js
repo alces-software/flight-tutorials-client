@@ -20,7 +20,7 @@ const Title = styled.div`
       cursor: inherit;
   }
 
-  ${({ isCompleted, isCurrent }) => ( isCompleted || isCurrent ) && css`
+  ${({ isCompleted, isCurrent }) => (isCompleted || isCurrent) && css`
     a {
       color: white;
     }

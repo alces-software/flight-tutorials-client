@@ -63,7 +63,7 @@ const TerminalLayout = ({
     >
       Unfortunately, there was an unexpected error when attempting to connect
       the terminal.  You might try refreshing the page, or you could visit
-      our{' '} <CommunitySiteLink/> {' '}for further help.
+      our{' '} <CommunitySiteLink /> {' '}for further help.
     </StandardModal>
     {children}
   </div>

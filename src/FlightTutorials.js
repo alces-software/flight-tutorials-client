@@ -52,20 +52,17 @@ export default class extends Component {
   };
 
   props: {
+    // eslint-disable-next-line react/require-default-props
     columns?: number,
+    // eslint-disable-next-line react/require-default-props
     rows?: number,
     socketIOUrl: string,
     socketIOPath: string,
-    // $FlowFixMe
-    TutorialLayout?: React$Element<*>,
-    // $FlowFixMe
-    TutorialLoadingMessage?: React$Element<*>,
-    // $FlowFixMe
-    TutorialLoadErrorMessage?: React$Element<*>,
-    // $FlowFixMe
-    TutorialSelectionLayout?: React$Element<*>,
-    // $FlowFixMe
-    TutorialSelection?: React$Element<*>,
+    TutorialLayout?: any,
+    TutorialLoadingMessage?: any,
+    TutorialLoadErrorMessage?: any,
+    TutorialSelectionLayout?: any,
+    TutorialSelection?: any,
   }
 
   handleTutorialSelection = (idx: ?number) => {
@@ -78,22 +75,34 @@ export default class extends Component {
   }
 
   render() {
+    const {
+      TutorialLayout,
+      TutorialLoadingMessage,
+      TutorialLoadErrorMessage,
+      TutorialSelectionLayout,
+      TutorialSelection,
+    } = this.props;
+
     if (this.state.tutorialLoading) {
-      return <this.props.TutorialLoadingMessage />;
+      // $FlowFixMe
+      return <TutorialLoadingMessage />;
     }
     if (this.state.tutorials == null) {
-      return <this.props.TutorialLoadErrorMessage />;
+      // $FlowFixMe
+      return <TutorialLoadErrorMessage />;
     }
     if (this.state.selectedTutorial == null) {
       return (
-        <this.props.TutorialSelectionLayout
+        // $FlowFixMe
+        <TutorialSelectionLayout
           singleTutorial={this.state.tutorials.length === 1}
         >
-          <this.props.TutorialSelection
+          {/* // $FlowFixMe */}
+          <TutorialSelection
             tutorials={this.state.tutorials}
             onSelectTutorial={this.handleTutorialSelection}
           />
-        </this.props.TutorialSelectionLayout>
+        </TutorialSelectionLayout>
       );
     }
 
@@ -131,7 +140,8 @@ export default class extends Component {
                   terminal,
                 }) => (
                   <div>
-                    <this.props.TutorialLayout
+                    {/* // $FlowFixMe */}
+                    <TutorialLayout
                       completedSteps={completedSteps}
                       currentStep={currentStep}
                       expandStep={expandStep}
@@ -149,7 +159,7 @@ export default class extends Component {
                       >
                         {terminal}
                       </TerminalLayout>
-                    </this.props.TutorialLayout>
+                    </TutorialLayout>
                   </div>
                 )}
               </TerminalContainer>

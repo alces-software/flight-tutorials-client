@@ -11,7 +11,7 @@ import Markdown from 'react-markdown';
 import styled from 'styled-components';
 import {
   Card,
-  CardBlock,
+  CardBody,
   CardText,
 } from 'reactstrap';
 import { CardTitleBlock } from 'flight-reactware';
@@ -37,7 +37,7 @@ const TutorialCard = styled(({
     className={className}
     onClick={onSelectTutorial}
   >
-    <CardBlock>
+    <CardBody>
       <CardTitleBlock
         logoOnRight
         logoSrc={tutorial.logoUrl}
@@ -49,7 +49,7 @@ const TutorialCard = styled(({
       <CardText>
         <Markdown source={tutorial.description} />
       </CardText>
-    </CardBlock>
+    </CardBody>
     <Overlay onSelectTutorial={onSelectTutorial} />
   </Card>
 ))`

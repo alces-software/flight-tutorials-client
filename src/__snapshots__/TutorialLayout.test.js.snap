@@ -73,7 +73,7 @@ exports[`renders correctly 1`] = `
               style={Object {}}
             >
               <div
-                className="card-block"
+                className="card-body"
               >
                 <div>
                   <p>
@@ -109,7 +109,7 @@ exports[`renders correctly 1`] = `
               style={Object {}}
             >
               <div
-                className="card-block"
+                className="card-body"
               >
                 <div>
                   <p>

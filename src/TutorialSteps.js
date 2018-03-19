@@ -8,7 +8,7 @@
  *===========================================================================*/
 
 import React from 'react';
-import { Button, Card, CardBlock, CardHeader, Collapse } from 'reactstrap';
+import { Button, Card, CardBody, CardHeader, Collapse } from 'reactstrap';
 import Markdown from 'react-markdown';
 import styled, { css } from 'styled-components';
 
@@ -104,9 +104,9 @@ const TutorialSteps = ({
           {title}
         </CardHeader>
         <Collapse isOpen={isOpen(stepName, expandedStep)}>
-          <CardBlock>
+          <CardBody>
             <Markdown escapeHtml={false} source={step.description} />
-          </CardBlock>
+          </CardBody>
         </Collapse>
       </Card>
     );

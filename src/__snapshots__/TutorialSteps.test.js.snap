@@ -39,7 +39,7 @@ exports[`renders correctly when currentStep === step1 1`] = `
       style={Object {}}
     >
       <div
-        className="card-block"
+        className="card-body"
       >
         <div>
           <p>
@@ -75,7 +75,7 @@ exports[`renders correctly when currentStep === step1 1`] = `
       style={Object {}}
     >
       <div
-        className="card-block"
+        className="card-body"
       >
         <div>
           <p>
@@ -111,7 +111,7 @@ exports[`renders correctly when currentStep === step1 1`] = `
       style={Object {}}
     >
       <div
-        className="card-block"
+        className="card-body"
       >
         <div>
           <p>
@@ -152,7 +152,7 @@ exports[`renders correctly when currentStep === step2 1`] = `
       style={Object {}}
     >
       <div
-        className="card-block"
+        className="card-body"
       >
         <div>
           <p>
@@ -199,7 +199,7 @@ exports[`renders correctly when currentStep === step2 1`] = `
       style={Object {}}
     >
       <div
-        className="card-block"
+        className="card-body"
       >
         <div>
           <p>
@@ -235,7 +235,7 @@ exports[`renders correctly when currentStep === step2 1`] = `
       style={Object {}}
     >
       <div
-        className="card-block"
+        className="card-body"
       >
         <div>
           <p>
@@ -276,7 +276,7 @@ exports[`renders correctly when currentStep === step3 1`] = `
       style={Object {}}
     >
       <div
-        className="card-block"
+        className="card-body"
       >
         <div>
           <p>
@@ -312,7 +312,7 @@ exports[`renders correctly when currentStep === step3 1`] = `
       style={Object {}}
     >
       <div
-        className="card-block"
+        className="card-body"
       >
         <div>
           <p>
@@ -348,7 +348,7 @@ exports[`renders correctly when currentStep === step3 1`] = `
       style={Object {}}
     >
       <div
-        className="card-block"
+        className="card-body"
       >
         <div>
           <p>

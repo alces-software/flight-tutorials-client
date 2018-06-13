@@ -101,6 +101,7 @@ commit_version_bump() {
 }
 
 build_and_pack() {
+    yarn run clean
     yarn run build
     yarn pack
 }

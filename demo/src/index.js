@@ -7,7 +7,10 @@
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
 
-import * as example1 from './example1';
+// import * as example from './example1';
+// import * as example from './example2';
+// import * as example from './example3';
+import * as example from './example-switcher';
 
 // XXX Clients need to include these styles or equivalents.
 // $FlowFixMe
@@ -39,8 +42,8 @@ function getSocketIOPath() {
   return '/tutorials/socket.io';
 }
 
-example1.createRequiredDomNodes();
-example1.render({
+example.createRequiredDomNodes();
+example.render({
   socketIOPath: getSocketIOPath(),
   socketIOUrl: getSocketIOUrl()
 });

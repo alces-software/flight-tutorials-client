@@ -157,5 +157,9 @@ export const createRequiredDomNodes = () => {
   tutorialContainerNode.id = 'tutorialContainer';
   ex2.appendChild(tutorialContainerNode);
 
+  if (document.body) {
+    document.body.style.paddingTop = "0";
+  }
+
   demo.appendChild(ex2);
 };

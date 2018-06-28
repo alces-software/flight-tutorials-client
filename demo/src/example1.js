@@ -22,6 +22,11 @@ export const createRequiredDomNodes = () => {
 
   const ex1 = document.createElement('div');
   ex1.id = 'example1';
+
+  if (document.body) {
+    document.body.style.paddingTop = "0";
+  }
+
   demo.appendChild(ex1);
 };
 

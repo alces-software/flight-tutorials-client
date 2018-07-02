@@ -85,6 +85,10 @@ export default class SocketContainer extends React.Component {
       debug('Socket error: %o', error);
       this.setState({ status: 'failed' });
     });
+    this.socket.on('disconnect', (error) => {
+      debug('Socket disconnected: %o', error);
+      this.setState({ status: 'failed' });
+    });
   }
 
   state: {

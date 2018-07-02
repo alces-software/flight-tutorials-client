@@ -34,7 +34,9 @@ function renderTerminal() {
         socketError,
       }) => (
         <TerminalContainer
+          columns={120}
           env={env}
+          rows={30}
           socket={socket}
         >
           {({

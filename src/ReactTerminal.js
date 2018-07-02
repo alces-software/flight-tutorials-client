@@ -28,6 +28,7 @@ const debug = mkDebug('FlightTutorials:ReactTerminal');
 export default class ReactTerminal extends Component {
   static defaultProps = {
     columns: 80,
+    env: {},
     onInputLine: (line) => {},  // eslint-disable-line no-unused-vars
     rows: 50,
   };
@@ -54,6 +55,7 @@ export default class ReactTerminal extends Component {
 
   props: {
     columns: number,
+    env?: {},
     onInputLine?: (string) => void,
     onSessionEnd?: () => void,  // eslint-disable-line react/require-default-props
     rows: number,
@@ -175,6 +177,7 @@ export default class ReactTerminal extends Component {
       env: {
         TERM: 'vt100',
         cw_SETTINGS_theme: 'dark',
+        ...this.props.env,
       },
     };
     ss(this.props.socket).emit('new', this.stream, options);

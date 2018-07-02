@@ -18,6 +18,10 @@ import {
 let socketIOUrl;
 let socketIOPath;
 
+const env = {
+  LANG: 'en_GB.UTF-8',
+};
+
 function renderTerminal() {
   ReactDOM.render((
     <SocketContainer
@@ -29,7 +33,10 @@ function renderTerminal() {
         socket,
         socketError,
       }) => (
-        <TerminalContainer socket={socket}>
+        <TerminalContainer
+          env={env}
+          socket={socket}
+        >
           {({
             onSessionRestartAccepted,
             onSessionRestartRequestClosed,

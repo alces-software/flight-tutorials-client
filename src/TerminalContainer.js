@@ -23,6 +23,7 @@ type ChildrenPropType = ({
 
 export default class TerminalContainer extends Component {
   static defaultProps = {
+    env: {},
     onInputLine: (line) => {},  // eslint-disable-line no-unused-vars
   }
 
@@ -42,6 +43,7 @@ export default class TerminalContainer extends Component {
   props: {
     children: ChildrenPropType,
     columns?: number,  // eslint-disable-line react/require-default-props
+    env?: {},
     onInputLine?: (string) => void,
     rows?: number,  // eslint-disable-line react/require-default-props
     socket: any,
@@ -69,6 +71,7 @@ export default class TerminalContainer extends Component {
   render() {
     const terminal = (
       <ReactTerminal
+        env={this.props.env}
         key={this.state.sessionId}
         columns={this.props.columns}
         onInputLine={this.props.onInputLine}

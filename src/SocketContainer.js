@@ -60,7 +60,7 @@ export default class SocketContainer extends React.Component {
     this.socket = io(this.props.socketIOUrl, { path: this.props.socketIOPath });
     this.socket.on('connect', () => {
       debug('Socket connected');
-      if (this.props.jwt) {
+      if (this.props.auth) {
         debug('Authentication credentials present: authenticating');
         this.setState({ status: 'authenticating' });
         this.socket.on('authenticated', () => {
@@ -71,7 +71,7 @@ export default class SocketContainer extends React.Component {
           debug('Socket unauthorized: %O', error);
           this.setState({ status: 'failed' });
         });
-        this.socket.emit('authentication', { jwt: this.props.jwt });
+        this.socket.emit('authentication', this.props.auth);
       } else {
         debug('Authentication credentials not present.');
         this.setState({ status: 'connected' });
@@ -101,7 +101,7 @@ export default class SocketContainer extends React.Component {
 
   props: {
     children: ChildrenPropType,
-    jwt?: string,
+    auth?: {},
     socketIOUrl: string,
     socketIOPath: string,
   }

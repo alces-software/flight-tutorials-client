@@ -18,6 +18,10 @@ import {
 let socketIOUrl;
 let socketIOPath;
 
+// For this demo, these need to be set to valid values here.
+const siteId = 1;
+const jwt = "";
+
 const env = {
   LANG: 'en_GB.UTF-8',
 };
@@ -27,6 +31,10 @@ function renderTerminal() {
     <SocketContainer
       socketIOUrl={socketIOUrl}
       socketIOPath={socketIOPath}
+      auth={{
+        jwt: jwt,
+        siteId: siteId,
+      }}
     >
       {({
         onCloseSocketError,

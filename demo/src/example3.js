@@ -18,18 +18,35 @@ import {
 let socketIOUrl;
 let socketIOPath;
 
+// For this demo, these need to be set to valid values here.
+const siteId = 1;
+const jwt = "";
+
+const env = {
+  LANG: 'en_GB.UTF-8',
+};
+
 function renderTerminal() {
   ReactDOM.render((
     <SocketContainer
       socketIOUrl={socketIOUrl}
       socketIOPath={socketIOPath}
+      auth={{
+        jwt: jwt,
+        siteId: siteId,
+      }}
     >
       {({
         onCloseSocketError,
         socket,
         socketError,
       }) => (
-        <TerminalContainer socket={socket}>
+        <TerminalContainer
+          columns={120}
+          env={env}
+          rows={30}
+          socket={socket}
+        >
           {({
             onSessionRestartAccepted,
             onSessionRestartRequestClosed,

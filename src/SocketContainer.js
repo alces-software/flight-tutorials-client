@@ -20,6 +20,30 @@ type ChildrenPropType = ({
   socketError: boolean,
 }) => React$Element<*>;
 
+type SocketStatus =
+  // Waiting for the socketio connection.
+  'connecting' |
+
+  // A connection has been established; authentication is required; waiting on
+  // the authentication response.
+  'authenticating' |
+
+  // A connection has been established; authentication is required;
+  // authentication has been successful.  The socket is ready to use.
+  'authenticated' |
+
+  // A connection has been established; authentication is not required.  The
+  // socket is ready to use.
+  'connected' |
+
+  // Either the connection failed, or authentication failed.
+  'failed' |
+
+  // The failure has been shown the user and dismissed.  We are not attempting
+  // to reconnect.
+  'idle'
+;
+
 // Manages a socket.io-client socket.
 //
 // Eventually, this is likely to manage reconnections, failure to connect and
@@ -32,10 +56,26 @@ export default class SocketContainer extends React.Component {
     this.state = {
       status: 'connecting',
     };
+
     this.socket = io(this.props.socketIOUrl, { path: this.props.socketIOPath });
     this.socket.on('connect', () => {
       debug('Socket connected');
-      this.setState({ status: 'connected' });
+      if (this.props.auth) {
+        debug('Authentication credentials present: authenticating');
+        this.setState({ status: 'authenticating' });
+        this.socket.on('authenticated', () => {
+          debug('Socket authenticated');
+          this.setState({ status: 'authenticated' });
+        });
+        this.socket.on('unauthorized', (error) => {
+          debug('Socket unauthorized: %O', error);
+          this.setState({ status: 'failed' });
+        });
+        this.socket.emit('authentication', this.props.auth);
+      } else {
+        debug('Authentication credentials not present.');
+        this.setState({ status: 'connected' });
+      }
     });
     this.socket.on('connect_error', (error) => {
       debug('Socket connection error: %o', error);
@@ -45,10 +85,14 @@ export default class SocketContainer extends React.Component {
       debug('Socket error: %o', error);
       this.setState({ status: 'failed' });
     });
+    this.socket.on('disconnect', (error) => {
+      debug('Socket disconnected: %o', error);
+      this.setState({ status: 'failed' });
+    });
   }
 
   state: {
-    status: 'connecting' | 'connected' | 'failed' | 'idle',
+    status: SocketStatus,
   };
 
   componentWillUnmount() {
@@ -57,6 +101,7 @@ export default class SocketContainer extends React.Component {
 
   props: {
     children: ChildrenPropType,
+    auth?: {},  // eslint-disable-line react/require-default-props
     socketIOUrl: string,
     socketIOPath: string,
   }
@@ -70,16 +115,20 @@ export default class SocketContainer extends React.Component {
     this.setState({ status: 'idle' });
   }
 
-  render() {
+  initializing() {
     const status = this.state.status;
-    if (status === 'connecting') {
+    return status === 'connecting' || status === 'authenticating';
+  }
+
+  render() {
+    if (this.initializing()) {
       return <DelaySpinner />;
     }
 
     return this.props.children({
       onCloseSocketError: this.handleClearSocketError,
       socket: this.socket,
-      socketError: status === 'failed',
+      socketError: this.state.status === 'failed',
     });
   }
 }

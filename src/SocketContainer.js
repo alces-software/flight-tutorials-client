@@ -101,7 +101,7 @@ export default class SocketContainer extends React.Component {
 
   props: {
     children: ChildrenPropType,
-    auth?: {},
+    auth?: {},  // eslint-disable-line react/require-default-props
     socketIOUrl: string,
     socketIOPath: string,
   }

@@ -59,6 +59,7 @@ function renderTerminal() {
               onSessionRestartRequestClosed={onSessionRestartRequestClosed}
               requestSessionRestart={requestSessionRestart}
               socketError={socketError}
+              terminalHeight="calc( 100vh - 64px - 4em )"
             >
               {terminal}
             </TerminalLayout>

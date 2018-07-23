@@ -29,6 +29,7 @@ type PropsType = {
   onSessionRestartRequestClosed: () => void,
   requestSessionRestart: boolean,
   socketError: boolean,
+  terminalHeight: number,
 }
 
 const TerminalLayout = ({
@@ -38,6 +39,7 @@ const TerminalLayout = ({
   onSessionRestartRequestClosed,
   requestSessionRestart,
   socketError,
+  terminalHeight="100vh",
 } : PropsType) => (
   <div>
     <StandardModal
@@ -67,10 +69,15 @@ const TerminalLayout = ({
       our{' '} <CommunitySiteLink /> {' '}for further help.
     </StandardModal>
     <SizeMe
-      refreshRate={200}
+      monitorHeight
+      refreshRate={100}
       refreshMode="debounce"
     >
-      {({ size }) => React.cloneElement(children, { size: size }) }
+      {({ size }) => 
+          <div style={{ height: terminalHeight }}>
+            {React.cloneElement(children, { size: size })}
+          </div>
+      }
     </SizeMe>
   </div>
 );

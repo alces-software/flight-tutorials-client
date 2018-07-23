@@ -48,7 +48,9 @@ export default class ReactTerminal extends Component {
   componentWillUpdate(nextProps) {
     const nextWidth = nextProps.size.width;
     const thisWidth = this.props.size.width;
-    if (nextWidth !== thisWidth) {
+    const nextHeight = nextProps.size.height;
+    const thisHeight = this.props.size.height;
+    if (nextWidth !== thisWidth || nextHeight !== thisHeight) {
       this.needsResize = true;
     }
   }
@@ -212,12 +214,17 @@ export default class ReactTerminal extends Component {
   }
 
   calculateSize() {
-    const fontSize = Number.parseInt(getComputedStyle(this.terminalEl)['font-size'], 10);
+    const styles = getComputedStyle(this.terminalEl);
+    const fontSize = Number.parseInt(styles['font-size'], 10);
+    const lineHeight = Number.parseInt(styles['line-height'], 10);
     const width = this.props.size.width;
+    const height = this.props.size.height;
+
     const charsPerLine = width / ( fontSize / fontConstant );
     const columns = Math.floor(charsPerLine);
-    const rows = this.props.rows;
-    return { columns, rows, width };
+    const rows = Math.floor(height / lineHeight);
+
+    return { columns, rows, width, height };
   }
 
   resize() {

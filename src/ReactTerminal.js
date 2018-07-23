@@ -27,6 +27,10 @@ const Wrapper = styled.div`
     color: white;
     font-family: Courier, monospace;
     display: inline-block;
+    
+    & > *:last-child > *:last-child {
+      display: contents;
+    }
   }
 `;
 

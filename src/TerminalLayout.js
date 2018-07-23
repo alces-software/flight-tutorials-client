@@ -9,6 +9,7 @@
 
 import React from 'react';
 import { Button } from 'reactstrap';
+import { SizeMe } from 'react-sizeme';
 
 import { ContextLink, StandardModal } from 'flight-reactware';
 
@@ -65,7 +66,12 @@ const TerminalLayout = ({
       the terminal.  You might try refreshing the page, or you could visit
       our{' '} <CommunitySiteLink /> {' '}for further help.
     </StandardModal>
-    {children}
+    <SizeMe
+      refreshRate={200}
+      refreshMode="debounce"
+    >
+      {({ size }) => React.cloneElement(children, { size: size }) }
+    </SizeMe>
   </div>
 );
 

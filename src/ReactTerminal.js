@@ -14,6 +14,13 @@ import styled from 'styled-components';
 
 import InputProcessor from './utils/InputProcessor';
 
+// The font-constant is a property of the font-family selected for the
+// terminal.  It is used to determine the number of columns for the terminal
+// given a width in pixels.
+//
+// WARNING: If the font-family changes, the font-constant will need to change
+// too.
+const fontConstant = 1.64;
 const Wrapper = styled.div`
   PRE {
     background: black;
@@ -32,6 +39,26 @@ export default class ReactTerminal extends Component {
     onInputLine: (line) => {},  // eslint-disable-line no-unused-vars
     rows: 50,
   };
+
+  constructor(...args) {
+    super(...args);
+    this.needsResize = false;
+  }
+
+  componentWillUpdate(nextProps) {
+    const nextWidth = nextProps.size.width;
+    const thisWidth = this.props.size.width;
+    if (nextWidth !== thisWidth) {
+      this.needsResize = true;
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.needsResize) {
+      this.resize();
+      this.needsResize = false;
+    }
+  }
 
   componentDidMount() {
     debug('Mounted');
@@ -79,7 +106,7 @@ export default class ReactTerminal extends Component {
     // socket-io.stream.  This can be done with the following:
     //
     // ```
-    // this.stream.pipe(term).dom(this.terminalEl).pipe(this.stream);
+    // this.stream.pipe(this.term).dom(this.terminalEl).pipe(this.stream);
     // ```
     //
     // However, we need to grab a reference to the stream of user-provided
@@ -87,7 +114,7 @@ export default class ReactTerminal extends Component {
     // a reference to the output of `dom(...)` above, like so:
     //
     // ```
-    // const userProvidedInput = this.stream.pipe(term).dom(this.terminalEl);
+    // const userProvidedInput = this.stream.pipe(this.term).dom(this.terminalEl);
     // userProvidedInput.pipe(this.stream);
     // ```
     //
@@ -145,10 +172,11 @@ export default class ReactTerminal extends Component {
     debug('Connecting terminal');
 
     this.stream = ss.createStream({ decodeStrings: false, encoding: 'utf-8' });
-    const term = new Terminal(this.terminalEl.dataset);
+    const { columns, rows } = this.calculateSize();
+    this.term = new Terminal({ columns, rows });
     let inputProcessor;
     if (this.props.onInputLine) {
-      inputProcessor = new InputProcessor(term, this.props.onInputLine);
+      inputProcessor = new InputProcessor(this.term, this.props.onInputLine);
     }
 
     this.stream.on('data', (chunk) => {
@@ -162,11 +190,11 @@ export default class ReactTerminal extends Component {
       }
     });
 
-    const userProvidedInput = this.stream.pipe(term).dom(this.terminalEl);
+    const userProvidedInput = this.stream.pipe(this.term).dom(this.terminalEl);
     userProvidedInput.pipe(this.stream);
     if (inputProcessor) {
       userProvidedInput.on('data', inputProcessor.handleUserProvidedData);
-      term.state.on('lineremove', inputProcessor.handleLineRemove);
+      this.term.state.on('lineremove', inputProcessor.handleLineRemove);
     }
   }
 
@@ -181,6 +209,31 @@ export default class ReactTerminal extends Component {
       },
     };
     ss(this.props.socket).emit('new', this.stream, options);
+  }
+
+  calculateSize() {
+    const fontSize = Number.parseInt(getComputedStyle(this.terminalEl)['font-size'], 10);
+    const width = this.props.size.width;
+    const charsPerLine = width / ( fontSize / fontConstant );
+    const columns = Math.floor(charsPerLine);
+    const rows = this.props.rows;
+    return { columns, rows, width };
+  }
+
+  resize() {
+    const { columns, rows, width, height } = this.calculateSize();
+    debug(
+      'Resizing terminal to cols=%s, rows=%s (width=%spx, height=%spx)',
+      columns, rows, width, height,
+    );
+    this.props.socket.emit('resize', this.stream.id, { columns, rows });
+    this.term.state.resize({ columns, rows });
+
+    // The following lines are my best attempt at ensuring that the terminal
+    // is correctly drawn to the screen following its resize.  Further
+    // examination may provide a better method of doing this.
+    this.term.write('');
+    this.term.state.setCursor();
   }
 
   endTerminalSession() {
@@ -199,8 +252,6 @@ export default class ReactTerminal extends Component {
       <Wrapper>
         <pre
           ref={(el) => { this.terminalEl = el; }}
-          data-columns={this.props.columns}
-          data-rows={this.props.rows}
           tabIndex={0}  // eslint-disable-line jsx-a11y/no-noninteractive-tabindex
         />
       </Wrapper>

@@ -27,6 +27,7 @@
     "debug": "^2.6.8",
     "react-fontawesome": "^1.6.1",
     "react-markdown": "^2.5.0",
+    "react-sizeme": "^2.5.2",
     "reactstrap": "5.0.0-beta",
     "socket.io-client": "^2.0.3",
     "socket.io-stream": "^0.9.1",

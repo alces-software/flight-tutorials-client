@@ -49,6 +49,21 @@ export default class ReactTerminal extends Component {
     this.needsResize = false;
   }
 
+  componentDidMount() {
+    debug('Mounted');
+    this.connectTerminal();
+    this.createTerminalSession();
+    // FSR when restarting a terminal session, that is umounting one
+    // ReactTerminal instance and mouting a new ReactTerminal instance, we
+    // need a setTimeout of 150ms before we are able to focus the terminal.
+    //
+    // I have no idea why this would be the case.  But the worst that could
+    // happen here is that the user has to click on the terminal before it
+    // receives any input.
+    this.focus();
+    setTimeout(() => this.focus(), 150);
+  }
+
   componentWillUpdate(nextProps: { size: { width: number, height: number }}) {
     const nextWidth = nextProps.size.width;
     const thisWidth = this.props.size.width;
@@ -64,21 +79,6 @@ export default class ReactTerminal extends Component {
       this.resize();
       this.needsResize = false;
     }
-  }
-
-  componentDidMount() {
-    debug('Mounted');
-    this.connectTerminal();
-    this.createTerminalSession();
-    // FSR when restarting a terminal session, that is umounting one
-    // ReactTerminal instance and mouting a new ReactTerminal instance, we
-    // need a setTimeout of 150ms before we are able to focus the terminal.
-    //
-    // I have no idea why this would be the case.  But the worst that could
-    // happen here is that the user has to click on the terminal before it
-    // receives any input.
-    this.focus();
-    setTimeout(() => this.focus(), 150);
   }
 
   componentWillUnmount() {
@@ -227,7 +227,7 @@ export default class ReactTerminal extends Component {
     const width = this.props.size.width;
     const height = this.props.size.height;
 
-    const charsPerLine = width / ( fontSize / fontConstant );
+    const charsPerLine = width / (fontSize / fontConstant);
     const columns = Math.floor(charsPerLine);
     const rows = Math.floor(height / lineHeight);
 

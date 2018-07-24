@@ -41,7 +41,7 @@ const TerminalLayout = ({
   onSessionRestartRequestClosed,
   requestSessionRestart,
   socketError,
-  terminalHeight="100vh",
+  terminalHeight = '100vh',
 } : PropsType) => (
   <div>
     <StandardModal
@@ -76,11 +76,11 @@ const TerminalLayout = ({
       refreshRate={100}
       refreshMode="debounce"
     >
-      {({ size }) => 
-          <div style={{ height: terminalHeight }}>
-            {React.cloneElement(children, { size: size })}
-          </div>
-      }
+      {({ size }) => (
+        <div style={{ height: terminalHeight }}>
+          {React.cloneElement(children, { size })}
+        </div>
+      )}
     </SizeMe>
   </div>
 );

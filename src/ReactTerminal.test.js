@@ -35,7 +35,7 @@ it('renders without crashing', () => {
       size={{ width: 800, height: 600 }}
       socket={socket}
     />,
-    node
+    node,
   );
 });
 

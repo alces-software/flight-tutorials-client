@@ -239,12 +239,6 @@ export default class ReactTerminal extends Component {
     );
     this.props.socket.emit('resize', this.stream.id, { columns, rows });
     this.term.state.resize({ columns, rows });
-
-    // The following lines are my best attempt at ensuring that the terminal
-    // is correctly drawn to the screen following its resize.  Further
-    // examination may provide a better method of doing this.
-    this.term.write('');
-    this.term.state.setCursor();
   }
 
   endTerminalSession() {

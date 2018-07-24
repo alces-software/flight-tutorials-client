@@ -34,6 +34,7 @@ type PropsType = {
 
 const TerminalLayout = ({
   children,
+  noSizeMePlaceholder,
   onCloseSocketError,
   onSessionRestartAccepted,
   onSessionRestartRequestClosed,
@@ -70,6 +71,7 @@ const TerminalLayout = ({
     </StandardModal>
     <SizeMe
       monitorHeight
+      noPlaceholder={noSizeMePlaceholder}
       refreshRate={100}
       refreshMode="debounce"
     >

@@ -17,13 +17,26 @@ const onInputLineSpy = jest.fn();
 
 function renderComponent() {
   const socket = io('http://localhost:25288/pty', { path: '/terminal/socket.io' });
-  return <ReactTerminal onInputLine={onInputLineSpy} socket={socket} />;
+  return (
+    <ReactTerminal
+      onInputLine={onInputLineSpy}
+      socket={socket}
+      size={{ width: 800, height: 600 }}
+    />
+  );
 }
 
 it('renders without crashing', () => {
   const node = document.createElement('div');
   const socket = io('http://localhost:25288/pty', { path: '/terminal/socket.io' });
-  render(<ReactTerminal onInputLine={onInputLineSpy} socket={socket} />, node);
+  render(
+    <ReactTerminal
+      onInputLine={onInputLineSpy}
+      size={{ width: 800, height: 600 }}
+      socket={socket}
+    />,
+    node
+  );
 });
 
 it('ends the stream when unmounted', () => {

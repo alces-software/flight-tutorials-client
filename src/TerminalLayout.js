@@ -24,12 +24,13 @@ const CommunitySiteLink = () => (
 
 type PropsType = {
   children : React$Element<*>,  // A ReactTerminal element.
+  noSizeMePlaceholder?: boolean,
   onCloseSocketError: () => void,
   onSessionRestartAccepted: () => void,
   onSessionRestartRequestClosed: () => void,
   requestSessionRestart: boolean,
   socketError: boolean,
-  terminalHeight: number,
+  terminalHeight?: string,
 }
 
 const TerminalLayout = ({

@@ -64,6 +64,7 @@ it('calls child function with expected arguments', () => {
       key={sessionId}
       onInputLine={onInputLine}
       onSessionEnd={onSessionEnd}
+      size={{ width: 0, height: 0 }}
       socket={mockSocket}
     />,
     // terminal: expect.anything()

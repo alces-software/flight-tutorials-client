@@ -77,6 +77,7 @@ export default class TerminalContainer extends Component {
         onInputLine={this.props.onInputLine}
         onSessionEnd={this.handleSessionEnd}
         rows={this.props.rows}
+        size={{ width: 0, height: 0 }}
         socket={this.props.socket}
       />
     );

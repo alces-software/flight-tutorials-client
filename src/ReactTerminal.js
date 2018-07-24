@@ -44,12 +44,12 @@ export default class ReactTerminal extends Component {
     rows: 50,
   };
 
-  constructor(...args) {
+  constructor(...args: any) {
     super(...args);
     this.needsResize = false;
   }
 
-  componentWillUpdate(nextProps) {
+  componentWillUpdate(nextProps: { size: { width: number, height: number }}) {
     const nextWidth = nextProps.size.width;
     const thisWidth = this.props.size.width;
     const nextHeight = nextProps.size.height;
@@ -92,11 +92,14 @@ export default class ReactTerminal extends Component {
     onInputLine?: (string) => void,
     onSessionEnd?: () => void,  // eslint-disable-line react/require-default-props
     rows: number,
+    size: { width: number, height: number },
     socket: any,
   }
 
-  terminalEl: HTMLPreElement;
+  needsResize: boolean;
   stream: any;
+  term: any;
+  terminalEl: HTMLPreElement;
 
   // Connect the terminal to the socket.io-stream and setup handling of
   // user-provided input.

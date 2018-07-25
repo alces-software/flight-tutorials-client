@@ -12,6 +12,7 @@ import { Button } from 'reactstrap';
 import { SizeMe } from 'react-sizeme';
 
 import { ContextLink, StandardModal } from 'flight-reactware';
+import Wrapper from './TerminalOutputWrapper';
 
 const CommunitySiteLink = () => (
   <ContextLink
@@ -35,12 +36,15 @@ type PropsType = {
 
 const TerminalLayout = ({
   children,
+  getTerminalOutput,
   noSizeMePlaceholder,
   onCloseSocketError,
   onSessionRestartAccepted,
   onSessionRestartRequestClosed,
+  onShowTerminalOutput,
   requestSessionRestart,
   socketError,
+  showTerminalOutput,
   terminalHeight = '100vh',
 } : PropsType) => (
   <div>
@@ -70,6 +74,16 @@ const TerminalLayout = ({
       the terminal.  You might try refreshing the page, or you could visit
       our{' '} <CommunitySiteLink /> {' '}for further help.
     </StandardModal>
+    <StandardModal
+      isOpen={showTerminalOutput}
+      title="Terminal output"
+      toggle={onShowTerminalOutput}
+      className="max-width-content"
+    >
+      <Wrapper>
+        <pre dangerouslySetInnerHTML={{ __html: getTerminalOutput() }} />
+      </Wrapper>
+    </StandardModal>
     <SizeMe
       monitorHeight
       noPlaceholder={noSizeMePlaceholder}
@@ -82,6 +96,11 @@ const TerminalLayout = ({
         </div>
       )}
     </SizeMe>
+    <div style={{ marginTop: '2em' }}>
+      <button onClick={onShowTerminalOutput}>
+        Show all terminal output
+      </button>
+    </div>
   </div>
 );
 

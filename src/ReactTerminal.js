@@ -10,30 +10,12 @@ import React, { Component } from 'react';
 import Terminal from 'terminal.js';
 import ss from 'socket.io-stream';
 import mkDebug from 'debug';
-import styled from 'styled-components';
+import { output } from 'terminal.js'
 
 import InputProcessor from './utils/InputProcessor';
+import Wrapper, { fontConstant } from './TerminalOutputWrapper';
 
-// The font-constant is a property of the font-family selected for the
-// terminal.  It is used to determine the number of columns for the terminal
-// given a width in pixels.
-//
-// WARNING: If the font-family changes, the font-constant will need to change
-// too.
-const fontConstant = 1.64;
-const Wrapper = styled.div`
-  PRE {
-    background: black;
-    color: white;
-    font-family: Courier, monospace;
-    display: inline-block;
-    
-    & > *:last-child > *:last-child {
-      display: contents;
-    }
-  }
-`;
-
+const HtmlOutput = output.HtmlOutput;
 const debug = mkDebug('FlightTutorials:ReactTerminal');
 
 export default class ReactTerminal extends Component {
@@ -253,6 +235,32 @@ export default class ReactTerminal extends Component {
     if (this.terminalEl != null) {
       this.terminalEl.focus();
     }
+  }
+
+  getOutput() {
+    const scrollback = this.term.state._scrollback;
+    const termState = this.term.state;
+
+    // A fake terminal state which includes all lines in the scrollback along
+    // with all lines currently shown in the terminal.
+    const fakeState = {
+      columns: termState.columns,
+      getMode: (...args) => termState.getMode(...args),
+      rows: scrollback.str.length + termState.getBufferRowCount(),
+      getLine: (i) => {
+        if (i < scrollback.str.length) {
+          return {
+            str: scrollback.str[i],
+            attr: scrollback.attr[i],
+          };
+        } else {
+          return termState.getLine(i - scrollback.str.length);
+        }
+      },
+    };
+
+    const html = new HtmlOutput(fakeState);
+    return html.toString();
   }
 
   render() {

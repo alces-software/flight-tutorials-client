@@ -32,12 +32,14 @@ export default class TerminalContainer extends Component {
     this.state = {
       requestSessionRestart: false,
       sessionId: 0,
+      showTerminalOutput: false,
     };
   }
 
   state: {
     requestSessionRestart: boolean,
     sessionId: number,
+    showTerminalOutput: boolean,
   };
 
   props: {
@@ -68,14 +70,26 @@ export default class TerminalContainer extends Component {
     this.setState({ requestSessionRestart: false });
   }
 
+  handleShowTerminalOutput = () => {
+    this.setState({ showTerminalOutput: !this.state.showTerminalOutput });
+  }
+
+  getTerminalOutput = () => {
+    if (this.terminal == null) {
+      return "";
+    }
+    return this.terminal.getOutput();
+  }
+
   render() {
     const terminal = (
       <ReactTerminal
+        columns={this.props.columns}
         env={this.props.env}
         key={this.state.sessionId}
-        columns={this.props.columns}
         onInputLine={this.props.onInputLine}
         onSessionEnd={this.handleSessionEnd}
+        ref={(el) => { this.terminal = el; }}
         rows={this.props.rows}
         size={{ width: 0, height: 0 }}
         socket={this.props.socket}
@@ -85,7 +99,10 @@ export default class TerminalContainer extends Component {
     return this.props.children({
       onSessionRestartAccepted: this.handleSessionRestartAccepted,
       onSessionRestartRequestClosed: this.handleSessionRestartRequestClosed,
+      onShowTerminalOutput: this.handleShowTerminalOutput,
       requestSessionRestart: this.state.requestSessionRestart,
+      showTerminalOutput: this.state.showTerminalOutput,
+      getTerminalOutput: this.getTerminalOutput,
       terminal,
     });
   }

@@ -48,17 +48,23 @@ function renderTerminal() {
           socket={socket}
         >
           {({
+            getTerminalOutput,
             onSessionRestartAccepted,
             onSessionRestartRequestClosed,
+            onShowTerminalOutput,
             requestSessionRestart,
+            showTerminalOutput,
             terminal,
           }) => (
             <TerminalLayout
+              getTerminalOutput={getTerminalOutput}
               onCloseSocketError={onCloseSocketError}
               onSessionRestartAccepted={onSessionRestartAccepted}
               onSessionRestartRequestClosed={onSessionRestartRequestClosed}
+              onShowTerminalOutput={onShowTerminalOutput}
               requestSessionRestart={requestSessionRestart}
               socketError={socketError}
+              showTerminalOutput={showTerminalOutput}
               terminalHeight="calc( 100vh - 64px - 4em )"
             >
               {terminal}

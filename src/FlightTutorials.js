@@ -134,9 +134,12 @@ export default class extends Component {
                 socket={socket}
               >
                 {({
+                  getTerminalOutput,
                   onSessionRestartAccepted,
                   onSessionRestartRequestClosed,
+                  onShowTerminalOutput,
                   requestSessionRestart,
+                  showTerminalOutput,
                   terminal,
                 }) => (
                   <div>
@@ -151,10 +154,13 @@ export default class extends Component {
                       tutorial={tutorial}
                     >
                       <TerminalLayout
+                        getTerminalOutput={getTerminalOutput}
                         onCloseSocketError={onCloseSocketError}
                         onSessionRestartAccepted={onSessionRestartAccepted}
                         onSessionRestartRequestClosed={onSessionRestartRequestClosed}
+                        onShowTerminalOutput={onShowTerminalOutput}
                         requestSessionRestart={requestSessionRestart}
+                        showTerminalOutput={showTerminalOutput}
                         socketError={socketError}
                       >
                         {terminal}

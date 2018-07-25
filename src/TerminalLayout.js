@@ -96,10 +96,13 @@ const TerminalLayout = ({
         </div>
       )}
     </SizeMe>
-    <div style={{ marginTop: '2em' }}>
-      <button onClick={onShowTerminalOutput}>
+    <div style={{ paddingTop: '1em' }}>
+      <Button
+        onClick={onShowTerminalOutput}
+        color="info"
+      >
         Show all terminal output
-      </button>
+      </Button>
     </div>
   </div>
 );

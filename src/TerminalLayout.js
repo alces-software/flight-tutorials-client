@@ -27,7 +27,12 @@ const TerminalOutputModal = ({
   getTerminalOutput,
   onShowTerminalOutput,
   showTerminalOutput,
+} : {
+  getTerminalOutput: () => string,
+  onShowTerminalOutput: () => void,
+  showTerminalOutput: boolean,
 }) => (
+  /* eslint-disable react/no-danger */
   <StandardModal
     isOpen={showTerminalOutput}
     title="Terminal output"
@@ -38,9 +43,14 @@ const TerminalOutputModal = ({
       <pre dangerouslySetInnerHTML={{ __html: getTerminalOutput() }} />
     </Wrapper>
   </StandardModal>
+  /* eslint-enable react/no-danger */
 );
 
-const ShowTerminalOutputButton = ({ onShowTerminalOutput }) => (
+const ShowTerminalOutputButton = ({
+  onShowTerminalOutput,
+} : {
+  onShowTerminalOutput : () => void
+}) => (
   <div style={{ marginTop: '24px' }}>
     <Button
       onClick={onShowTerminalOutput}
@@ -53,12 +63,15 @@ const ShowTerminalOutputButton = ({ onShowTerminalOutput }) => (
 
 type PropsType = {
   children : React$Element<*>,  // A ReactTerminal element.
+  getTerminalOutput?: () => string,
   noSizeMePlaceholder?: boolean,
   onCloseSocketError: () => void,
   onSessionRestartAccepted: () => void,
   onSessionRestartRequestClosed: () => void,
+  onShowTerminalOutput?: () => void,
   requestSessionRestart: boolean,
   socketError: boolean,
+  showTerminalOutput?: boolean,
   terminalHeight?: string,
 }
 
@@ -103,7 +116,7 @@ const TerminalLayout = ({
       our{' '} <CommunitySiteLink /> {' '}for further help.
     </StandardModal>
     {
-      getTerminalOutput == null ?
+      getTerminalOutput == null || onShowTerminalOutput == null || showTerminalOutput == null ?
         null :
         (
           <TerminalOutputModal
@@ -126,7 +139,7 @@ const TerminalLayout = ({
       )}
     </SizeMe>
     {
-      getTerminalOutput == null ?
+      getTerminalOutput == null || onShowTerminalOutput == null ?
         null :
         <ShowTerminalOutputButton onShowTerminalOutput={onShowTerminalOutput} />
     }

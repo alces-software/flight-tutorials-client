@@ -55,15 +55,23 @@ it('calls child function with expected arguments', () => {
   const sessionId = instance.state.sessionId;
   // $FlowFixMe
   const onSessionEnd = instance.handleSessionEnd;
+  // $FlowFixMe
+  const onShowTerminalOutput = instance.handleShowTerminalOutput;
+  // $FlowFixMe
+  const getTerminalOutput = instance.getTerminalOutput;
 
   expect(childFunctionSpy).toHaveBeenCalledWith({
+    getTerminalOutput,
     onSessionRestartAccepted,
     onSessionRestartRequestClosed,
+    onShowTerminalOutput,
     requestSessionRestart: false,
+    showTerminalOutput: false,
     terminal: <ReactTerminal
       key={sessionId}
       onInputLine={onInputLine}
       onSessionEnd={onSessionEnd}
+      ref={expect.any(Function)}
       size={{ width: 0, height: 0 }}
       socket={mockSocket}
     />,

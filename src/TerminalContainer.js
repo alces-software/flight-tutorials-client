@@ -42,6 +42,13 @@ export default class TerminalContainer extends Component {
     showTerminalOutput: boolean,
   };
 
+  getTerminalOutput = () => {
+    if (this.terminal == null) {
+      return '';
+    }
+    return this.terminal.getOutput();
+  }
+
   props: {
     children: ChildrenPropType,
     columns?: number,  // eslint-disable-line react/require-default-props
@@ -50,6 +57,8 @@ export default class TerminalContainer extends Component {
     rows?: number,  // eslint-disable-line react/require-default-props
     socket: any,
   };
+
+  terminal: ReactTerminal;
 
   handleSessionEnd = () => {
     debug('Session eneded. Requesting restart');
@@ -72,13 +81,6 @@ export default class TerminalContainer extends Component {
 
   handleShowTerminalOutput = () => {
     this.setState({ showTerminalOutput: !this.state.showTerminalOutput });
-  }
-
-  getTerminalOutput = () => {
-    if (this.terminal == null) {
-      return "";
-    }
-    return this.terminal.getOutput();
   }
 
   render() {

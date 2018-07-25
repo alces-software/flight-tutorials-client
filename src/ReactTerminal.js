@@ -7,10 +7,9 @@
  * All rights reserved, see LICENSE.txt.
  *===========================================================================*/
 import React, { Component } from 'react';
-import Terminal from 'terminal.js';
+import Terminal, { output } from 'terminal.js';
 import ss from 'socket.io-stream';
 import mkDebug from 'debug';
-import { output } from 'terminal.js'
 
 import InputProcessor from './utils/InputProcessor';
 import Wrapper, { fontConstant } from './TerminalOutputWrapper';
@@ -66,6 +65,31 @@ export default class ReactTerminal extends Component {
   componentWillUnmount() {
     debug('Unmounting');
     this.endTerminalSession();
+  }
+
+  getOutput() {
+    const scrollback = this.term.state._scrollback;  // eslint-disable-line no-underscore-dangle
+    const termState = this.term.state;
+
+    // A fake terminal state which includes all lines in the scrollback along
+    // with all lines currently shown in the terminal.
+    const fakeState = {
+      columns: termState.columns,
+      getMode: (...args) => termState.getMode(...args),
+      rows: scrollback.str.length + termState.getBufferRowCount(),
+      getLine: (i) => {
+        if (i < scrollback.str.length) {
+          return {
+            str: scrollback.str[i],
+            attr: scrollback.attr[i],
+          };
+        }
+        return termState.getLine(i - scrollback.str.length);
+      },
+    };
+
+    const html = new HtmlOutput(fakeState);
+    return html.toString();
   }
 
   props: {
@@ -235,32 +259,6 @@ export default class ReactTerminal extends Component {
     if (this.terminalEl != null) {
       this.terminalEl.focus();
     }
-  }
-
-  getOutput() {
-    const scrollback = this.term.state._scrollback;
-    const termState = this.term.state;
-
-    // A fake terminal state which includes all lines in the scrollback along
-    // with all lines currently shown in the terminal.
-    const fakeState = {
-      columns: termState.columns,
-      getMode: (...args) => termState.getMode(...args),
-      rows: scrollback.str.length + termState.getBufferRowCount(),
-      getLine: (i) => {
-        if (i < scrollback.str.length) {
-          return {
-            str: scrollback.str[i],
-            attr: scrollback.attr[i],
-          };
-        } else {
-          return termState.getLine(i - scrollback.str.length);
-        }
-      },
-    };
-
-    const html = new HtmlOutput(fakeState);
-    return html.toString();
   }
 
   render() {

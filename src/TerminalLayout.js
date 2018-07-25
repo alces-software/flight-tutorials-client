@@ -23,6 +23,34 @@ const CommunitySiteLink = () => (
   </ContextLink>
 );
 
+const TerminalOutputModal = ({
+  getTerminalOutput,
+  onShowTerminalOutput,
+  showTerminalOutput,
+}) => (
+  <StandardModal
+    isOpen={showTerminalOutput}
+    title="Terminal output"
+    toggle={onShowTerminalOutput}
+    className="max-width-content"
+  >
+    <Wrapper>
+      <pre dangerouslySetInnerHTML={{ __html: getTerminalOutput() }} />
+    </Wrapper>
+  </StandardModal>
+);
+
+const ShowTerminalOutputButton = ({ onShowTerminalOutput }) => (
+  <div style={{ paddingTop: '1em' }}>
+    <Button
+      onClick={onShowTerminalOutput}
+      color="info"
+    >
+      Show all terminal output
+    </Button>
+  </div>
+);
+
 type PropsType = {
   children : React$Element<*>,  // A ReactTerminal element.
   noSizeMePlaceholder?: boolean,
@@ -74,16 +102,17 @@ const TerminalLayout = ({
       the terminal.  You might try refreshing the page, or you could visit
       our{' '} <CommunitySiteLink /> {' '}for further help.
     </StandardModal>
-    <StandardModal
-      isOpen={showTerminalOutput}
-      title="Terminal output"
-      toggle={onShowTerminalOutput}
-      className="max-width-content"
-    >
-      <Wrapper>
-        <pre dangerouslySetInnerHTML={{ __html: getTerminalOutput() }} />
-      </Wrapper>
-    </StandardModal>
+    {
+      getTerminalOutput == null ?
+        null :
+        (
+          <TerminalOutputModal
+            getTerminalOutput={getTerminalOutput}
+            onShowTerminalOutput={onShowTerminalOutput}
+            showTerminalOutput={showTerminalOutput}
+          />
+        )
+    }
     <SizeMe
       monitorHeight
       noPlaceholder={noSizeMePlaceholder}
@@ -96,14 +125,11 @@ const TerminalLayout = ({
         </div>
       )}
     </SizeMe>
-    <div style={{ paddingTop: '1em' }}>
-      <Button
-        onClick={onShowTerminalOutput}
-        color="info"
-      >
-        Show all terminal output
-      </Button>
-    </div>
+    {
+      getTerminalOutput == null ?
+        null :
+        <ShowTerminalOutputButton onShowTerminalOutput={onShowTerminalOutput} />
+    }
   </div>
 );
 

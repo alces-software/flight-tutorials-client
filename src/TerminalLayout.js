@@ -41,7 +41,7 @@ const TerminalOutputModal = ({
 );
 
 const ShowTerminalOutputButton = ({ onShowTerminalOutput }) => (
-  <div style={{ paddingTop: '1em' }}>
+  <div style={{ marginTop: '24px' }}>
     <Button
       onClick={onShowTerminalOutput}
       color="info"

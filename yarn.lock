@@ -3225,9 +3225,9 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-"flight-reactware@https://s3-eu-west-1.amazonaws.com/alces-flight/FlightReactware/0.1.50/flight-reactware.tgz":
-  version "0.1.50"
-  resolved "https://s3-eu-west-1.amazonaws.com/alces-flight/FlightReactware/0.1.50/flight-reactware.tgz#cb0a037ab5f5281f8b120d3746b2152f8a61ba56"
+"flight-reactware@https://s3-eu-west-1.amazonaws.com/alces-flight/FlightReactware/0.1.51/flight-reactware.tgz":
+  version "0.1.51"
+  resolved "https://s3-eu-west-1.amazonaws.com/alces-flight/FlightReactware/0.1.51/flight-reactware.tgz#35004944b5bd0dcb5c3c6527f501801a20eea492"
   dependencies:
     array-includes "^3.0.3"
     axios "^0.16.2"
@@ -7541,8 +7541,8 @@ stylis@^3.2.1:
   resolved "https://registry.yarnpkg.com/stylis/-/stylis-3.2.16.tgz#f336893e55f9f13299b39c01af3b10546cd7507a"
 
 stylis@^3.4.0:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/stylis/-/stylis-3.5.1.tgz#fd341d59f57f9aeb412bc14c9d8a8670b438e03b"
+  version "3.5.3"
+  resolved "https://registry.yarnpkg.com/stylis/-/stylis-3.5.3.tgz#99fdc46afba6af4deff570825994181a5e6ce546"
 
 supports-color@3.1.2, supports-color@^3.1.0:
   version "3.1.2"

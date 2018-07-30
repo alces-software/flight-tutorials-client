@@ -76,12 +76,12 @@ function renderTutorialContainer() {
           }) => (
             <TerminalContainer onInputLine={onInputLine} socket={socket}>
               {({
-                getTerminalOutput,
+                getSessionHistory,
                 onSessionRestartAccepted,
                 onSessionRestartRequestClosed,
-                onShowTerminalOutput,
+                onShowSessionHistory,
                 requestSessionRestart,
-                showTerminalOutput,
+                showSessionHistory,
                 terminal,
               }) => (
                 <div>
@@ -95,14 +95,14 @@ function renderTutorialContainer() {
                     tutorial={tutorial}
                   >
                     <TerminalLayout
-                      getTerminalOutput={getTerminalOutput}
+                      getSessionHistory={getSessionHistory}
                       onCloseSocketError={onCloseSocketError}
                       onSessionRestartAccepted={onSessionRestartAccepted}
                       onSessionRestartRequestClosed={onSessionRestartRequestClosed}
-                      onShowTerminalOutput={onShowTerminalOutput}
+                      onShowSessionHistory={onShowSessionHistory}
                       requestSessionRestart={requestSessionRestart}
                       socketError={socketError}
-                      showTerminalOutput={showTerminalOutput}
+                      showSessionHistory={showSessionHistory}
                     >
                       {terminal}
                     </TerminalLayout>

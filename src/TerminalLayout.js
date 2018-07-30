@@ -12,7 +12,8 @@ import { Button } from 'reactstrap';
 import { SizeMe } from 'react-sizeme';
 
 import { ContextLink, StandardModal } from 'flight-reactware';
-import { TerminalOutputModal, ShowTerminalOutputButton } from './TerminalOutputModal';
+import ShowSessionHistoryButton from './ShowSessionHistoryButton';
+import SessionHistoryModal from './SessionHistoryModal';
 
 const CommunitySiteLink = () => (
   <ContextLink
@@ -25,32 +26,32 @@ const CommunitySiteLink = () => (
 
 type PropsType = {
   children : React$Element<*>,  // A ReactTerminal element.
-  getTerminalOutput?: () => string,
+  getSessionHistory?: () => string,
   noSizeMePlaceholder?: boolean,
   onCloseSocketError: () => void,
   onSessionRestartAccepted: () => void,
   onSessionRestartRequestClosed: () => void,
-  onShowTerminalOutput?: () => void,
+  onShowSessionHistory?: () => void,
   requestSessionRestart: boolean,
   socketError: boolean,
-  showTerminalOutput?: boolean,
+  showSessionHistory?: boolean,
   terminalHeight?: string,
-  terminalOutputHeight?: string,
+  sessionHistoryHeight?: string,
 }
 
 const TerminalLayout = ({
   children,
-  getTerminalOutput,
+  getSessionHistory,
   noSizeMePlaceholder,
   onCloseSocketError,
   onSessionRestartAccepted,
   onSessionRestartRequestClosed,
-  onShowTerminalOutput,
+  onShowSessionHistory,
   requestSessionRestart,
   socketError,
-  showTerminalOutput,
+  showSessionHistory,
   terminalHeight = '100vh',
-  terminalOutputHeight = '600px',
+  sessionHistoryHeight = '600px',
 } : PropsType) => (
   <div>
     <StandardModal
@@ -80,14 +81,14 @@ const TerminalLayout = ({
       our{' '} <CommunitySiteLink /> {' '}for further help.
     </StandardModal>
     {
-      getTerminalOutput == null || onShowTerminalOutput == null || showTerminalOutput == null ?
+      getSessionHistory == null || onShowSessionHistory == null || showSessionHistory == null ?
         null :
         (
-          <TerminalOutputModal
-            getTerminalOutput={getTerminalOutput}
-            onShowTerminalOutput={onShowTerminalOutput}
-            showTerminalOutput={showTerminalOutput}
-            terminalOutputHeight={terminalOutputHeight}
+          <SessionHistoryModal
+            getSessionHistory={getSessionHistory}
+            onShowSessionHistory={onShowSessionHistory}
+            showSessionHistory={showSessionHistory}
+            sessionHistoryHeight={sessionHistoryHeight}
           />
         )
     }
@@ -104,9 +105,9 @@ const TerminalLayout = ({
       )}
     </SizeMe>
     {
-      getTerminalOutput == null || onShowTerminalOutput == null ?
+      getSessionHistory == null || onShowSessionHistory == null ?
         null :
-        <ShowTerminalOutputButton onShowTerminalOutput={onShowTerminalOutput} />
+        <ShowSessionHistoryButton onShowSessionHistory={onShowSessionHistory} />
     }
   </div>
 );

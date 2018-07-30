@@ -20,7 +20,7 @@ let socketIOPath;
 
 // For this demo, these need to be set to valid values here.
 const siteId = 1;
-const jwt = "";
+const jwt = "eyJhbGciOiJIUzI1NiJ9.eyJmbGlnaHRfaWQiOiIxOTM1NTcyZC1iNzIyLTQ2ZWItOGMwOS00OTc2YzE5NTBjMmYiLCJ1c2VybmFtZSI6ImJlbmFybXN0b24iLCJlbWFpbCI6ImJlbi5hcm1zdG9uQGV4YW1wbGUuY29tIiwiZXhwIjoxNTMzMDMyNDQwfQ.KScuLvGJmqnacHiwPoIzGlaY2pjx5ymWQeu_prCaXJo";
 
 const env = {
   LANG: 'en_GB.UTF-8',
@@ -48,25 +48,25 @@ function renderTerminal() {
           socket={socket}
         >
           {({
-            getTerminalOutput,
+            getSessionHistory,
             onSessionRestartAccepted,
             onSessionRestartRequestClosed,
-            onShowTerminalOutput,
+            onShowSessionHistory,
             requestSessionRestart,
-            showTerminalOutput,
+            showSessionHistory,
             terminal,
           }) => (
             <TerminalLayout
-              getTerminalOutput={getTerminalOutput}
+              getSessionHistory={getSessionHistory}
               onCloseSocketError={onCloseSocketError}
               onSessionRestartAccepted={onSessionRestartAccepted}
               onSessionRestartRequestClosed={onSessionRestartRequestClosed}
-              onShowTerminalOutput={onShowTerminalOutput}
+              onShowSessionHistory={onShowSessionHistory}
               requestSessionRestart={requestSessionRestart}
               socketError={socketError}
-              showTerminalOutput={showTerminalOutput}
+              showSessionHistory={showSessionHistory}
               terminalHeight="calc( 100vh - 64px - 6em )"
-              terminalOutputHeight="calc( 100vh - 64px - 6em - 12em )"
+              sessionHistoryHeight="calc( 100vh - 64px - 6em - 12em )"
             >
               {terminal}
             </TerminalLayout>

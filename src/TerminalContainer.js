@@ -32,17 +32,17 @@ export default class TerminalContainer extends Component {
     this.state = {
       requestSessionRestart: false,
       sessionId: 0,
-      showTerminalOutput: false,
+      showSessionHistory: false,
     };
   }
 
   state: {
     requestSessionRestart: boolean,
     sessionId: number,
-    showTerminalOutput: boolean,
+    showSessionHistory: boolean,
   };
 
-  getTerminalOutput = () => {
+  getSessionHistory = () => {
     if (this.terminal == null) {
       return '';
     }
@@ -79,8 +79,8 @@ export default class TerminalContainer extends Component {
     this.setState({ requestSessionRestart: false });
   }
 
-  handleShowTerminalOutput = () => {
-    this.setState({ showTerminalOutput: !this.state.showTerminalOutput });
+  handleShowSessionHistory = () => {
+    this.setState({ showSessionHistory: !this.state.showSessionHistory });
   }
 
   render() {
@@ -101,10 +101,10 @@ export default class TerminalContainer extends Component {
     return this.props.children({
       onSessionRestartAccepted: this.handleSessionRestartAccepted,
       onSessionRestartRequestClosed: this.handleSessionRestartRequestClosed,
-      onShowTerminalOutput: this.handleShowTerminalOutput,
+      onShowSessionHistory: this.handleShowSessionHistory,
       requestSessionRestart: this.state.requestSessionRestart,
-      showTerminalOutput: this.state.showTerminalOutput,
-      getTerminalOutput: this.getTerminalOutput,
+      showSessionHistory: this.state.showSessionHistory,
+      getSessionHistory: this.getSessionHistory,
       terminal,
     });
   }

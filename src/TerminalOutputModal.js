@@ -20,6 +20,7 @@ const HeightRestrictedWrapper = styled(Wrapper)`
     ${({ maxHeight }) =>
       maxHeight == null ? null : css`max-height: ${maxHeight};`
     }
+    max-width: 100%;
   }
 `;
 

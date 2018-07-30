@@ -46,7 +46,7 @@ export class TerminalOutputModal extends React.Component {
     return (
       <StandardModal
         isOpen={showTerminalOutput}
-        title="Terminal output"
+        title="Session history"
         toggle={onShowTerminalOutput}
         className="max-width-content"
         onOpened={this.handleScrollModal}

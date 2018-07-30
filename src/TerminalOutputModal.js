@@ -24,30 +24,43 @@ const HeightRestrictedWrapper = styled(Wrapper)`
   }
 `;
 
-export const TerminalOutputModal = ({
-  getTerminalOutput,
-  onShowTerminalOutput,
-  showTerminalOutput,
-  terminalOutputHeight,
-} : {
-  getTerminalOutput: () => string,
-  onShowTerminalOutput: () => void,
-  showTerminalOutput: boolean,
-  terminalOutputHeight: string,
-}) => (
-  /* eslint-disable react/no-danger */
-  <StandardModal
-    isOpen={showTerminalOutput}
-    title="Terminal output"
-    toggle={onShowTerminalOutput}
-    className="max-width-content"
-  >
-    <HeightRestrictedWrapper maxHeight={terminalOutputHeight} >
-      <pre dangerouslySetInnerHTML={{ __html: getTerminalOutput() }} />
-    </HeightRestrictedWrapper>
-  </StandardModal>
-  /* eslint-enable react/no-danger */
-);
+export class TerminalOutputModal extends React.Component {
+  props: {
+    getTerminalOutput: () => string,
+    onShowTerminalOutput: () => void,
+    showTerminalOutput: boolean,
+    terminalOutputHeight: string,
+  }
+
+  handleScrollModal = () => {
+    this.pre.scrollTop = this.pre.scrollHeight;
+  }
+
+  render() {
+    const {
+      getTerminalOutput,
+      onShowTerminalOutput,
+      showTerminalOutput,
+      terminalOutputHeight,
+    } = this.props;
+    return (
+      <StandardModal
+        isOpen={showTerminalOutput}
+        title="Terminal output"
+        toggle={onShowTerminalOutput}
+        className="max-width-content"
+        onOpened={this.handleScrollModal}
+      >
+        <HeightRestrictedWrapper maxHeight={terminalOutputHeight} >
+          <pre
+            dangerouslySetInnerHTML={{ __html: getTerminalOutput() }}
+            ref={(el) => { this.pre = el; }}
+          />
+        </HeightRestrictedWrapper>
+      </StandardModal>
+    );
+  }
+};
 
 export const ShowTerminalOutputButton = ({
   onShowTerminalOutput,

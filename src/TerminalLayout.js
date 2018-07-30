@@ -12,7 +12,7 @@ import { Button } from 'reactstrap';
 import { SizeMe } from 'react-sizeme';
 
 import { ContextLink, StandardModal } from 'flight-reactware';
-import Wrapper from './TerminalOutputWrapper';
+import { TerminalOutputModal, ShowTerminalOutputButton } from './TerminalOutputModal';
 
 const CommunitySiteLink = () => (
   <ContextLink
@@ -21,44 +21,6 @@ const CommunitySiteLink = () => (
   >
     Community Support Portal
   </ContextLink>
-);
-
-const TerminalOutputModal = ({
-  getTerminalOutput,
-  onShowTerminalOutput,
-  showTerminalOutput,
-} : {
-  getTerminalOutput: () => string,
-  onShowTerminalOutput: () => void,
-  showTerminalOutput: boolean,
-}) => (
-  /* eslint-disable react/no-danger */
-  <StandardModal
-    isOpen={showTerminalOutput}
-    title="Terminal output"
-    toggle={onShowTerminalOutput}
-    className="max-width-content"
-  >
-    <Wrapper>
-      <pre dangerouslySetInnerHTML={{ __html: getTerminalOutput() }} />
-    </Wrapper>
-  </StandardModal>
-  /* eslint-enable react/no-danger */
-);
-
-const ShowTerminalOutputButton = ({
-  onShowTerminalOutput,
-} : {
-  onShowTerminalOutput : () => void
-}) => (
-  <div style={{ marginTop: '24px' }}>
-    <Button
-      onClick={onShowTerminalOutput}
-      color="info"
-    >
-      Show all terminal output
-    </Button>
-  </div>
 );
 
 type PropsType = {
@@ -73,6 +35,7 @@ type PropsType = {
   socketError: boolean,
   showTerminalOutput?: boolean,
   terminalHeight?: string,
+  terminalOutputHeight?: string,
 }
 
 const TerminalLayout = ({
@@ -87,6 +50,7 @@ const TerminalLayout = ({
   socketError,
   showTerminalOutput,
   terminalHeight = '100vh',
+  terminalOutputHeight = '600px',
 } : PropsType) => (
   <div>
     <StandardModal
@@ -123,6 +87,7 @@ const TerminalLayout = ({
             getTerminalOutput={getTerminalOutput}
             onShowTerminalOutput={onShowTerminalOutput}
             showTerminalOutput={showTerminalOutput}
+            terminalOutputHeight={terminalOutputHeight}
           />
         )
     }

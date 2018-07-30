@@ -10,9 +10,15 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 import styled, { css } from 'styled-components';
+import FontAwesome from 'react-fontawesome';
 
-import { StandardModal } from 'flight-reactware';
+import { HelpPopover, StandardModal } from 'flight-reactware';
 import Wrapper from './TerminalOutputWrapper';
+
+const StyledHelpPopover = styled(HelpPopover)`
+  vertical-align: middle;
+  margin-left: 0.5em;
+`;
 
 const HeightRestrictedWrapper = styled(Wrapper)`
   PRE {
@@ -72,7 +78,15 @@ export const ShowTerminalOutputButton = ({
       onClick={onShowTerminalOutput}
       color="info"
     >
-      Show all terminal output
+      <FontAwesome name="history" />
+      {' '}Show session history
     </Button>
+    <StyledHelpPopover
+      content="Use this button to open a dialog that allows you to view lines
+      that have scrolled off the top of the console window within this
+      session"
+    >
+      What's this
+    </StyledHelpPopover>
   </div>
 );

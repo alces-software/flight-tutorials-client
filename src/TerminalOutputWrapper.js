@@ -19,8 +19,10 @@ const Wrapper = styled.div`
   PRE {
     background: black;
     color: white;
-    font-family: Courier, monospace;
     display: inline-block;
+    line-height: 1.2;
+    padding-top: 5px;
+    padding-left: 5px;
     
     & > *:last-child, & > *:last-child > *:last-child {
       display: contents;

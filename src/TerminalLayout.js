@@ -99,7 +99,7 @@ const TerminalLayout = ({
       refreshMode="debounce"
     >
       {({ size }) => (
-        <div style={{ height: terminalHeight }}>
+        <div style={{ height: terminalHeight, marginBottom: '1em'}}>
           {React.cloneElement(children, { size })}
         </div>
       )}

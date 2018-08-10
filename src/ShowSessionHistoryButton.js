@@ -24,7 +24,7 @@ const ShowSessionHistoryButton = ({
 } : {
   onShowSessionHistory : () => void
 }) => (
-  <div style={{ marginTop: '24px' }}>
+  <div style={{ marginTop: '36px' }}>
     <Button
       onClick={onShowSessionHistory}
       color="info"

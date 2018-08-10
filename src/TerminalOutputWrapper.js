@@ -23,9 +23,11 @@ const Wrapper = styled.div`
     line-height: 1.2;
     padding-top: 5px;
     padding-left: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 0;
     
     & > *:last-child, & > *:last-child > *:last-child {
-      display: contents;
+      overflow: hidden;
     }
   }
 `;

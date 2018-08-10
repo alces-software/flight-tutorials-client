@@ -237,10 +237,7 @@ export default class ReactTerminal extends Component {
 
     const charsPerLine = width / (fontSize / fontConstant);
     const columns = Math.floor(charsPerLine);
-    // HACK!!! Subtract one row to ensure that the terminal doesn't obscure
-    // the show session history button.  There should be a principled way of
-    // achieving this.
-    const rows = Math.floor(height / lineHeight) - 1;
+    const rows = Math.floor(height / lineHeight);
 
     return { columns, rows, width, height };
   }

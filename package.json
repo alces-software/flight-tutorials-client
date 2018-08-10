@@ -32,7 +32,7 @@
     "socket.io-client": "^2.0.3",
     "socket.io-stream": "^0.9.1",
     "styled-components": "^2.1.2",
-    "terminal.js": "https://github.com/alces-software/terminal.js.git#release/1.1.0",
+    "terminal.js": "https://github.com/alces-software/terminal.js.git#release/1.1.1",
     "url-search-params-polyfill": "^2.0.0"
   },
   "peerDependencies": {

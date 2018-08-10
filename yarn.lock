@@ -7642,9 +7642,9 @@ tcomb@^3.0.0:
   version "3.2.27"
   resolved "https://registry.yarnpkg.com/tcomb/-/tcomb-3.2.27.tgz#f4928bfc536b959d21a47e5f5f1ca2b2e4b7188a"
 
-"terminal.js@https://github.com/alces-software/terminal.js.git#release/1.1.0":
+"terminal.js@https://github.com/alces-software/terminal.js.git#release/1.1.1":
   version "1.1.10"
-  resolved "https://github.com/alces-software/terminal.js.git#e236070ab75172931dea22a928f78520f0a51729"
+  resolved "https://github.com/alces-software/terminal.js.git#87f33fc58fc163ea16af02ffb4362bf54729982f"
   dependencies:
     wcwidth "^1.0.1"
 

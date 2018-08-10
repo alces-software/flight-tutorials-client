@@ -230,12 +230,17 @@ export default class ReactTerminal extends Component {
     const styles = getComputedStyle(this.terminalEl);
     const fontSize = Number.parseInt(styles['font-size'], 10);
     const lineHeight = Number.parseInt(styles['line-height'], 10);
+    const paddingTop = Number.parseInt(styles['padding-top'], 10);
+    const paddingBottom = Number.parseInt(styles['padding-bottom'], 10);
     const width = this.props.size.width;
-    const height = this.props.size.height;
+    const height = this.props.size.height - paddingTop - paddingBottom;
 
     const charsPerLine = width / (fontSize / fontConstant);
     const columns = Math.floor(charsPerLine);
-    const rows = Math.floor(height / lineHeight);
+    // HACK!!! Subtract one row to ensure that the terminal doesn't obscure
+    // the show session history button.  There should be a principled way of
+    // achieving this.
+    const rows = Math.floor(height / lineHeight) - 1;
 
     return { columns, rows, width, height };
   }

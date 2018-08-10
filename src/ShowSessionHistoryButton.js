@@ -37,7 +37,7 @@ const ShowSessionHistoryButton = ({
       that have scrolled off the top of the console window within this
       session"
     >
-      What&apos;s this
+      What&apos;s this{' '}
     </StyledHelpPopover>
   </div>
 );

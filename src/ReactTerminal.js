@@ -214,6 +214,7 @@ export default class ReactTerminal extends Component {
   }
 
   createTerminalSession() {
+    debug('Creating terminal session');
     const options = {
       columns: this.props.columns,
       rows: this.props.rows,
@@ -236,10 +237,12 @@ export default class ReactTerminal extends Component {
     const height = this.props.size.height - paddingTop - paddingBottom;
 
     const charsPerLine = width / (fontSize / fontConstant);
-    const columns = Math.floor(charsPerLine);
-    const rows = Math.floor(height / lineHeight);
+    const columns = Math.max(1, Math.floor(charsPerLine));
+    const rows = Math.max(1, Math.floor(height / lineHeight));
+    const size = { columns, rows, width, height };
 
-    return { columns, rows, width, height };
+    debug('Calculated size to %o', size);
+    return size;
   }
 
   resize() {

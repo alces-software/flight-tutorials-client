@@ -19,8 +19,13 @@ let socketIOUrl;
 let socketIOPath;
 
 // For this demo, these need to be set to valid values here.
-const siteId = 1;
-const jwt = "eyJhbGciOiJIUzI1NiJ9.eyJmbGlnaHRfaWQiOiIxOTM1NTcyZC1iNzIyLTQ2ZWItOGMwOS00OTc2YzE5NTBjMmYiLCJ1c2VybmFtZSI6ImJlbmFybXN0b24iLCJlbWFpbCI6ImJlbi5hcm1zdG9uQGV4YW1wbGUuY29tIiwiZXhwIjoxNTMzMDMyNDQwfQ.KScuLvGJmqnacHiwPoIzGlaY2pjx5ymWQeu_prCaXJo";
+const jwt = "";
+const scope = {
+  type: "sites",
+  id: "DEMO",
+  serviceType: "directory",
+};
+
 
 const env = {
   LANG: 'en_GB.UTF-8',
@@ -33,7 +38,7 @@ function renderTerminal() {
       socketIOPath={socketIOPath}
       auth={{
         jwt: jwt,
-        siteId: siteId,
+        scope: scope,
       }}
     >
       {({

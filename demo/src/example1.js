@@ -38,6 +38,7 @@ type RenderParams = {
 export const render = ({ socketIOPath, socketIOUrl } : RenderParams) => {
   ReactDOM.render(
     <FlightTutorials
+      auth={{}}
       socketIOUrl={socketIOUrl}
       socketIOPath={socketIOPath}
     />,

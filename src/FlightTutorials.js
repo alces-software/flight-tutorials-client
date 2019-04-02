@@ -52,6 +52,7 @@ export default class extends Component {
   };
 
   props: {
+    auth?: {},
     // eslint-disable-next-line react/require-default-props
     columns?: number,
     // eslint-disable-next-line react/require-default-props
@@ -119,6 +120,7 @@ export default class extends Component {
           onSkipCurrentStep,
         }) => (
           <SocketContainer
+            auth={this.props.auth}
             socketIOUrl={this.props.socketIOUrl}
             socketIOPath={this.props.socketIOPath}
           >

@@ -1,5 +1,6 @@
 // @flow
 import FlightTutorials from './FlightTutorials';
+import SimpleTerminal from './SimpleTerminal';
 import SocketContainer from './SocketContainer';
 import TerminalContainer from './TerminalContainer';
 import TerminalLayout from './TerminalLayout';
@@ -12,6 +13,7 @@ import loadTutorials from './utils/loadTutorials';
 
 export {
   FlightTutorials,
+  SimpleTerminal,
   SocketContainer,
   TerminalContainer,
   TerminalLayout,

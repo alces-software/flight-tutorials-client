@@ -11,42 +11,26 @@ import * as example1 from './example1';
 import * as example2 from './example2';
 import * as example3 from './example3';
 
-let title1;
-let title2;
-let title3;
+const examples = {
+  example1: {title: 'Example 1', example: example1},
+  example2: {title: 'Example 2', example: example2},
+  example3: {title: 'Example 3', example: example3},
+};
 
-function renderSelectedExample(example) {
-  if (example === 'example1') {
-    hideTitle(title2);
-    hideTitle(title3);
-    example2.unmount();
-    example3.unmount();
-    showTitle(title1);
-    example1.render({
-      socketIOPath: getSocketIOPath(),
-      socketIOUrl: getSocketIOUrl()
-    });
-  } else if (example === 'example2') {
-    hideTitle(title1);
-    hideTitle(title3);
-    example1.unmount();
-    example3.unmount();
-    showTitle(title2);
-    example2.render({
-      socketIOPath: getSocketIOPath(),
-      socketIOUrl: getSocketIOUrl()
-    });
-  } else {
-    hideTitle(title1);
-    hideTitle(title2);
-    example1.unmount();
-    example2.unmount();
-    showTitle(title3);
-    example3.render({
-      socketIOPath: getSocketIOPath(),
-      socketIOUrl: getSocketIOUrl()
-    });
-  }
+function renderSelectedExample(example_name_to_run) {
+  Object.keys(examples).forEach((ex_name) => {
+    if (ex_name !== example_name_to_run) {
+      const ex = examples[ex_name];
+      hideTitle(ex);
+      ex.example.unmount();
+    }
+  });
+  const example_to_run = examples[example_name_to_run];
+  showTitle(example_to_run);
+  example_to_run.example.render({
+    socketIOPath: getSocketIOPath(),
+    socketIOUrl: getSocketIOUrl()
+  });
 }
 
 function addExampleSelection() {
@@ -55,18 +39,13 @@ function addExampleSelection() {
     throw new Error('Cannot find #demo');
   }
 
-  const button1 = document.createElement('button');
-  const button2 = document.createElement('button');
-  const button3 = document.createElement('button');
-  button1.innerHTML = 'Run example 1';
-  button2.innerHTML = 'Run example 2';
-  button3.innerHTML = 'Run example 3';
-  button1.onclick = () => renderSelectedExample('example1');
-  button2.onclick = () => renderSelectedExample('example2');
-  button3.onclick = () => renderSelectedExample('example3');
-  demo.appendChild(button1);
-  demo.appendChild(button2);
-  demo.appendChild(button3);
+  Object.keys(examples).forEach((ex_name) => {
+    const ex = examples[ex_name];
+    const button = document.createElement('button');
+    button.innerHTML = 'Run ' + ex.title;
+    button.onclick = () => renderSelectedExample(ex_name);
+    demo.appendChild(button);
+  });
 }
 
 function addTitles() {
@@ -75,34 +54,24 @@ function addTitles() {
     throw new Error('Cannot find #demo');
   }
 
-  title1 = document.createElement('span');
-  title1.style.display = 'none';
-  title1.style.marginLeft = '5px';
-  title1.style.fontWeight = 'bold';
-  title1.innerHTML = 'Example 1';
-  title2 = document.createElement('span');
-  title2.style.display = 'none';
-  title2.style.marginLeft = '5px';
-  title2.style.fontWeight = 'bold';
-  title2.innerHTML = 'Example 2';
-  title3 = document.createElement('span');
-  title3.style.display = 'none';
-  title3.style.marginLeft = '5px';
-  title3.style.fontWeight = 'bold';
-  title3.innerHTML = 'Example 3';
-
-
-  demo.appendChild(title1);
-  demo.appendChild(title2);
-  demo.appendChild(title3);
+  Object.keys(examples).forEach((ex_name) => {
+    const ex = examples[ex_name];
+    const title = document.createElement('span');
+    title.style.display = 'none';
+    title.style.marginLeft = '5px';
+    title.style.fontWeight = 'bold';
+    title.innerHTML = ex.title;
+    ex.titleEl = title;
+    demo.appendChild(title);
+  });
 }
 
-function showTitle(t) {
-  t.style.display = 'inline-block';
+function showTitle(example) {
+  example.titleEl.style.display = 'inline-block';
 }
 
-function hideTitle(t) {
-  t.style.display = 'none';
+function hideTitle(example) {
+  example.titleEl.style.display = 'none';
 }
 
 function getSocketIOUrl() {
@@ -134,7 +103,8 @@ export const render = (props: {}) => {
 export const createRequiredDomNodes = () => {
   addExampleSelection();
   addTitles();
-  example1.createRequiredDomNodes();
-  example2.createRequiredDomNodes();
-  example3.createRequiredDomNodes();
+  Object.keys(examples).forEach((ex_name) => {
+    const ex = examples[ex_name];
+    ex.example.createRequiredDomNodes();
+  });
 }

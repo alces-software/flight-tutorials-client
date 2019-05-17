@@ -68,6 +68,7 @@ function renderTutorialContainer() {
         <SocketContainer
           socketIOUrl={socketIOUrl}
           socketIOPath={socketIOPath}
+          auth={{}}
         >
           {({
             onCloseSocketError,

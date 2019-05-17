@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Fake Overware terminal</title>
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/flatly/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-T5jhQKMh96HMkXwqVMSjF3CmLcL1nT9//tCqu9By5XSdj7CwR0r+F3LTzUdfkkQf"
+          crossorigin="anonymous">
+
+    <!--
+        A CSS class that flight-reactware defines.  But we've not loaded the
+        flight-reactware styles, so we define them here.
+    -->
+    <style>
+        .max-width-content {
+            max-width: initial;
+            max-width: max-content;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+    <!-- Note: when deploying, replace ".js" with ".min.js". -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.2/react.js" -->
+    <!--     crossorigin></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.6.2/react-dom.js" -->
+    <!--     crossorigin></script> -->
+    <!-- <script src="umd/flight-tutorials-client.js"></script> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.2/react.min.js"
+        crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.6.2/react-dom.min.js"
+        crossorigin></script>
+    <script src="umd/flight-tutorials-client.min.js"></script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark mb-1 sticky-top bg-primary">
+      <a class="navbar-brand" href="<%= root_path %>">
+        Fake Overware Appliance
+      </a>
+      <div class="navbar-nav">
+        <a class="nax-item nav-link <%= 'active' if current_page?(cluster_path) %>"
+           href="<%= cluster_path %>">
+           Appliance Information
+        </a>
+        <a class="nav-item nav-link <%= 'active' if current_page?(users_path) %>"
+           href="<%= users_path %>">
+          User Management
+        </a>
+        <a class="nav-item nav-link <%= 'active' if current_page?(ssh_path) %>"
+           href="<%= ssh_path %>">
+          SSH Key Management
+        </a>
+        <a class="nav-item nav-link <%= 'active' if current_page?(network_path) %>"
+           href="<%= network_path %>">
+           Network Management
+        </a>
+      </div>
+    </nav>
+    <div class="container">
+        <h3>Fake Overware terminal</h3>
+        <p class="text-muted">
+        With great power comes great responsibility.
+        </p>
+        <div id="flight-terminal-container"></div>
+    </div>
+
+    <script>
+      // FlightTutorials needs to be told the URL to the terminal server.
+      // This obviously changes from one application to another, so Overware
+      // will need to specify it.
+      const socketIOUrl = "http://localhost:25288/pty";
+      // And the socket IO path.  We should perhaps have FlightTutorials set
+      // as the default.
+      const socketIOPath = "/terminal-service/socket.io";
+      // We need to grab the DOM node that FlightTutorials is to be mounted
+      // into.  This must already be present in the DOM.
+      const terminalContainer = document.querySelector('#flight-terminal-container');
+      // The height is calculated as:
+      //   100% of the viewport height
+      //   - 75px for the navbar
+      //   - ( 38 * 2 )px for the title and introductory text
+      //   - 1em for the terminal's bottom padding
+      //   - 36px for the session history button
+      //   - 1em to avoid pushing the session history button to the very bottom.
+      const terminalHeight = "calc( 100vh - 75px - ( 38px * 2 ) - 1em - 36px - 1em )";
+      // We're not performing any authentication / authorisation in this
+      // example.  If we were we would include the credentials here perhaps a
+      // token of some sort.  The terminal server backend would then need to
+      // use those credentials to auth the request.
+      const auth = {};
+      // Any environment variables we want set in the process that runs the
+      // backend terminal.  We need to not only specify them here, but also
+      // configure the SSH command ran by the terminal server and configure
+      // the SSH server.
+      const env = {};
+
+      const params = {
+          auth: auth,
+          env: env,
+          socketIOPath: socketIOPath,
+          socketIOUrl: socketIOUrl,
+          terminalHeight: terminalHeight,
+      };
+      const e = React.createElement;
+      ReactDOM.render(e(flight_tutorials.SimpleTerminal, params), terminalContainer);
+    </script>
+  </body>
+</html>

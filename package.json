@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "debug": "^2.6.8",
-    "flight-reactware": "https://s3-eu-west-1.amazonaws.com/alces-flight/FlightReactware/0.1.59/flight-reactware.tgz",
+    "flight-reactware": "https://s3-eu-west-1.amazonaws.com/alces-flight/FlightReactware/0.2.3/flight-reactware.tgz",
     "react-fontawesome": "^1.6.1",
     "react-markdown": "^2.5.0",
     "react-sizeme": "^2.5.2",

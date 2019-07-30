@@ -5025,9 +5025,9 @@ flatted@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-2.0.1.tgz#69e57caa8f0eacbc281d2e2cb458d46fdb449e08"
 
-"flight-reactware@https://s3-eu-west-1.amazonaws.com/alces-flight/FlightReactware/0.3.1/flight-reactware.tgz":
-  version "0.3.1"
-  resolved "https://s3-eu-west-1.amazonaws.com/alces-flight/FlightReactware/0.3.1/flight-reactware.tgz#073d594fafaf8c18e0ad420bc26a4c3286727650"
+"flight-reactware@https://s3-eu-west-1.amazonaws.com/alces-flight/FlightReactware/0.3.2/flight-reactware.tgz":
+  version "0.3.2"
+  resolved "https://s3-eu-west-1.amazonaws.com/alces-flight/FlightReactware/0.3.2/flight-reactware.tgz#e390e106f772badb9de990731496d136ac4e53b9"
   dependencies:
     array-includes "^3.0.3"
     axios "^0.16.2"
@@ -9167,8 +9167,8 @@ qs@~6.5.2:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
 
 query-string@^6.8.1:
-  version "6.8.1"
-  resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.8.1.tgz#62c54a7ef37d01b538c8fd56f95740c81d438a26"
+  version "6.8.2"
+  resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.8.2.tgz#36cb7e452ae11a4b5e9efee83375e0954407b2f6"
   dependencies:
     decode-uri-component "^0.2.0"
     split-on-first "^1.0.0"
